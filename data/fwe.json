@@ -1,0 +1,6809 @@
+{
+ "meta": {
+  "sources": {
+   "tier_list": "https://game8.co/games/Fire-Emblem-Fortunes-Weave/archives/624024",
+   "growth_rates": "https://game8.co/games/Fire-Emblem-Fortunes-Weave/archives/618974",
+   "best_classes": "https://game8.co/games/Fire-Emblem-Fortunes-Weave/archives/624119",
+   "gifts": "https://game8.co/games/Fire-Emblem-Fortunes-Weave/archives/623690",
+   "recruitment": "https://game8.co/games/Fire-Emblem-Fortunes-Weave/archives/620957",
+   "change_classes": "https://game8.co/games/Fire-Emblem-Fortunes-Weave/archives/618925",
+   "community_sheet": "https://docs.google.com/spreadsheets/d/1TNxGwvaGe__VEaRqSJ6Lgt4HeXRGoeDey7G6A47AZH4"
+  },
+  "class_gates": {
+   "Beginner": "Renown Lv 1 + Unit Lv 5 (Beginner License)",
+   "Specialty": "Renown Lv 4 + Unit Lv 20 (Specialty License)",
+   "Advanced": "Renown Lv 8 + Unit Lv 35 (Advanced License)",
+   "Elephant": "Unit Lv 35 (Elephant License)",
+   "Master": "Unit Lv 45 (Master License)",
+   "Divine": "Divine License Item (Temple of the Diadem)"
+  },
+  "stats": [
+   "HP",
+   "Str",
+   "Mag",
+   "Spd",
+   "Dex",
+   "Def",
+   "Res",
+   "Lck",
+   "Cha"
+  ],
+  "routes": [
+   "Cai",
+   "Dietrich",
+   "Theodora",
+   "Leda"
+  ],
+  "tier_labels": [
+   "Lord",
+   "S",
+   "A",
+   "B",
+   "C"
+  ]
+ },
+ "tier_order": {
+  "Lord": [
+   "Eshmel",
+   "Cai",
+   "Dietrich",
+   "Theodora",
+   "Leda"
+  ],
+  "S": [
+   "Esmeralda",
+   "Sirocco",
+   "Guzran"
+  ],
+  "A": [
+   "Aswan",
+   "Peter",
+   "Bonaventure",
+   "Lilian",
+   "Mu",
+   "Bertrand",
+   "Dante",
+   "Talimun",
+   "Orchel",
+   "Diego",
+   "Ninae",
+   "Anatolia",
+   "Nezha",
+   "Catania",
+   "Alexandra",
+   "Nathan",
+   "Hong Hua",
+   "Seteth",
+   "Goliath",
+   "Ludia",
+   "Halvin",
+   "Nuzzuo",
+   "Fianna"
+  ],
+  "B": [
+   "Centurio",
+   "Tahonia",
+   "Tialla",
+   "Ultand",
+   "Fabio",
+   "Mikaela",
+   "Tobias",
+   "Lysander",
+   "Buccar",
+   "Olympia",
+   "Gaitz",
+   "Ursula",
+   "Simon",
+   "Sha Lan",
+   "Io",
+   "Nydine",
+   "Troy",
+   "Noctula",
+   "Sofia",
+   "Peppe",
+   "Loretta",
+   "Jester",
+   "Dadao",
+   "Kiroc",
+   "Inyoni"
+  ],
+  "C": [
+   "Benditz",
+   "Yang Jie",
+   "Zarcone",
+   "Majide",
+   "Jasmine"
+  ]
+ },
+ "classes": {
+  "Commoner": {
+   "tier": "Base",
+   "growths": {
+    "HP": 0,
+    "Str": 0,
+    "Mag": 0,
+    "Spd": 0,
+    "Dex": 0,
+    "Def": 0,
+    "Res": 0,
+    "Lck": 0,
+    "Cha": 0
+   }
+  },
+  "Gladiator": {
+   "tier": "Beginner",
+   "growths": {
+    "HP": 10,
+    "Str": 10,
+    "Mag": 0,
+    "Spd": 0,
+    "Dex": 0,
+    "Def": 0,
+    "Res": 0,
+    "Lck": 0,
+    "Cha": 0
+   }
+  },
+  "Hunter": {
+   "tier": "Beginner",
+   "growths": {
+    "HP": 10,
+    "Str": 0,
+    "Mag": 0,
+    "Spd": 10,
+    "Dex": 10,
+    "Def": 0,
+    "Res": 0,
+    "Lck": 0,
+    "Cha": 0
+   }
+  },
+  "Soldier": {
+   "tier": "Beginner",
+   "growths": {
+    "HP": 10,
+    "Str": 5,
+    "Mag": 0,
+    "Spd": -5,
+    "Dex": 5,
+    "Def": 10,
+    "Res": 0,
+    "Lck": 0,
+    "Cha": 0
+   }
+  },
+  "Ornius Rider": {
+   "tier": "Beginner",
+   "growths": {
+    "HP": 10,
+    "Str": 0,
+    "Mag": 0,
+    "Spd": 10,
+    "Dex": 5,
+    "Def": 0,
+    "Res": 5,
+    "Lck": 5,
+    "Cha": 0
+   }
+  },
+  "Diviner": {
+   "tier": "Beginner",
+   "growths": {
+    "HP": 5,
+    "Str": -5,
+    "Mag": 15,
+    "Spd": 0,
+    "Dex": 5,
+    "Def": -5,
+    "Res": 10,
+    "Lck": 0,
+    "Cha": 0
+   }
+  },
+  "Myrmidon": {
+   "tier": "Specialty",
+   "growths": {
+    "HP": 10,
+    "Str": 0,
+    "Mag": 0,
+    "Spd": 15,
+    "Dex": 10,
+    "Def": 0,
+    "Res": 0,
+    "Lck": 5,
+    "Cha": 5
+   }
+  },
+  "Brigand": {
+   "tier": "Specialty",
+   "growths": {
+    "HP": 15,
+    "Str": 15,
+    "Mag": -5,
+    "Spd": 5,
+    "Dex": 0,
+    "Def": 5,
+    "Res": 0,
+    "Lck": 0,
+    "Cha": 5
+   }
+  },
+  "Pugilist": {
+   "tier": "Specialty",
+   "growths": {
+    "HP": 15,
+    "Str": 10,
+    "Mag": -5,
+    "Spd": 10,
+    "Dex": 5,
+    "Def": 10,
+    "Res": 0,
+    "Lck": 0,
+    "Cha": 5
+   }
+  },
+  "Archer": {
+   "tier": "Specialty",
+   "growths": {
+    "HP": 10,
+    "Str": 5,
+    "Mag": 0,
+    "Spd": 10,
+    "Dex": 10,
+    "Def": 5,
+    "Res": 0,
+    "Lck": 5,
+    "Cha": 5
+   }
+  },
+  "Rogue": {
+   "tier": "Specialty",
+   "growths": {
+    "HP": 10,
+    "Str": 0,
+    "Mag": 0,
+    "Spd": 15,
+    "Dex": 10,
+    "Def": 0,
+    "Res": 5,
+    "Lck": 5,
+    "Cha": 0
+   }
+  },
+  "Armored Knight": {
+   "tier": "Specialty",
+   "growths": {
+    "HP": 10,
+    "Str": 10,
+    "Mag": -5,
+    "Spd": -5,
+    "Dex": 5,
+    "Def": 25,
+    "Res": -5,
+    "Lck": 0,
+    "Cha": 5
+   }
+  },
+  "Light Cavalry": {
+   "tier": "Specialty",
+   "growths": {
+    "HP": 10,
+    "Str": 5,
+    "Mag": -5,
+    "Spd": 5,
+    "Dex": 0,
+    "Def": 5,
+    "Res": 0,
+    "Lck": 5,
+    "Cha": 10
+   }
+  },
+  "Charioteer": {
+   "tier": "Specialty",
+   "growths": {
+    "HP": 10,
+    "Str": 5,
+    "Mag": -5,
+    "Spd": -5,
+    "Dex": 15,
+    "Def": 10,
+    "Res": 0,
+    "Lck": 5,
+    "Cha": 10
+   }
+  },
+  "Armored Ornius Rider": {
+   "tier": "Specialty",
+   "growths": {
+    "HP": 10,
+    "Str": 0,
+    "Mag": -5,
+    "Spd": 10,
+    "Dex": 5,
+    "Def": 10,
+    "Res": 0,
+    "Lck": 5,
+    "Cha": 5
+   }
+  },
+  "Wing Soldier": {
+   "tier": "Specialty",
+   "growths": {
+    "HP": 10,
+    "Str": 0,
+    "Mag": 5,
+    "Spd": 0,
+    "Dex": 5,
+    "Def": 5,
+    "Res": 5,
+    "Lck": 5,
+    "Cha": 10
+   }
+  },
+  "Priest": {
+   "tier": "Specialty",
+   "growths": {
+    "HP": 5,
+    "Str": -5,
+    "Mag": 10,
+    "Spd": 5,
+    "Dex": 5,
+    "Def": -10,
+    "Res": 15,
+    "Lck": 15,
+    "Cha": 10
+   }
+  },
+  "Shaman": {
+   "tier": "Specialty",
+   "growths": {
+    "HP": 5,
+    "Str": -5,
+    "Mag": 15,
+    "Spd": 10,
+    "Dex": 10,
+    "Def": -10,
+    "Res": 10,
+    "Lck": 10,
+    "Cha": 0
+   }
+  },
+  "Warrior": {
+   "tier": "Advanced",
+   "growths": {
+    "HP": 20,
+    "Str": 20,
+    "Mag": -5,
+    "Spd": 0,
+    "Dex": 0,
+    "Def": 5,
+    "Res": -5,
+    "Lck": 0,
+    "Cha": 5
+   }
+  },
+  "Shido": {
+   "tier": "Advanced",
+   "growths": {
+    "HP": 10,
+    "Str": 5,
+    "Mag": 0,
+    "Spd": 15,
+    "Dex": 10,
+    "Def": 0,
+    "Res": -5,
+    "Lck": 5,
+    "Cha": 5
+   }
+  },
+  "Dancer": {
+   "tier": "Advanced",
+   "growths": {
+    "HP": 15,
+    "Str": 5,
+    "Mag": 0,
+    "Spd": 25,
+    "Dex": 10,
+    "Def": 0,
+    "Res": 5,
+    "Lck": 10,
+    "Cha": 20
+   }
+  },
+  "Blacksmith": {
+   "tier": "Advanced",
+   "growths": {
+    "HP": 15,
+    "Str": 10,
+    "Mag": 10,
+    "Spd": 0,
+    "Dex": 5,
+    "Def": 10,
+    "Res": 10,
+    "Lck": 0,
+    "Cha": 5
+   }
+  },
+  "Sniper": {
+   "tier": "Advanced",
+   "growths": {
+    "HP": 10,
+    "Str": 5,
+    "Mag": 0,
+    "Spd": 10,
+    "Dex": 20,
+    "Def": 5,
+    "Res": 5,
+    "Lck": 5,
+    "Cha": 5
+   }
+  },
+  "Forest Knight": {
+   "tier": "Advanced",
+   "growths": {
+    "HP": 10,
+    "Str": 5,
+    "Mag": 0,
+    "Spd": 10,
+    "Dex": 10,
+    "Def": 5,
+    "Res": 5,
+    "Lck": 5,
+    "Cha": 5
+   }
+  },
+  "Ranger": {
+   "tier": "Advanced",
+   "growths": {
+    "HP": 10,
+    "Str": 5,
+    "Mag": 0,
+    "Spd": 15,
+    "Dex": 15,
+    "Def": 0,
+    "Res": 10,
+    "Lck": 15,
+    "Cha": 0
+   }
+  },
+  "Cataphract": {
+   "tier": "Advanced",
+   "growths": {
+    "HP": 15,
+    "Str": 15,
+    "Mag": -5,
+    "Spd": -10,
+    "Dex": 0,
+    "Def": 10,
+    "Res": -5,
+    "Lck": 0,
+    "Cha": 5
+   }
+  },
+  "Guardian": {
+   "tier": "Advanced",
+   "growths": {
+    "HP": 10,
+    "Str": 10,
+    "Mag": 0,
+    "Spd": 0,
+    "Dex": 5,
+    "Def": 10,
+    "Res": 15,
+    "Lck": 5,
+    "Cha": 5
+   }
+  },
+  "Elephant Rider": {
+   "tier": "Advanced",
+   "growths": {
+    "HP": 20,
+    "Str": 10,
+    "Mag": -5,
+    "Spd": 20,
+    "Dex": -10,
+    "Def": 15,
+    "Res": -5,
+    "Lck": 5,
+    "Cha": 10
+   }
+  },
+  "Dreadnought": {
+   "tier": "Advanced",
+   "growths": {
+    "HP": 15,
+    "Str": 15,
+    "Mag": -5,
+    "Spd": -10,
+    "Dex": 5,
+    "Def": 30,
+    "Res": -10,
+    "Lck": 0,
+    "Cha": 5
+   }
+  },
+  "Bardinger": {
+   "tier": "Advanced",
+   "growths": {
+    "HP": 10,
+    "Str": 10,
+    "Mag": -5,
+    "Spd": 0,
+    "Dex": 0,
+    "Def": 5,
+    "Res": 10,
+    "Lck": 5,
+    "Cha": 10
+   }
+  },
+  "Dragoon": {
+   "tier": "Advanced",
+   "growths": {
+    "HP": 15,
+    "Str": 5,
+    "Mag": 0,
+    "Spd": 0,
+    "Dex": 5,
+    "Def": 10,
+    "Res": 10,
+    "Lck": 10,
+    "Cha": 5
+   }
+  },
+  "Caladrius": {
+   "tier": "Advanced",
+   "growths": {
+    "HP": 15,
+    "Str": 0,
+    "Mag": 10,
+    "Spd": 5,
+    "Dex": 10,
+    "Def": 10,
+    "Res": 10,
+    "Lck": 5,
+    "Cha": 5
+   }
+  },
+  "Ovate": {
+   "tier": "Advanced",
+   "growths": {
+    "HP": 10,
+    "Str": -5,
+    "Mag": 20,
+    "Spd": 5,
+    "Dex": 15,
+    "Def": -10,
+    "Res": 15,
+    "Lck": 10,
+    "Cha": 0
+   }
+  },
+  "Bishop": {
+   "tier": "Advanced",
+   "growths": {
+    "HP": 10,
+    "Str": -5,
+    "Mag": 15,
+    "Spd": 0,
+    "Dex": 0,
+    "Def": -10,
+    "Res": 20,
+    "Lck": 20,
+    "Cha": 10
+   }
+  },
+  "Troubadour": {
+   "tier": "Advanced",
+   "growths": {
+    "HP": 10,
+    "Str": 0,
+    "Mag": 15,
+    "Spd": 5,
+    "Dex": 0,
+    "Def": 5,
+    "Res": 15,
+    "Lck": 15,
+    "Cha": 10
+   }
+  },
+  "Swordmaster": {
+   "tier": "Master",
+   "growths": {
+    "HP": 15,
+    "Str": 10,
+    "Mag": 0,
+    "Spd": 20,
+    "Dex": 15,
+    "Def": 0,
+    "Res": 0,
+    "Lck": 5,
+    "Cha": 5
+   }
+  },
+  "High Savant": {
+   "tier": "Master",
+   "growths": {
+    "HP": 10,
+    "Str": 15,
+    "Mag": 15,
+    "Spd": 10,
+    "Dex": 5,
+    "Def": 5,
+    "Res": 5,
+    "Lck": 5,
+    "Cha": 5
+   }
+  },
+  "Battlemaster": {
+   "tier": "Master",
+   "growths": {
+    "HP": 25,
+    "Str": 25,
+    "Mag": -5,
+    "Spd": -5,
+    "Dex": 5,
+    "Def": 10,
+    "Res": -5,
+    "Lck": -5,
+    "Cha": 5
+   }
+  },
+  "War Monk": {
+   "tier": "Master",
+   "growths": {
+    "HP": 15,
+    "Str": 10,
+    "Mag": 0,
+    "Spd": 15,
+    "Dex": 0,
+    "Def": 5,
+    "Res": 15,
+    "Lck": 5,
+    "Cha": 5
+   }
+  },
+  "Bow Adept": {
+   "tier": "Master",
+   "growths": {
+    "HP": 15,
+    "Str": 5,
+    "Mag": 0,
+    "Spd": 15,
+    "Dex": 20,
+    "Def": 5,
+    "Res": 5,
+    "Lck": 5,
+    "Cha": 5
+   }
+  },
+  "Bow Knight": {
+   "tier": "Master",
+   "growths": {
+    "HP": 10,
+    "Str": 10,
+    "Mag": 0,
+    "Spd": 15,
+    "Dex": 10,
+    "Def": 5,
+    "Res": 0,
+    "Lck": 5,
+    "Cha": 5
+   }
+  },
+  "Shadow Seeker": {
+   "tier": "Master",
+   "growths": {
+    "HP": 15,
+    "Str": 5,
+    "Mag": 0,
+    "Spd": 15,
+    "Dex": 25,
+    "Def": 0,
+    "Res": 10,
+    "Lck": 15,
+    "Cha": 0
+   }
+  },
+  "Sentinel": {
+   "tier": "Master",
+   "growths": {
+    "HP": 15,
+    "Str": 15,
+    "Mag": 0,
+    "Spd": 5,
+    "Dex": 5,
+    "Def": 10,
+    "Res": 15,
+    "Lck": 5,
+    "Cha": 5
+   }
+  },
+  "Castle Knight": {
+   "tier": "Master",
+   "growths": {
+    "HP": 25,
+    "Str": 20,
+    "Mag": -5,
+    "Spd": -15,
+    "Dex": 5,
+    "Def": 30,
+    "Res": -10,
+    "Lck": 0,
+    "Cha": 5
+   }
+  },
+  "Orichaldia": {
+   "tier": "Master",
+   "growths": {
+    "HP": 15,
+    "Str": 15,
+    "Mag": -5,
+    "Spd": 0,
+    "Dex": 5,
+    "Def": 5,
+    "Res": 5,
+    "Lck": 5,
+    "Cha": 10
+   }
+  },
+  "Great Knight": {
+   "tier": "Master",
+   "growths": {
+    "HP": 20,
+    "Str": 20,
+    "Mag": -5,
+    "Spd": -10,
+    "Dex": 0,
+    "Def": 15,
+    "Res": -10,
+    "Lck": 0,
+    "Cha": 5
+   }
+  },
+  "Celestial Trooper": {
+   "tier": "Master",
+   "growths": {
+    "HP": 15,
+    "Str": 5,
+    "Mag": -5,
+    "Spd": 10,
+    "Dex": 5,
+    "Def": 5,
+    "Res": 15,
+    "Lck": 15,
+    "Cha": 10
+   }
+  },
+  "Bau Lord": {
+   "tier": "Master",
+   "growths": {
+    "HP": 15,
+    "Str": 5,
+    "Mag": 0,
+    "Spd": 5,
+    "Dex": 0,
+    "Def": 10,
+    "Res": 10,
+    "Lck": 10,
+    "Cha": 5
+   }
+  },
+  "Druid": {
+   "tier": "Master",
+   "growths": {
+    "HP": 10,
+    "Str": -5,
+    "Mag": 30,
+    "Spd": 15,
+    "Dex": 10,
+    "Def": -10,
+    "Res": 20,
+    "Lck": 10,
+    "Cha": 0
+   }
+  },
+  "Wiseman": {
+   "tier": "Master",
+   "growths": {
+    "HP": 10,
+    "Str": -5,
+    "Mag": 20,
+    "Spd": 0,
+    "Dex": 5,
+    "Def": -10,
+    "Res": 25,
+    "Lck": 20,
+    "Cha": 10
+   }
+  },
+  "Valkyrium": {
+   "tier": "Master",
+   "growths": {
+    "HP": 10,
+    "Str": 0,
+    "Mag": 15,
+    "Spd": 5,
+    "Dex": 5,
+    "Def": 5,
+    "Res": 10,
+    "Lck": 15,
+    "Cha": 10
+   }
+  },
+  "The Blade": {
+   "tier": "Divine",
+   "growths": {
+    "HP": 15,
+    "Str": 10,
+    "Mag": 10,
+    "Spd": 20,
+    "Dex": 20,
+    "Def": 5,
+    "Res": 5,
+    "Lck": 5,
+    "Cha": 10
+   }
+  },
+  "The Apsara": {
+   "tier": "Divine",
+   "growths": {
+    "HP": 15,
+    "Str": 5,
+    "Mag": 10,
+    "Spd": 25,
+    "Dex": 15,
+    "Def": 5,
+    "Res": 5,
+    "Lck": 10,
+    "Cha": 30
+   }
+  },
+  "The Eternal": {
+   "tier": "Divine",
+   "growths": {
+    "HP": 30,
+    "Str": 30,
+    "Mag": 0,
+    "Spd": 10,
+    "Dex": 0,
+    "Def": 15,
+    "Res": 0,
+    "Lck": 0,
+    "Cha": 0
+   }
+  },
+  "The Godhand": {
+   "tier": "Divine",
+   "growths": {
+    "HP": 15,
+    "Str": 10,
+    "Mag": 10,
+    "Spd": 15,
+    "Dex": 5,
+    "Def": 10,
+    "Res": 15,
+    "Lck": 5,
+    "Cha": 10
+   }
+  },
+  "The Calamity": {
+   "tier": "Divine",
+   "growths": {
+    "HP": 15,
+    "Str": 5,
+    "Mag": 15,
+    "Spd": 25,
+    "Dex": 20,
+    "Def": 5,
+    "Res": 15,
+    "Lck": 15,
+    "Cha": 5
+   }
+  },
+  "The Trident": {
+   "tier": "Divine",
+   "growths": {
+    "HP": 15,
+    "Str": 15,
+    "Mag": 5,
+    "Spd": 10,
+    "Dex": 10,
+    "Def": 15,
+    "Res": 15,
+    "Lck": 5,
+    "Cha": 10
+   }
+  },
+  "The Cavalier": {
+   "tier": "Divine",
+   "growths": {
+    "HP": 20,
+    "Str": 15,
+    "Mag": 5,
+    "Spd": 10,
+    "Dex": 10,
+    "Def": 15,
+    "Res": 10,
+    "Lck": 5,
+    "Cha": 15
+   }
+  },
+  "The Avatar": {
+   "tier": "Divine",
+   "growths": {
+    "HP": 10,
+    "Str": -5,
+    "Mag": 30,
+    "Spd": 10,
+    "Dex": 5,
+    "Def": -5,
+    "Res": 30,
+    "Lck": 20,
+    "Cha": 10
+   }
+  }
+ },
+ "clans": {
+  "Cai's Team (Ribeira Winds)": [
+   "Cai",
+   "Tialla",
+   "Peter",
+   "Ultand"
+  ],
+  "Leda's Team (Rose Tempest)": [
+   "Leda",
+   "Buccar",
+   "Sirocco",
+   "Mu",
+   "Olympia"
+  ],
+  "Theodora's Team (Megaira's Beacon)": [
+   "Theodora",
+   "Bonaventure",
+   "Tobias",
+   "Lilian",
+   "Lysander"
+  ],
+  "Dietrich's Team (House Lamine)": [
+   "Dietrich",
+   "Fabio",
+   "Esmeralda",
+   "Mikaela"
+  ]
+ },
+ "late_recruits": [
+  {
+   "name": "Creek Creek Show spoiler",
+   "availability": "Part 2 Chapter 2",
+   "condition": "Clear My Late Sister's Accessory Subquest then defeat during the chapter."
+  },
+  {
+   "name": "Nathan Nathan Show spoiler",
+   "availability": "Part 2 Chapter 3",
+   "condition": "Defeat with Creek."
+  },
+  {
+   "name": "Bertrand Bertrand Show spoiler",
+   "availability": "Part 3 First Section",
+   "condition": "Automatically joins if Bertrand's Paralogue is cleared."
+  },
+  {
+   "name": "Talimun Talimun Show spoiler",
+   "availability": "Part 3 First Section",
+   "condition": "Automatically joins if Talimun's Paralogue is cleared."
+  },
+  {
+   "name": "Anatolia Anatolia Show spoiler",
+   "availability": "Part 3 First Section",
+   "condition": "Automatically joins if Anatolia's Paralogue is cleared."
+  },
+  {
+   "name": "Orchel Orchel Show spoiler",
+   "availability": "Part 3 First Section",
+   "condition": "Automatically joins if Orchel's Paralogue is cleared."
+  },
+  {
+   "name": "Centurio Centurio Show spoiler",
+   "availability": "Part 3 Second Section",
+   "condition": "Clear Rescue Centurio Subquest then talk in Dagsion to recruit."
+  },
+  {
+   "name": "Aswan Aswan Show spoiler",
+   "availability": "Part 3 Fifth Section",
+   "condition": "Joins automatically if survived in Part 2."
+  },
+  {
+   "name": "Tahonia Tahonia Show spoiler",
+   "availability": "Part 3 Fifth Section",
+   "condition": "Joins automatically if survived in Part 2."
+  }
+ ],
+ "units": {
+  "Eshmel": {
+   "name": "Eshmel",
+   "tier": "Lord",
+   "growths": {
+    "HP": 50,
+    "Str": 45,
+    "Mag": 45,
+    "Spd": 45,
+    "Dex": 45,
+    "Def": 35,
+    "Res": 35,
+    "Lck": 40,
+    "Cha": 50
+   },
+   "growth_total": 390,
+   "skill": "TBD",
+   "skill_desc": "",
+   "proficiencies": [
+    "Authority",
+    "Spear"
+   ],
+   "progression": [
+    "Guardian"
+   ],
+   "gifts": {
+    "loved": [],
+    "really_liked": [],
+    "likes": [
+     "Ambitious people",
+     "people of great talent",
+     "small and unnamed flowers"
+    ],
+    "interests": [
+     "Playing board games"
+    ]
+   },
+   "recruit": {},
+   "sheet": {}
+  },
+  "Hong Hua": {
+   "name": "Hong Hua",
+   "tier": "A",
+   "growths": {
+    "HP": 40,
+    "Str": 30,
+    "Mag": 45,
+    "Spd": 45,
+    "Dex": 45,
+    "Def": 30,
+    "Res": 45,
+    "Lck": 30,
+    "Cha": 40
+   },
+   "growth_total": 350,
+   "skill": "Zhu Ming",
+   "skill_desc": "When equipped with magic, grants Hit +10.",
+   "proficiencies": [
+    "Black Magic",
+    "White Magic"
+   ],
+   "progression": [
+    "Ovate"
+   ],
+   "gifts": {
+    "loved": [],
+    "really_liked": [],
+    "likes": [
+     "Memories of happier times"
+    ],
+    "interests": [
+     "None"
+    ]
+   },
+   "recruit": {},
+   "sheet": {
+    "Cai": {
+     "support": 99.0,
+     "renown": 99.0
+    },
+    "Dietrich": {
+     "support": 99.0,
+     "renown": 99.0
+    },
+    "Theodora": {
+     "support": 99.0,
+     "renown": 99.0
+    },
+    "Leda": {
+     "support": 99.0,
+     "renown": 99.0
+    },
+    "other_requirements": "auto",
+    "notes": "Prologue/Part III",
+    "easy_for": "",
+    "supports_lords": "",
+    "supports_retainers": ""
+   }
+  },
+  "Troy": {
+   "name": "Troy",
+   "tier": "B",
+   "growths": {
+    "HP": 40,
+    "Str": 45,
+    "Mag": 45,
+    "Spd": 50,
+    "Dex": 40,
+    "Def": 30,
+    "Res": 30,
+    "Lck": 30,
+    "Cha": 30
+   },
+   "growth_total": 340,
+   "skill": "Yun Shou",
+   "skill_desc": "When equipped with gauntlets, grants Hit +10.",
+   "proficiencies": [
+    "Black Magic",
+    "White Magic"
+   ],
+   "progression": [
+    "War Monk"
+   ],
+   "gifts": {
+    "loved": [],
+    "really_liked": [],
+    "likes": [
+     "Her kin",
+     "natural scenes"
+    ],
+    "interests": [
+     "Maintaining her weapons"
+    ]
+   },
+   "recruit": {},
+   "sheet": {
+    "Cai": {
+     "support": 99.0,
+     "renown": 99.0
+    },
+    "Dietrich": {
+     "support": 99.0,
+     "renown": 99.0
+    },
+    "Theodora": {
+     "support": 99.0,
+     "renown": 99.0
+    },
+    "Leda": {
+     "support": 99.0,
+     "renown": 99.0
+    },
+    "other_requirements": "auto",
+    "notes": "Prologue/Part III",
+    "easy_for": "",
+    "supports_lords": "",
+    "supports_retainers": ""
+   }
+  },
+  "Cai": {
+   "name": "Cai",
+   "tier": "Lord",
+   "growths": {
+    "HP": 45,
+    "Str": 45,
+    "Mag": 40,
+    "Spd": 45,
+    "Dex": 45,
+    "Def": 35,
+    "Res": 35,
+    "Lck": 40,
+    "Cha": 40
+   },
+   "growth_total": 370,
+   "skill": "Brio",
+   "skill_desc": "Grants Mov+1.",
+   "proficiencies": [
+    "Spear",
+    "Sword",
+    "White Magic"
+   ],
+   "progression": [
+    "Ornius Rider",
+    "Light Cavalry",
+    "Bardinger"
+   ],
+   "gifts": {
+    "loved": [],
+    "really_liked": [
+     "Arrowhead Gem",
+     "Crimson Ghosh",
+     "Sharp Fishhook"
+    ],
+    "likes": [
+     "Physical training",
+     "catching animals"
+    ],
+    "interests": [
+     "Fishing",
+     "spear training"
+    ]
+   },
+   "recruit": {},
+   "sheet": {}
+  },
+  "Dietrich": {
+   "name": "Dietrich",
+   "tier": "Lord",
+   "growths": {
+    "HP": 50,
+    "Str": 45,
+    "Mag": 30,
+    "Spd": 50,
+    "Dex": 60,
+    "Def": 40,
+    "Res": 30,
+    "Lck": 50,
+    "Cha": 60
+   },
+   "growth_total": 415,
+   "skill": "Murderous Intent",
+   "skill_desc": "If unit attacks first, grants Crit+5 during combat.",
+   "proficiencies": [
+    "Infantry",
+    "Sword"
+   ],
+   "progression": [
+    "Gladiator",
+    "Myrmidon",
+    "Shido"
+   ],
+   "gifts": {
+    "loved": [],
+    "really_liked": [
+     "Arrowhead Gem",
+     "Board-Game Tactics",
+     "Crimson Ghosh",
+     "Ginji Cervi",
+     "Honey Milk",
+     "Honey Pastries",
+     "Joint-Relief Gloves",
+     "Kitten Figurine",
+     "Pastry Cookbook",
+     "Protection Figurine",
+     "Pure-White Cervi",
+     "Spirit Board Game",
+     "Training Pillar",
+     "Training Weights"
+    ],
+    "likes": [
+     "Objects of beauty",
+     "sweet things",
+     "his little sister"
+    ],
+    "interests": [
+     "Fighting the strong",
+     "meditating"
+    ]
+   },
+   "recruit": {},
+   "sheet": {}
+  },
+  "Theodora": {
+   "name": "Theodora",
+   "tier": "Lord",
+   "growths": {
+    "HP": 70,
+    "Str": 50,
+    "Mag": 30,
+    "Spd": 40,
+    "Dex": 40,
+    "Def": 40,
+    "Res": 30,
+    "Lck": 30,
+    "Cha": 50
+   },
+   "growth_total": 380,
+   "skill": "Royal Resolve",
+   "skill_desc": "Unit takes half damage when attacked. Trigger % = 30.",
+   "proficiencies": [
+    "Authority",
+    "Spear",
+    "White Magic"
+   ],
+   "progression": [
+    "Gladiator",
+    "Light Cavalry",
+    "Bardinger"
+   ],
+   "gifts": {
+    "loved": [],
+    "really_liked": [
+     "Dagda Beard Grass",
+     "Eastern Black Silk",
+     "Eastern Tea Leaves",
+     "Horse-Grooming Kit"
+    ],
+    "likes": [
+     "Fighting",
+     "seeing the people of Saramis thrive"
+    ],
+    "interests": [
+     "Hunting",
+     "combat training"
+    ]
+   },
+   "recruit": {},
+   "sheet": {}
+  },
+  "Leda": {
+   "name": "Leda",
+   "tier": "Lord",
+   "growths": {
+    "HP": 40,
+    "Str": 35,
+    "Mag": 35,
+    "Spd": 65,
+    "Dex": 50,
+    "Def": 30,
+    "Res": 35,
+    "Lck": 25,
+    "Cha": 55
+   },
+   "growth_total": 370,
+   "skill": "Blindside",
+   "skill_desc": "If unit attacks first, cannot be countered during combat. Trigger % = 5.",
+   "proficiencies": [
+    "Bow",
+    "Infantry",
+    "Sword",
+    "White Magic"
+   ],
+   "progression": [
+    "Hunter",
+    "Archer",
+    "Sniper"
+   ],
+   "gifts": {
+    "loved": [
+     "Eastern Black Silk",
+     "Eastern Earrings",
+     "Tales of Adventure",
+     "Volcano Ghosh"
+    ],
+    "really_liked": [
+     "Aromatic Shosh",
+     "Brined Fish Guts",
+     "Dagda Beard Grass",
+     "Eastern Tea Leaves",
+     "Gaudy Bangle",
+     "Horse-Grooming Kit",
+     "Huge Fish Eyeball",
+     "Jade Ghosh",
+     "Kitten Figurine",
+     "Light Shosh",
+     "Magic-Trick Set",
+     "Mature Ghosh",
+     "Mature Shosh",
+     "Pack of Pastels",
+     "Rustic Ghosh",
+     "Secret Ghosh",
+     "Southern Ghosh",
+     "Sun Ghosh",
+     "Training Bracelet",
+     "Young Ghosh"
+    ],
+    "likes": [
+     "Memories of her parents",
+     "songs from home",
+     "gemstones",
+     "applause"
+    ],
+    "interests": [
+     "Tuning her vihuela",
+     "taking long horseback rides"
+    ]
+   },
+   "recruit": {},
+   "sheet": {}
+  },
+  "Tialla": {
+   "name": "Tialla",
+   "tier": "B",
+   "growths": {
+    "HP": 30,
+    "Str": 25,
+    "Mag": 45,
+    "Spd": 35,
+    "Dex": 40,
+    "Def": 20,
+    "Res": 40,
+    "Lck": 50,
+    "Cha": 45
+   },
+   "growth_total": 330,
+   "skill": "Tactician's Wit",
+   "skill_desc": "Grants Rng+1 to combat arts usable on allies.",
+   "proficiencies": [
+    "Authority",
+    "Black Magic",
+    "White Magic"
+   ],
+   "progression": [
+    "Diviner",
+    "Priest",
+    "Troubadour"
+   ],
+   "gifts": {
+    "loved": [],
+    "really_liked": [
+     "Alecto Garum",
+     "Eastern Love Story",
+     "Eastern Tea Leaves",
+     "Garum",
+     "Ginji Cervi",
+     "Herbal Recipe Guide",
+     "Home-Recipe Book",
+     "Jamel Milk",
+     "Mature Dried Cervi",
+     "Pastry Cookbook",
+     "Pickled Bulbs",
+     "Smooth Garum",
+     "Strategy Manuscript",
+     "Strong Cervi",
+     "Strong Seasonings",
+     "Tales of Adventure",
+     "Trader's Handbook",
+     "Village Recipes",
+     "Weak Cervi",
+     "Yarc Milk"
+    ],
+    "likes": [
+     "Libraries",
+     "gossiping about love",
+     "alone time",
+     "her grandfather"
+    ],
+    "interests": [
+     "Reading",
+     "playing board games"
+    ]
+   },
+   "recruit": {
+    "Cai": {
+     "chapter": "Part I Ch 1",
+     "support": 0,
+     "renown": 0,
+     "extra": []
+    },
+    "Dietrich": {
+     "chapter": "Part I Ch 4",
+     "support": 3,
+     "renown": 9,
+     "extra": [
+      "Clear Cai's Paralogue then give 3000 gold."
+     ]
+    },
+    "Theodora": {
+     "chapter": "Part I Ch 5",
+     "support": 3,
+     "renown": 10,
+     "extra": [
+      "Clear Cai's Paralogue then give 3000 gold."
+     ]
+    },
+    "Leda": {
+     "chapter": "Part I Ch 4",
+     "support": 3,
+     "renown": 8,
+     "extra": [
+      "Clear Cai's Paralogue then give 3000 gold."
+     ]
+    }
+   },
+   "sheet": {
+    "Cai": {
+     "support": 0.0,
+     "renown": 0.0
+    },
+    "Dietrich": {
+     "support": 3.0,
+     "renown": 9.0
+    },
+    "Theodora": {
+     "support": 3.0,
+     "renown": 10.0
+    },
+    "Leda": {
+     "support": 3.0,
+     "renown": 8.0
+    },
+    "other_requirements": "Cai's paralogue",
+    "notes": "After 10/16",
+    "easy_for": "Leda (R8)",
+    "supports_lords": "Theodora",
+    "supports_retainers": "Bonaventure"
+   }
+  },
+  "Peter": {
+   "name": "Peter",
+   "tier": "A",
+   "growths": {
+    "HP": 40,
+    "Str": 35,
+    "Mag": 20,
+    "Spd": 45,
+    "Dex": 60,
+    "Def": 30,
+    "Res": 25,
+    "Lck": 35,
+    "Cha": 30
+   },
+   "growth_total": 320,
+   "skill": "Steady Aim",
+   "skill_desc": "Grants Rng+1 when attacking with a bow combat art.",
+   "proficiencies": [
+    "Bow",
+    "Infantry"
+   ],
+   "progression": [
+    "Hunter",
+    "Archer",
+    "Forest Knight"
+   ],
+   "gifts": {
+    "loved": [],
+    "really_liked": [
+     "Coffee Pastries",
+     "Dagda Beard Grass",
+     "Eastern Tea Leaves",
+     "Fragrant Pastries",
+     "Ginji Cervi",
+     "Jamel Milk",
+     "Kitten Figurine",
+     "Mature Dried Cervi",
+     "Mellow Pastries",
+     "Pastry Cookbook",
+     "Saraminian Sweets",
+     "Simple Pastries",
+     "Strong Cervi",
+     "Weak Cervi",
+     "Wing Fletching",
+     "Yarc Milk"
+    ],
+    "likes": [
+     "His mother's home cooking",
+     "ginji fruits"
+    ],
+    "interests": [
+     "Eating",
+     "watching clouds"
+    ]
+   },
+   "recruit": {
+    "Cai": {
+     "chapter": "Part I Ch 1",
+     "support": 0,
+     "renown": 0,
+     "extra": []
+    },
+    "Dietrich": {
+     "chapter": "Part I Ch 4",
+     "support": 3,
+     "renown": 9,
+     "extra": [
+      "Give Peter 1 Phantom Ginji"
+     ]
+    },
+    "Theodora": {
+     "chapter": "Part I Ch 5",
+     "support": 3,
+     "renown": 7,
+     "extra": [
+      "Give Peter 1 Phantom Ginji"
+     ]
+    },
+    "Leda": {
+     "chapter": "Part I Ch 4",
+     "support": 3,
+     "renown": 10,
+     "extra": [
+      "Give Peter 1 Phantom Ginji"
+     ]
+    }
+   },
+   "sheet": {
+    "Cai": {
+     "support": 0.0,
+     "renown": 0.0
+    },
+    "Dietrich": {
+     "support": 3.0,
+     "renown": 8.0
+    },
+    "Theodora": {
+     "support": 3.0,
+     "renown": 7.0
+    },
+    "Leda": {
+     "support": 3.0,
+     "renown": 10.0
+    },
+    "other_requirements": "1x Phantom Ginji (quest)",
+    "notes": "",
+    "easy_for": "Theodora (R7)",
+    "supports_lords": "",
+    "supports_retainers": "Mu"
+   }
+  },
+  "Ultand": {
+   "name": "Ultand",
+   "tier": "B",
+   "growths": {
+    "HP": 45,
+    "Str": 40,
+    "Mag": 40,
+    "Spd": 35,
+    "Dex": 40,
+    "Def": 35,
+    "Res": 45,
+    "Lck": 55,
+    "Cha": 50
+   },
+   "growth_total": 385,
+   "skill": "Patch Up",
+   "skill_desc": "After an adjacent ally's combat, restores a little HP to that ally.",
+   "proficiencies": [
+    "Spear",
+    "White Magic"
+   ],
+   "progression": [
+    "Diviner",
+    "Priest",
+    "Bishop"
+   ],
+   "gifts": {
+    "loved": [],
+    "really_liked": [
+     "Blue-Rose Bouquet",
+     "Crimson Ghosh",
+     "Eastern Love Story",
+     "Garum",
+     "Outdoor Cooking Set",
+     "Pastry Cookbook"
+    ],
+    "likes": [
+     "Looking after others",
+     "her family",
+     "housekeeping",
+     "love stories"
+    ],
+    "interests": [
+     "Saving money",
+     "wandering around marketplaces"
+    ]
+   },
+   "recruit": {
+    "Cai": {
+     "chapter": "Part I Ch 6",
+     "support": 0,
+     "renown": 0,
+     "extra": []
+    },
+    "Dietrich": {
+     "chapter": "Part I Ch 4",
+     "support": 3,
+     "renown": 5,
+     "extra": [
+      "Give Ultand Her Mother's Gift"
+     ]
+    },
+    "Theodora": {
+     "chapter": "Part I Ch 5",
+     "support": 3,
+     "renown": 6,
+     "extra": [
+      "Give Ultand Her Mother's Gift"
+     ]
+    },
+    "Leda": {
+     "chapter": "Part I Ch 4",
+     "support": 3,
+     "renown": 8,
+     "extra": [
+      "Give Ultand Her Mother's Gift"
+     ]
+    }
+   },
+   "sheet": {
+    "Cai": {
+     "support": 0.0,
+     "renown": 0.0
+    },
+    "Dietrich": {
+     "support": 3.0,
+     "renown": 5.0
+    },
+    "Theodora": {
+     "support": 3.0,
+     "renown": 6.0
+    },
+    "Leda": {
+     "support": 3.0,
+     "renown": 8.0
+    },
+    "other_requirements": "Mother's Gift (quest)",
+    "notes": "",
+    "easy_for": "Dietrich (R5), Theodora (R6)",
+    "supports_lords": "",
+    "supports_retainers": "Tobias"
+   }
+  },
+  "Fabio": {
+   "name": "Fabio",
+   "tier": "B",
+   "growths": {
+    "HP": 40,
+    "Str": 25,
+    "Mag": 50,
+    "Spd": 35,
+    "Dex": 40,
+    "Def": 30,
+    "Res": 45,
+    "Lck": 35,
+    "Cha": 30
+   },
+   "growth_total": 330,
+   "skill": "Dark Calling",
+   "skill_desc": "Inflicts Ddg-5 on adjacent foes.",
+   "proficiencies": [
+    "Authority",
+    "Black Magic"
+   ],
+   "progression": [
+    "Diviner",
+    "Shaman",
+    "Ovate"
+   ],
+   "gifts": {
+    "loved": [
+     "Tales of Adventure",
+     "Volcano Ghosh"
+    ],
+    "really_liked": [
+     "Aromatic Shosh",
+     "Brined Fish Guts",
+     "Coffee Pastries",
+     "Common Coffee",
+     "Dagda Beard Grass",
+     "Eastern Black Silk",
+     "Eastern Tea Leaves",
+     "Huge Fish Eyeball",
+     "Jade Ghosh",
+     "Light Shosh",
+     "Mature Ghosh",
+     "Mature Shosh",
+     "Orgus Coffee",
+     "Pack of Pastels",
+     "Potted Vegetables",
+     "Rustic Ghosh",
+     "Secret Ghosh",
+     "Select Coffee",
+     "Southern Coffee",
+     "Southern Ghosh",
+     "Sun Ghosh",
+     "Young Ghosh"
+    ],
+    "likes": [
+     "Suffering",
+     "half-forgotten feelings",
+     "dissecting beautiful things"
+    ],
+    "interests": [
+     "Drawing",
+     "conversing with thoughtful people"
+    ]
+   },
+   "recruit": {
+    "Cai": null,
+    "Dietrich": {
+     "chapter": "Part I Ch 1",
+     "support": 0,
+     "renown": 0,
+     "extra": []
+    },
+    "Theodora": null,
+    "Leda": {
+     "chapter": "Part I Ch 4",
+     "support": 3,
+     "renown": 9,
+     "extra": [
+      "Clear Dietrich's Paralogue and complete Fabio's request."
+     ]
+    }
+   },
+   "sheet": {
+    "Cai": {
+     "support": 99.0,
+     "renown": 99.0
+    },
+    "Dietrich": {
+     "support": 0.0,
+     "renown": 0.0
+    },
+    "Theodora": {
+     "support": 99.0,
+     "renown": 99.0
+    },
+    "Leda": {
+     "support": 3.0,
+     "renown": 9.0
+    },
+    "other_requirements": "\"Dietrich's paralogue (Ch 11), \"\"suitable item\"\"\"",
+    "notes": "After 10/16",
+    "easy_for": "Leda only",
+    "supports_lords": "",
+    "supports_retainers": "Tobias"
+   }
+  },
+  "Esmeralda": {
+   "name": "Esmeralda",
+   "tier": "S",
+   "growths": {
+    "HP": 55,
+    "Str": 55,
+    "Mag": 20,
+    "Spd": 35,
+    "Dex": 35,
+    "Def": 45,
+    "Res": 25,
+    "Lck": 35,
+    "Cha": 30
+   },
+   "growth_total": 335,
+   "skill": "Brawn",
+   "skill_desc": "Reduces Wt of unit's equipment to 80%.",
+   "proficiencies": [
+    "Axe",
+    "Spear"
+   ],
+   "progression": [
+    "Gladiator",
+    "Armored Knight",
+    "Dreadnought"
+   ],
+   "gifts": {
+    "loved": [
+     "Eastern Earrings",
+     "Tales of Adventure"
+    ],
+    "really_liked": [
+     "Alecto Garum",
+     "Coffee Pastries",
+     "Dagda Beard Grass",
+     "Eastern Tea Leaves",
+     "Flexible Fishing Rod",
+     "Fragrant Pastries",
+     "Garum",
+     "Gaudy Bangle",
+     "Herbal Recipe Guide",
+     "Home-Recipe Book",
+     "Horse-Grooming Kit",
+     "Huge Fish Eyeball",
+     "Kitten Figurine",
+     "Mellow Pastries",
+     "Pastry Cookbook",
+     "Saraminian Sweets",
+     "Sharp Fishhook",
+     "Simple Pastries",
+     "Smooth Garum",
+     "Strong Seasonings",
+     "Training Bracelet",
+     "Village Recipes"
+    ],
+    "likes": [
+     "Handsome men",
+     "throwing her trident",
+     "maintaining fishing gear"
+    ],
+    "interests": [
+     "Fishing",
+     "carving wooden dolls"
+    ]
+   },
+   "recruit": {
+    "Cai": {
+     "chapter": "Part I Ch 5",
+     "support": 2,
+     "renown": 7,
+     "extra": [
+      "Complete Esmeralda's Request"
+     ]
+    },
+    "Dietrich": {
+     "chapter": "Part I Ch 2",
+     "support": 0,
+     "renown": 0,
+     "extra": []
+    },
+    "Theodora": {
+     "chapter": "Part I Ch 5",
+     "support": 3,
+     "renown": 9,
+     "extra": [
+      "Complete Esmeralda's Request"
+     ]
+    },
+    "Leda": {
+     "chapter": "Part I Ch 4",
+     "support": 3,
+     "renown": 6,
+     "extra": [
+      "Complete Esmeralda's Request"
+     ]
+    }
+   },
+   "sheet": {
+    "Cai": {
+     "support": 2.0,
+     "renown": 7.0
+    },
+    "Dietrich": {
+     "support": 0.0,
+     "renown": 0.0
+    },
+    "Theodora": {
+     "support": 3.0,
+     "renown": 9.0
+    },
+    "Leda": {
+     "support": 3.0,
+     "renown": 6.0
+    },
+    "other_requirements": "Esmeralda's request (quest)",
+    "notes": "",
+    "easy_for": "Leda (R6), Cai (R7)",
+    "supports_lords": "Cai, Leda",
+    "supports_retainers": "Lysander"
+   }
+  },
+  "Mikaela": {
+   "name": "Mikaela",
+   "tier": "B",
+   "growths": {
+    "HP": 50,
+    "Str": 45,
+    "Mag": 30,
+    "Spd": 40,
+    "Dex": 35,
+    "Def": 40,
+    "Res": 25,
+    "Lck": 30,
+    "Cha": 40
+   },
+   "growth_total": 335,
+   "skill": "Veteran's Mettle",
+   "skill_desc": "Grants Hit+10 during combat against an adjacent foe.",
+   "proficiencies": [
+    "Axe",
+    "Bow",
+    "Infantry"
+   ],
+   "progression": [
+    "Gladiator",
+    "Brigand",
+    "Warrior"
+   ],
+   "gifts": {
+    "loved": [
+     "Tales of Adventure",
+     "Volcano Ghosh"
+    ],
+    "really_liked": [
+     "Alecto Garum",
+     "Aromatic Shosh",
+     "Common Coffee",
+     "Eastern Tea Leaves",
+     "Garum",
+     "Herbal Recipe Guide",
+     "Home-Recipe Book",
+     "Huge Fish Eyeball",
+     "Jade Ghosh",
+     "Light Shosh",
+     "Mature Ghosh",
+     "Mature Shosh",
+     "Orgus Coffee",
+     "Pastry Cookbook",
+     "Rare Spices",
+     "Rustic Ghosh",
+     "Secret Ghosh",
+     "Select Coffee",
+     "Southern Coffee",
+     "Southern Ghosh",
+     "Strong Seasonings",
+     "Sun Ghosh",
+     "Village Recipes",
+     "Wing Fletching",
+     "Young Ghosh"
+    ],
+    "likes": [
+     "Moving her body",
+     "looking after others"
+    ],
+    "interests": [
+     "Cooking",
+     "baking",
+     "brewing coffee"
+    ]
+   },
+   "recruit": {
+    "Cai": {
+     "chapter": "Part I Ch 5",
+     "support": 3,
+     "renown": 5,
+     "extra": [
+      "Give 3000 Gold to Mikaela."
+     ]
+    },
+    "Dietrich": {
+     "chapter": "Part I Ch 4",
+     "support": 0,
+     "renown": 0,
+     "extra": []
+    },
+    "Theodora": {
+     "chapter": "Part I Ch 5",
+     "support": 3,
+     "renown": 8,
+     "extra": [
+      "Give 3000 Gold to Mikaela."
+     ]
+    },
+    "Leda": {
+     "chapter": "Part I Ch 4",
+     "support": 3,
+     "renown": 6,
+     "extra": [
+      "Give 3000 Gold to Mikaela."
+     ]
+    }
+   },
+   "sheet": {
+    "Cai": {
+     "support": 3.0,
+     "renown": 5.0
+    },
+    "Dietrich": {
+     "support": 0.0,
+     "renown": 0.0
+    },
+    "Theodora": {
+     "support": 3.0,
+     "renown": 8.0
+    },
+    "Leda": {
+     "support": 3.0,
+     "renown": 6.0
+    },
+    "other_requirements": "3000 gold",
+    "notes": "",
+    "easy_for": "Cai (R5), Leda (R6)",
+    "supports_lords": "",
+    "supports_retainers": "Mu"
+   }
+  },
+  "Bonaventure": {
+   "name": "Bonaventure",
+   "tier": "A",
+   "growths": {
+    "HP": 35,
+    "Str": 35,
+    "Mag": 45,
+    "Spd": 40,
+    "Dex": 50,
+    "Def": 30,
+    "Res": 40,
+    "Lck": 35,
+    "Cha": 40
+   },
+   "growth_total": 350,
+   "skill": "Sage Advice",
+   "skill_desc": "Grants Dex +3 to adjacent allies.",
+   "proficiencies": [
+    "Authority",
+    "Black Magic",
+    "Sword",
+    "White Magic"
+   ],
+   "progression": [
+    "Diviner",
+    "Shaman",
+    "Ovate"
+   ],
+   "gifts": {
+    "loved": [
+     "Crimson Ghosh",
+     "Strategy Manuscript",
+     "Volcano Ghosh"
+    ],
+    "really_liked": [
+     "Ceremonial Spear",
+     "Eastern Black Silk",
+     "Jade Ghosh",
+     "Pastry Cookbook",
+     "Rare Spices",
+     "Secret Ghosh",
+     "Strong Seasonings",
+     "Sun Ghosh",
+     "Tales of the Arena",
+     "The Works of Dante",
+     "Thick Foreign Tome",
+     "Village Recipes"
+    ],
+    "likes": [
+     "Knowledge",
+     "dialogue with sages",
+     "learning about other countries"
+    ],
+    "interests": [
+     "Cooking",
+     "reciting poetry"
+    ]
+   },
+   "recruit": {
+    "Cai": null,
+    "Dietrich": null,
+    "Theodora": {
+     "chapter": "Part I Ch 1",
+     "support": 0,
+     "renown": 0,
+     "extra": []
+    },
+    "Leda": null
+   },
+   "sheet": {}
+  },
+  "Tobias": {
+   "name": "Tobias",
+   "tier": "B",
+   "growths": {
+    "HP": 55,
+    "Str": 60,
+    "Mag": 15,
+    "Spd": 25,
+    "Dex": 30,
+    "Def": 45,
+    "Res": 20,
+    "Lck": 40,
+    "Cha": 35
+   },
+   "growth_total": 325,
+   "skill": "Power Arts",
+   "skill_desc": "Grants Atk +3 when attacking with a combat art,",
+   "proficiencies": [
+    "Axe"
+   ],
+   "progression": [
+    "Gladiator",
+    "Brigand",
+    "Warrior"
+   ],
+   "gifts": {
+    "loved": [
+     "Strategy Manuscript",
+     "Tales of Adventure",
+     "Volcano Ghosh"
+    ],
+    "really_liked": [
+     "Alecto Garum",
+     "Dagda Beard Grass",
+     "Eastern Black Silk",
+     "Eastern Tea Leaves",
+     "Garum",
+     "Herbal Recipe Guide",
+     "Home-Recipe Book",
+     "Horse-Grooming Kit",
+     "Huge Fish Eyeball",
+     "Jade Ghosh",
+     "Kitten Figurine",
+     "Mature Ghosh",
+     "Mature Shosh",
+     "Pastry Cookbook",
+     "Rustic Ghosh",
+     "Secret Ghosh",
+     "Sharp Fishhook",
+     "Smooth Garum",
+     "Southern Ghosh",
+     "Strong Seasonings",
+     "Sturdy Rucksack",
+     "Sun Ghosh",
+     "Training Bracelet",
+     "Village Recipes",
+     "Wing Fletching",
+     "Young Ghosh"
+    ],
+    "likes": [
+     "Singing",
+     "interacting with others"
+    ],
+    "interests": [
+     "Hunting",
+     "solitary camping"
+    ]
+   },
+   "recruit": {
+    "Cai": null,
+    "Dietrich": null,
+    "Theodora": {
+     "chapter": "Part I Ch 1",
+     "support": 0,
+     "renown": 0,
+     "extra": []
+    },
+    "Leda": null
+   },
+   "sheet": {}
+  },
+  "Lilian": {
+   "name": "Lilian",
+   "tier": "A",
+   "growths": {
+    "HP": 35,
+    "Str": 35,
+    "Mag": 30,
+    "Spd": 40,
+    "Dex": 55,
+    "Def": 30,
+    "Res": 35,
+    "Lck": 50,
+    "Cha": 25
+   },
+   "growth_total": 335,
+   "skill": "Safety First",
+   "skill_desc": "If foe cannot counter, grants Hit +10 to unit during combat.",
+   "proficiencies": [
+    "Bow",
+    "Infantry"
+   ],
+   "progression": [
+    "Hunter",
+    "Archer",
+    "Sniper"
+   ],
+   "gifts": {
+    "loved": [
+     "Eastern Earrings",
+     "Eastern Tea Leaves",
+     "Poems of the Greats",
+     "Strategy Manuscript",
+     "Tales of Adventure"
+    ],
+    "really_liked": [
+     "Gaudy Bangle",
+     "Herbal Recipe Guide",
+     "Home-Recipe Book",
+     "Pastry Cookbook",
+     "Strong Seasonings",
+     "Trader's Handbook",
+     "Training Bracelet",
+     "Village Recipes",
+     "Wing Fletching"
+    ],
+    "likes": [
+     "Gold coins",
+     "gemstones",
+     "older men"
+    ],
+    "interests": [
+     "Being frugal",
+     "hunting"
+    ]
+   },
+   "recruit": {
+    "Cai": {
+     "chapter": "Part I Ch 4",
+     "support": 2,
+     "renown": 8,
+     "extra": [
+      "Give 5000 Gold to Lilian."
+     ]
+    },
+    "Dietrich": {
+     "chapter": "Part I Ch 4",
+     "support": 2,
+     "renown": 8,
+     "extra": [
+      "Give 5000 Gold to Lilian."
+     ]
+    },
+    "Theodora": {
+     "chapter": "Part I Ch 4",
+     "support": 0,
+     "renown": 0,
+     "extra": []
+    },
+    "Leda": {
+     "chapter": "Part I Ch 4",
+     "support": 2,
+     "renown": 7,
+     "extra": [
+      "Give 5000 Gold to Lilian."
+     ]
+    }
+   },
+   "sheet": {
+    "Cai": {
+     "support": 2.0,
+     "renown": 8.0
+    },
+    "Dietrich": {
+     "support": 2.0,
+     "renown": 8.0
+    },
+    "Theodora": {
+     "support": 0.0,
+     "renown": 0.0
+    },
+    "Leda": {
+     "support": 2.0,
+     "renown": 7.0
+    },
+    "other_requirements": "5000 gold",
+    "notes": "",
+    "easy_for": "Leda (R7)",
+    "supports_lords": "",
+    "supports_retainers": "Mu"
+   }
+  },
+  "Lysander": {
+   "name": "Lysander",
+   "tier": "B",
+   "growths": {
+    "HP": 45,
+    "Str": 40,
+    "Mag": 25,
+    "Spd": 50,
+    "Dex": 35,
+    "Def": 40,
+    "Res": 25,
+    "Lck": 30,
+    "Cha": 30
+   },
+   "growth_total": 320,
+   "skill": "Racing Attack",
+   "skill_desc": "If unit attacks first, grants Avo +15 during combat.",
+   "proficiencies": [
+    "Axe",
+    "Spear"
+   ],
+   "progression": [
+    "Gladiator",
+    "Light Cavalry",
+    "Bardinger"
+   ],
+   "gifts": {
+    "loved": [],
+    "really_liked": [
+     "Dagda Beard Grass",
+     "Eastern Tea Leaves",
+     "Horse-Grooming Kit",
+     "Mane Ornament",
+     "Wing Fletching"
+    ],
+    "likes": [
+     "Skygazing",
+     "dining with women"
+    ],
+    "interests": [
+     "Crafting throwing sticks",
+     "going on long rides"
+    ]
+   },
+   "recruit": {
+    "Cai": {
+     "chapter": "Part I Ch 4",
+     "support": 3,
+     "renown": 8,
+     "extra": [
+      "Give 5 Iron Spears to Lysander."
+     ]
+    },
+    "Dietrich": {
+     "chapter": "Part I Ch 4",
+     "support": 3,
+     "renown": 6,
+     "extra": [
+      "Give 5 Iron Spears to Lysander."
+     ]
+    },
+    "Theodora": {
+     "chapter": "Part I Ch 4",
+     "support": 0,
+     "renown": 0,
+     "extra": []
+    },
+    "Leda": {
+     "chapter": "Part I Ch 4",
+     "support": 3,
+     "renown": 7,
+     "extra": [
+      "Give 5 Iron Spears to Lysander."
+     ]
+    }
+   },
+   "sheet": {
+    "Cai": {
+     "support": 3.0,
+     "renown": 8.0
+    },
+    "Dietrich": {
+     "support": 3.0,
+     "renown": 6.0
+    },
+    "Theodora": {
+     "support": 0.0,
+     "renown": 0.0
+    },
+    "Leda": {
+     "support": 3.0,
+     "renown": 7.0
+    },
+    "other_requirements": "5x Iron Spears",
+    "notes": "",
+    "easy_for": "Dietrich (R6)",
+    "supports_lords": "",
+    "supports_retainers": "Esmeralda"
+   }
+  },
+  "Buccar": {
+   "name": "Buccar",
+   "tier": "B",
+   "growths": {
+    "HP": 50,
+    "Str": 50,
+    "Mag": 20,
+    "Spd": 25,
+    "Dex": 40,
+    "Def": 45,
+    "Res": 20,
+    "Lck": 30,
+    "Cha": 35
+   },
+   "growth_total": 315,
+   "skill": "Guardian's Duty",
+   "skill_desc": "Reduces damage to 90% when attacked.",
+   "proficiencies": [
+    "Axe",
+    "Spear"
+   ],
+   "progression": [
+    "Gladiator",
+    "Light Cavalry",
+    "Bardinger"
+   ],
+   "gifts": {
+    "loved": [
+     "Crimson Ghosh",
+     "Dual Fish Knives"
+    ],
+    "really_liked": [
+     "Arrowhead Gem",
+     "Light Shosh",
+     "Mature Ghosh",
+     "Mature Shosh",
+     "Niiza Garum",
+     "Outdoor Cooking Set",
+     "Rare Spices",
+     "Rustic Ghosh",
+     "Village Recipes",
+     "Volcano Ghosh",
+     "Young Ghosh",
+     "Young Shosh"
+    ],
+    "likes": [
+     "Loyalty",
+     "training",
+     "dreaming about Leda's happiness"
+    ],
+    "interests": [
+     "Cooking",
+     "mentoring young people"
+    ]
+   },
+   "recruit": {
+    "Cai": null,
+    "Dietrich": {
+     "chapter": "Part I Ch 4",
+     "support": 3,
+     "renown": 8,
+     "extra": [
+      "Clear Leda's Paralogue"
+     ]
+    },
+    "Theodora": {
+     "chapter": "Part I Ch 5",
+     "support": 3,
+     "renown": 8,
+     "extra": [
+      "Clear Leda's Paralogue"
+     ]
+    },
+    "Leda": {
+     "chapter": "Part I Ch 1",
+     "support": 0,
+     "renown": 0,
+     "extra": []
+    }
+   },
+   "sheet": {
+    "Cai": {
+     "support": 99.0,
+     "renown": 99.0
+    },
+    "Dietrich": {
+     "support": 3.0,
+     "renown": 8.0
+    },
+    "Theodora": {
+     "support": 3.0,
+     "renown": 8.0
+    },
+    "Leda": {
+     "support": 0.0,
+     "renown": 0.0
+    },
+    "other_requirements": "Leda's paralogue",
+    "notes": "After 9/2",
+    "easy_for": "Theodora (R8), Dietrich (R8)",
+    "supports_lords": "Dietrich",
+    "supports_retainers": ""
+   }
+  },
+  "Sirocco": {
+   "name": "Sirocco",
+   "tier": "S",
+   "growths": {
+    "HP": 40,
+    "Str": 40,
+    "Mag": 40,
+    "Spd": 45,
+    "Dex": 50,
+    "Def": 35,
+    "Res": 35,
+    "Lck": 50,
+    "Cha": 45
+   },
+   "growth_total": 380,
+   "skill": "Goddess's Favor",
+   "skill_desc": "After combat, restores 5 HP to unit.",
+   "proficiencies": [
+    "Authority",
+    "Black Magic",
+    "Sword",
+    "White Magic"
+   ],
+   "progression": [
+    "Diviner",
+    "Shaman",
+    "Ovate"
+   ],
+   "gifts": {
+    "loved": [
+     "Arrowhead Gem",
+     "Crimson Ghosh",
+     "Volcano Ghosh"
+    ],
+    "really_liked": [
+     "Eastern Love Story",
+     "Joint-Relief Gloves",
+     "Light Shosh",
+     "Mature Ghosh",
+     "Mature Shosh",
+     "Pack of Pastels",
+     "Rustic Ghosh",
+     "Skin Balm",
+     "Young Ghosh",
+     "Young Shosh"
+    ],
+    "likes": [
+     "The goddess Kalla",
+     "all women",
+     "reciting poetry"
+    ],
+    "interests": [
+     "Reading",
+     "drawing portraits"
+    ]
+   },
+   "recruit": {
+    "Cai": {
+     "chapter": "Part I Ch 4",
+     "support": 3,
+     "renown": 9,
+     "extra": [
+      "Give Sirocco a copy of the Monument Verse"
+     ]
+    },
+    "Dietrich": {
+     "chapter": "Part I Ch 5",
+     "support": 3,
+     "renown": 9,
+     "extra": [
+      "Give Sirocco a copy of the Monument Verse"
+     ]
+    },
+    "Theodora": {
+     "chapter": "Part I Ch 5",
+     "support": 1,
+     "renown": 5,
+     "extra": [
+      "Give Sirocco a copy of the Monument Verse"
+     ]
+    },
+    "Leda": {
+     "chapter": "Part I Ch 1",
+     "support": 0,
+     "renown": 0,
+     "extra": []
+    }
+   },
+   "sheet": {
+    "Cai": {
+     "support": 3.0,
+     "renown": 9.0
+    },
+    "Dietrich": {
+     "support": 3.0,
+     "renown": 9.0
+    },
+    "Theodora": {
+     "support": 1.0,
+     "renown": 5.0
+    },
+    "Leda": {
+     "support": 0.0,
+     "renown": 0.0
+    },
+    "other_requirements": "Bard's Monument (quest)",
+    "notes": "Req. R6 checkpoints",
+    "easy_for": "Theodora (R5)",
+    "supports_lords": "",
+    "supports_retainers": ""
+   }
+  },
+  "Olympia": {
+   "name": "Olympia",
+   "tier": "B",
+   "growths": {
+    "HP": 35,
+    "Str": 35,
+    "Mag": 50,
+    "Spd": 35,
+    "Dex": 35,
+    "Def": 30,
+    "Res": 40,
+    "Lck": 40,
+    "Cha": 40
+   },
+   "growth_total": 340,
+   "skill": "Competitive Zeal",
+   "skill_desc": "When equipped with magic, grants Crit+10.",
+   "proficiencies": [
+    "Axe",
+    "White Magic"
+   ],
+   "progression": [
+    "Diviner",
+    "Shaman",
+    "Ovate"
+   ],
+   "gifts": {
+    "loved": [
+     "Eastern Earrings",
+     "Eastern Tea Leaves",
+     "Orgus Coffee",
+     "Tales of Adventure"
+    ],
+    "really_liked": [
+     "Coffee Pastries",
+     "Common Coffee",
+     "Gaudy Bangle",
+     "Select Coffee",
+     "Skin Balm",
+     "Southern Coffee"
+    ],
+    "likes": [
+     "Song",
+     "dance",
+     "playing instruments",
+     "writing songs",
+     "attracting attention"
+    ],
+    "interests": [
+     "Caring for her instruments",
+     "studying music and dance"
+    ]
+   },
+   "recruit": {
+    "Cai": {
+     "chapter": "Part I Ch 4",
+     "support": 3,
+     "renown": 8,
+     "extra": [
+      "Give Olympia Scarlet Drops"
+     ]
+    },
+    "Dietrich": {
+     "chapter": "Part I Ch 5",
+     "support": 3,
+     "renown": 6,
+     "extra": [
+      "Give Olympia Scarlet Drops"
+     ]
+    },
+    "Theodora": {
+     "chapter": "Part I Ch 5",
+     "support": 3,
+     "renown": 9,
+     "extra": [
+      "Give Olympia Scarlet Drops"
+     ]
+    },
+    "Leda": {
+     "chapter": "Part I Ch 3",
+     "support": 0,
+     "renown": 0,
+     "extra": []
+    }
+   },
+   "sheet": {
+    "Cai": {
+     "support": 3.0,
+     "renown": 8.0
+    },
+    "Dietrich": {
+     "support": 3.0,
+     "renown": 6.0
+    },
+    "Theodora": {
+     "support": 3.0,
+     "renown": 9.0
+    },
+    "Leda": {
+     "support": 0.0,
+     "renown": 0.0
+    },
+    "other_requirements": "Scarlet Drops (quest)",
+    "notes": "",
+    "easy_for": "Dietrich (R6)",
+    "supports_lords": "",
+    "supports_retainers": "Tobias"
+   }
+  },
+  "Mu": {
+   "name": "Mu",
+   "tier": "A",
+   "growths": {
+    "HP": 30,
+    "Str": 30,
+    "Mag": 5,
+    "Spd": 30,
+    "Dex": 30,
+    "Def": 20,
+    "Res": 10,
+    "Lck": 10,
+    "Cha": 20
+   },
+   "growth_total": 185,
+   "skill": "Signs of Growth",
+   "skill_desc": "When unit levels up, grants enhanced basic stat growth.",
+   "proficiencies": [
+    "Axe",
+    "Sword",
+    "White Magic"
+   ],
+   "progression": [
+    "Gladiator",
+    "Brigand",
+    "Warrior"
+   ],
+   "gifts": {
+    "loved": [],
+    "really_liked": [
+     "Arrowhead Gem",
+     "Candy Crystals",
+     "Honey Pastries",
+     "Jamel Milk",
+     "Outdoor Cooking Set",
+     "Pickled Vegetables",
+     "Pure-White Cervi",
+     "Weak Cervi",
+     "Yarc Milk"
+    ],
+    "likes": [
+     "Concocting new medicines",
+     "her father",
+     "her mother",
+     "eating sweets"
+    ],
+    "interests": [
+     "Making medicinal elixirs",
+     "exercise"
+    ]
+   },
+   "recruit": {
+    "Cai": {
+     "chapter": "Part I Ch 4",
+     "support": 3,
+     "renown": 9,
+     "extra": [
+      "Give Mu 3 Glirmosa"
+     ]
+    },
+    "Dietrich": {
+     "chapter": "Part I Ch 5",
+     "support": 3,
+     "renown": 7,
+     "extra": [
+      "Give Mu 3 Glirmosa"
+     ]
+    },
+    "Theodora": {
+     "chapter": "Part I Ch 5",
+     "support": 3,
+     "renown": 9,
+     "extra": [
+      "Give Mu 3 Glirmosa"
+     ]
+    },
+    "Leda": {
+     "chapter": "Part I Ch 1",
+     "support": 0,
+     "renown": 0,
+     "extra": []
+    }
+   },
+   "sheet": {
+    "Cai": {
+     "support": 3.0,
+     "renown": 9.0
+    },
+    "Dietrich": {
+     "support": 3.0,
+     "renown": 7.0
+    },
+    "Theodora": {
+     "support": 3.0,
+     "renown": 9.0
+    },
+    "Leda": {
+     "support": 0.0,
+     "renown": 0.0
+    },
+    "other_requirements": "3x Glirmosa (check Mount Orgus Trail, Rear Mountain Path, Forest of No Return, Giant's Mount)",
+    "notes": "",
+    "easy_for": "Dietrich (R7)",
+    "supports_lords": "Cai",
+    "supports_retainers": "Peter, Mikaela, Lilian"
+   }
+  },
+  "Gaitz": {
+   "name": "Gaitz",
+   "tier": "B",
+   "growths": {
+    "HP": 50,
+    "Str": 50,
+    "Mag": 20,
+    "Spd": 40,
+    "Dex": 45,
+    "Def": 45,
+    "Res": 25,
+    "Lck": 40,
+    "Cha": 45
+   },
+   "growth_total": 360,
+   "skill": "Brave Assist",
+   "skill_desc": "Grants Def+3 to adjacent allies.",
+   "proficiencies": [
+    "Axe",
+    "Spear"
+   ],
+   "progression": [
+    "Dreadnought"
+   ],
+   "gifts": {
+    "loved": [],
+    "really_liked": [
+     "Arrowhead Gem",
+     "Common Coffee",
+     "Crimson Ghosh",
+     "Horse-Grooming Kit",
+     "Joint-Relief Gloves",
+     "Orgus Coffee",
+     "Training Pillar",
+     "Training Weights"
+    ],
+    "likes": [
+     "Tea from Sai",
+     "Ferghanan horses",
+     "dueling",
+     "calligraphy"
+    ],
+    "interests": [
+     "Brewing tea",
+     "practicing martial arts"
+    ]
+   },
+   "recruit": {
+    "Cai": null,
+    "Dietrich": {
+     "chapter": "Part I Ch 4",
+     "support": 3,
+     "renown": 10,
+     "extra": [
+      "Clear Bertrand's Paralogue and reach Chapter 12."
+     ]
+    },
+    "Theodora": null,
+    "Leda": null
+   },
+   "sheet": {
+    "Cai": {
+     "support": 99.0,
+     "renown": 99.0
+    },
+    "Dietrich": {
+     "support": 3.0,
+     "renown": 10.0
+    },
+    "Theodora": {
+     "support": 99.0,
+     "renown": 99.0
+    },
+    "Leda": {
+     "support": 99.0,
+     "renown": 99.0
+    },
+    "other_requirements": "Bertrand's paralogue, wait until ch 12",
+    "notes": "After around 11/4",
+    "easy_for": "Dietrich only",
+    "supports_lords": "",
+    "supports_retainers": "Lilian"
+   }
+  },
+  "Dante": {
+   "name": "Dante",
+   "tier": "A",
+   "growths": {
+    "HP": 30,
+    "Str": 30,
+    "Mag": 45,
+    "Spd": 40,
+    "Dex": 40,
+    "Def": 20,
+    "Res": 40,
+    "Lck": 45,
+    "Cha": 30
+   },
+   "growth_total": 320,
+   "skill": "Stage Directions",
+   "skill_desc": "Grants Ddg+10 to allies within 2 spaces during their combats. Trigger % = ally's Cha ÷ 2.",
+   "proficiencies": [
+    "Authority",
+    "Black Magic",
+    "White Magic"
+   ],
+   "progression": [
+    "Diviner",
+    "Shaman",
+    "Ovate"
+   ],
+   "gifts": {
+    "loved": [],
+    "really_liked": [
+     "Arrowhead Gem",
+     "Common Coffee",
+     "Crimson Ghosh",
+     "Magic-Trick Set",
+     "Pack of Pastels",
+     "Select Coffee",
+     "The Works of Dante"
+    ],
+    "likes": [
+     "Herself",
+     "writing quickly",
+     "searching for dramatic subjects"
+    ],
+    "interests": [
+     "Studying people for research",
+     "seeing how others act"
+    ]
+   },
+   "recruit": {
+    "Cai": {
+     "chapter": "Part I Ch 5",
+     "support": 3,
+     "renown": 10,
+     "extra": [
+      "Give 8000 Gold to Dante."
+     ]
+    },
+    "Dietrich": {
+     "chapter": "Part I Ch 4",
+     "support": 2,
+     "renown": 8,
+     "extra": [
+      "Give 8000 Gold to Dante."
+     ]
+    },
+    "Theodora": {
+     "chapter": "Part I Ch 5",
+     "support": 3,
+     "renown": 6,
+     "extra": [
+      "Give 8000 Gold to Dante."
+     ]
+    },
+    "Leda": {
+     "chapter": "Part I Ch 4",
+     "support": 3,
+     "renown": 10,
+     "extra": [
+      "Give 8000 Gold to Dante."
+     ]
+    }
+   },
+   "sheet": {
+    "Cai": {
+     "support": 3.0,
+     "renown": 10.0
+    },
+    "Dietrich": {
+     "support": 2.0,
+     "renown": 8.0
+    },
+    "Theodora": {
+     "support": 3.0,
+     "renown": 6.0
+    },
+    "Leda": {
+     "support": 3.0,
+     "renown": 10.0
+    },
+    "other_requirements": "8000 gold",
+    "notes": "",
+    "easy_for": "Theodora (R6)",
+    "supports_lords": "Leda",
+    "supports_retainers": "Sirocco"
+   }
+  },
+  "Ursula": {
+   "name": "Ursula",
+   "tier": "B",
+   "growths": {
+    "HP": 40,
+    "Str": 35,
+    "Mag": 35,
+    "Spd": 50,
+    "Dex": 50,
+    "Def": 35,
+    "Res": 30,
+    "Lck": 40,
+    "Cha": 45
+   },
+   "growth_total": 360,
+   "skill": "Management Skills",
+   "skill_desc": "Allows storage access to unit and allies within 2 spaces.",
+   "proficiencies": [
+    "Bow",
+    "Sword"
+   ],
+   "progression": [
+    "Hunter",
+    "Archer",
+    "Sniper"
+   ],
+   "gifts": {
+    "loved": [],
+    "really_liked": [
+     "Arrowhead Gem",
+     "Common Coffee",
+     "Crimson Ghosh",
+     "Eastern Love Story",
+     "Kitten Figurine",
+     "Mane Ornament",
+     "Pack of Pastels"
+    ],
+    "likes": [
+     "Poetry",
+     "animals",
+     "flowers in the shade",
+     "counting money"
+    ],
+    "interests": [
+     "Reading",
+     "drawing pictures"
+    ]
+   },
+   "recruit": {
+    "Cai": {
+     "chapter": "Part I Ch 4",
+     "support": 3,
+     "renown": 10,
+     "extra": [
+      "Complete Talimun's Paralogue then select Agree 3 times"
+     ]
+    },
+    "Dietrich": {
+     "chapter": "Part I Ch 4",
+     "support": 3,
+     "renown": 7,
+     "extra": [
+      "Complete Talimun's Paralogue then select Agree 3 times"
+     ]
+    },
+    "Theodora": {
+     "chapter": "Part I Ch 5",
+     "support": 3,
+     "renown": 9,
+     "extra": [
+      "Complete Talimun's Paralogue then select Agree 3 times"
+     ]
+    },
+    "Leda": null
+   },
+   "sheet": {
+    "Cai": {
+     "support": 3.0,
+     "renown": 10.0
+    },
+    "Dietrich": {
+     "support": 3.0,
+     "renown": 7.0
+    },
+    "Theodora": {
+     "support": 3.0,
+     "renown": 9.0
+    },
+    "Leda": {
+     "support": 99.0,
+     "renown": 99.0
+    },
+    "other_requirements": "Talimun's paralogue, then Agree three times",
+    "notes": "After 9/17",
+    "easy_for": "Dietrich (R7)",
+    "supports_lords": "",
+    "supports_retainers": "Peter, Bonaventure, Sirocco"
+   }
+  },
+  "Simon": {
+   "name": "Simon",
+   "tier": "B",
+   "growths": {
+    "HP": 50,
+    "Str": 50,
+    "Mag": 20,
+    "Spd": 35,
+    "Dex": 40,
+    "Def": 40,
+    "Res": 25,
+    "Lck": 50,
+    "Cha": 35
+   },
+   "growth_total": 345,
+   "skill": "Close Call",
+   "skill_desc": "If unit's HP ≥ 2 and damage would reduce it to 0, leaves unit with 1 HP. Trigger % = Lck.",
+   "proficiencies": [
+    "Axe",
+    "Infantry",
+    "Sword"
+   ],
+   "progression": [
+    "Gladiator",
+    "Brigand",
+    "Warrior"
+   ],
+   "gifts": {
+    "loved": [],
+    "really_liked": [
+     "Crimson Ghosh",
+     "Dual Fish Knives",
+     "Protection Figurine"
+    ],
+    "likes": [
+     "Fighting to the death",
+     "food from his hometown",
+     "womanizing"
+    ],
+    "interests": [
+     "Carving wooden figures",
+     "making preserves"
+    ]
+   },
+   "recruit": {
+    "Cai": {
+     "chapter": "Part I Ch 5",
+     "support": 3,
+     "renown": 8,
+     "extra": [
+      "Pay 500 Gold and pick tails on coin toss."
+     ]
+    },
+    "Dietrich": {
+     "chapter": "Part I Ch 4",
+     "support": 3,
+     "renown": 7,
+     "extra": [
+      "Pay 500 Gold and pick tails on coin toss."
+     ]
+    },
+    "Theodora": {
+     "chapter": "Part I Ch 5",
+     "support": 3,
+     "renown": 7,
+     "extra": [
+      "Pay 500 Gold and pick tails on coin toss."
+     ]
+    },
+    "Leda": {
+     "chapter": "Part I Ch 4",
+     "support": 3,
+     "renown": 6,
+     "extra": [
+      "Pay 500 Gold and pick tails on coin toss."
+     ]
+    }
+   },
+   "sheet": {
+    "Cai": {
+     "support": 3.0,
+     "renown": 8.0
+    },
+    "Dietrich": {
+     "support": 3.0,
+     "renown": 7.0
+    },
+    "Theodora": {
+     "support": 3.0,
+     "renown": 7.0
+    },
+    "Leda": {
+     "support": 3.0,
+     "renown": 6.0
+    },
+    "other_requirements": "500 gold, choose tails",
+    "notes": "",
+    "easy_for": "Leda (R6)",
+    "supports_lords": "Theodora",
+    "supports_retainers": "Mikaela, Lilian"
+   }
+  },
+  "Diego": {
+   "name": "Diego",
+   "tier": "A",
+   "growths": {
+    "HP": 45,
+    "Str": 40,
+    "Mag": 20,
+    "Spd": 45,
+    "Dex": 60,
+    "Def": 35,
+    "Res": 20,
+    "Lck": 35,
+    "Cha": 30
+   },
+   "growth_total": 330,
+   "skill": "Caretaker",
+   "skill_desc": "Adjacent allies cannot suffer a follow-up during combat. Trigger % = 5.",
+   "proficiencies": [
+    "Bow",
+    "Infantry",
+    "Sword"
+   ],
+   "progression": [
+    "Gladiator",
+    "Myrmidon",
+    "Shido"
+   ],
+   "gifts": {
+    "loved": [
+     "Arrowhead Gem"
+    ],
+    "really_liked": [
+     "Crimson Ghosh",
+     "Joint-Relief Gloves",
+     "Protection Figurine",
+     "Training Pillar",
+     "Training Weights"
+    ],
+    "likes": [
+     "Walking in the forest",
+     "foraging medicinal herbs",
+     "Orchel"
+    ],
+    "interests": [
+     "Playing the flute",
+     "being devoted to Orchel"
+    ]
+   },
+   "recruit": {
+    "Cai": {
+     "chapter": "Part I Ch 3",
+     "support": 3,
+     "renown": 10,
+     "extra": [
+      "Clear Orchel's Regret Paralogue"
+     ]
+    },
+    "Dietrich": {
+     "chapter": "Part I Ch 4",
+     "support": 3,
+     "renown": 9,
+     "extra": [
+      "Clear Orchel's Regret Paralogue"
+     ]
+    },
+    "Theodora": {
+     "chapter": "Part I Ch 5",
+     "support": 2,
+     "renown": 8,
+     "extra": [
+      "Clear Orchel's Regret Paralogue"
+     ]
+    },
+    "Leda": {
+     "chapter": "Part I Ch 4",
+     "support": 3,
+     "renown": 8,
+     "extra": [
+      "Clear Orchel's Regret Paralogue"
+     ]
+    }
+   },
+   "sheet": {
+    "Cai": {
+     "support": 3.0,
+     "renown": 10.0
+    },
+    "Dietrich": {
+     "support": 3.0,
+     "renown": 9.0
+    },
+    "Theodora": {
+     "support": 2.0,
+     "renown": 8.0
+    },
+    "Leda": {
+     "support": 3.0,
+     "renown": 8.0
+    },
+    "other_requirements": "Orchel's paralogue",
+    "notes": "After 10/18",
+    "easy_for": "Theodora (R8), Leda (R8)",
+    "supports_lords": "Theodora",
+    "supports_retainers": "Esmeralda"
+   }
+  },
+  "Ninae": {
+   "name": "Ninae",
+   "tier": "A",
+   "growths": {
+    "HP": 45,
+    "Str": 45,
+    "Mag": 35,
+    "Spd": 35,
+    "Dex": 45,
+    "Def": 35,
+    "Res": 45,
+    "Lck": 50,
+    "Cha": 40
+   },
+   "growth_total": 375,
+   "skill": "Spirits' Voices",
+   "skill_desc": "If foes uses magic, grants Hit/Avo+10 to unit during combat.",
+   "proficiencies": [
+    "Spear",
+    "White Magic"
+   ],
+   "progression": [
+    "Diviner",
+    "Priest",
+    "Bishop"
+   ],
+   "gifts": {
+    "loved": [
+     "Strategy Manuscript",
+     "Tales of Adventure"
+    ],
+    "really_liked": [
+     "Arrowhead Gem",
+     "Crimson Ghosh",
+     "Eastern Black Silk",
+     "Eastern Tea Leaves"
+    ],
+    "likes": [
+     "Pitiable people",
+     "talking to spirits",
+     "her keepsake necklace",
+     "skygazing"
+    ],
+    "interests": [
+     "Daydreaming",
+     "training"
+    ]
+   },
+   "recruit": {
+    "Cai": {
+     "chapter": "Part I Ch 3",
+     "support": 3,
+     "renown": 6,
+     "extra": [
+      "Give 1 Paradise Fish to Ninae."
+     ]
+    },
+    "Dietrich": {
+     "chapter": "Part I Ch 4",
+     "support": 3,
+     "renown": 8,
+     "extra": [
+      "Give 1 Paradise Fish to Ninae."
+     ]
+    },
+    "Theodora": {
+     "chapter": "Part I Ch 5",
+     "support": 3,
+     "renown": 6,
+     "extra": [
+      "Give 1 Paradise Fish to Ninae."
+     ]
+    },
+    "Leda": {
+     "chapter": "Part I Ch 4",
+     "support": 3,
+     "renown": 8,
+     "extra": [
+      "Give 1 Paradise Fish to Ninae."
+     ]
+    }
+   },
+   "sheet": {
+    "Cai": {
+     "support": 3.0,
+     "renown": 6.0
+    },
+    "Dietrich": {
+     "support": 3.0,
+     "renown": 8.0
+    },
+    "Theodora": {
+     "support": 3.0,
+     "renown": 6.0
+    },
+    "Leda": {
+     "support": 3.0,
+     "renown": 8.0
+    },
+    "other_requirements": "1x Paradise Fish (check Lake Brontes)",
+    "notes": "",
+    "easy_for": "Theodora (R6), Leda (R6), Cai (R6)",
+    "supports_lords": "Cai",
+    "supports_retainers": "Peter, Lysander"
+   }
+  },
+  "Sha Lan": {
+   "name": "Sha Lan",
+   "tier": "B",
+   "growths": {
+    "HP": 35,
+    "Str": 30,
+    "Mag": 45,
+    "Spd": 35,
+    "Dex": 50,
+    "Def": 30,
+    "Res": 45,
+    "Lck": 35,
+    "Cha": 40
+   },
+   "growth_total": 345,
+   "skill": "Cooler Heads",
+   "skill_desc": "After using Draw Back, unit can use assist magic.",
+   "proficiencies": [
+    "Authority",
+    "Spear",
+    "White Magic"
+   ],
+   "progression": [
+    "Diviner",
+    "Priest",
+    "Bishop"
+   ],
+   "gifts": {
+    "loved": [
+     "Special “Medicine”"
+    ],
+    "really_liked": [
+     "Common Coffee",
+     "Energizing Ghosh",
+     "Niiza Garum",
+     "Outdoor Cooking Set",
+     "Pastry Cookbook",
+     "Select Coffee"
+    ],
+    "likes": [
+     "Delicious food",
+     "drinks",
+     "socializing"
+    ],
+    "interests": [
+     "Caring for Anatolia",
+     "studying"
+    ]
+   },
+   "recruit": {
+    "Cai": null,
+    "Dietrich": {
+     "chapter": "Part I Ch 4",
+     "support": 3,
+     "renown": 10,
+     "extra": [
+      "Clear Anatolia's Paralogue and answer questions correctly."
+     ]
+    },
+    "Theodora": null,
+    "Leda": {
+     "chapter": "Part I Ch 4",
+     "support": 3,
+     "renown": 8,
+     "extra": [
+      "Clear Anatolia's Paralogue and answer questions correctly."
+     ]
+    }
+   },
+   "sheet": {
+    "Cai": {
+     "support": 99.0,
+     "renown": 99.0
+    },
+    "Dietrich": {
+     "support": 3.0,
+     "renown": 10.0
+    },
+    "Theodora": {
+     "support": 99.0,
+     "renown": 99.0
+    },
+    "Leda": {
+     "support": 3.0,
+     "renown": 8.0
+    },
+    "other_requirements": "Anatolia's paralogue, then choose Saramis, Da Mina, Grounded Ship",
+    "notes": "After 10/5",
+    "easy_for": "Leda (R8)",
+    "supports_lords": "",
+    "supports_retainers": "Sirocco"
+   }
+  },
+  "Nezha": {
+   "name": "Nezha",
+   "tier": "A",
+   "growths": {
+    "HP": 45,
+    "Str": 55,
+    "Mag": 25,
+    "Spd": 45,
+    "Dex": 50,
+    "Def": 35,
+    "Res": 25,
+    "Lck": 30,
+    "Cha": 25
+   },
+   "growth_total": 335,
+   "skill": "Quick Draw",
+   "skill_desc": "If unit attacks first, grants Atk+3 during combat. Trigger % = 50.",
+   "proficiencies": [
+    "Infantry",
+    "Sword"
+   ],
+   "progression": [
+    "Gladiator",
+    "Myrmidon",
+    "Shido"
+   ],
+   "gifts": {
+    "loved": [
+     "Strategy Manuscript",
+     "Tales of Adventure"
+    ],
+    "really_liked": [
+     "Eastern Tea Leaves",
+     "Pickled Bulbs",
+     "Sturdy Rucksack",
+     "Training Bracelet",
+     "Wing Fletching"
+    ],
+    "likes": [
+     "Physical activity",
+     "justice",
+     "fighting",
+     "good food"
+    ],
+    "interests": [
+     "Combat training",
+     "eating large amounts of food"
+    ]
+   },
+   "recruit": {
+    "Cai": {
+     "chapter": "Part I Ch 5",
+     "support": 3,
+     "renown": 6,
+     "extra": [
+      "Give 3 Sandworm Meat to Nezha."
+     ]
+    },
+    "Dietrich": {
+     "chapter": "Part I Ch 4",
+     "support": 3,
+     "renown": 10,
+     "extra": [
+      "Give 3 Sandworm Meat to Nezha."
+     ]
+    },
+    "Theodora": {
+     "chapter": "Part I Ch 5",
+     "support": 2,
+     "renown": 6,
+     "extra": [
+      "Give 3 Sandworm Meat to Nezha."
+     ]
+    },
+    "Leda": {
+     "chapter": "Part I Ch 4",
+     "support": 3,
+     "renown": 9,
+     "extra": [
+      "Give 3 Sandworm Meat to Nezha."
+     ]
+    }
+   },
+   "sheet": {
+    "Cai": {
+     "support": 3.0,
+     "renown": 6.0
+    },
+    "Dietrich": {
+     "support": 3.0,
+     "renown": 10.0
+    },
+    "Theodora": {
+     "support": 2.0,
+     "renown": 6.0
+    },
+    "Leda": {
+     "support": 3.0,
+     "renown": 9.0
+    },
+    "other_requirements": "3x Sandworm Meat",
+    "notes": "",
+    "easy_for": "Theodora (R6), Cai (R6)",
+    "supports_lords": "Theodora",
+    "supports_retainers": "Ultand, Fabio"
+   }
+  },
+  "Guzran": {
+   "name": "Guzran",
+   "tier": "S",
+   "growths": {
+    "HP": 45,
+    "Str": 45,
+    "Mag": 20,
+    "Spd": 50,
+    "Dex": 45,
+    "Def": 35,
+    "Res": 20,
+    "Lck": 45,
+    "Cha": 30
+   },
+   "growth_total": 335,
+   "skill": "Hot-Headed",
+   "skill_desc": "Grants one of Hit+10, Avo+10, or Crit+10 during combat.",
+   "proficiencies": [
+    "Infantry",
+    "Sword"
+   ],
+   "progression": [
+    "Gladiator",
+    "Myrmidon",
+    "Shido"
+   ],
+   "gifts": {
+    "loved": [
+     "Strategy Manuscript",
+     "Tales of Adventure",
+     "Volcano Ghosh"
+    ],
+    "really_liked": [
+     "Aromatic Shosh",
+     "Common Coffee",
+     "Eastern Tea Leaves",
+     "Huge Fish Eyeball",
+     "Jade Ghosh",
+     "Light Shosh",
+     "Mature Ghosh",
+     "Mature Shosh",
+     "Orgus Coffee",
+     "Rustic Ghosh",
+     "Secret Ghosh",
+     "Select Coffee",
+     "Southern Coffee",
+     "Southern Ghosh",
+     "Strong Seasonings",
+     "Sun Ghosh",
+     "Wing Fletching",
+     "Young Ghosh",
+     "Young Shosh"
+    ],
+    "likes": [
+     "Booze",
+     "women",
+     "interesting people",
+     "young greenhorns"
+    ],
+    "interests": [
+     "Boasting"
+    ]
+   },
+   "recruit": {
+    "Cai": {
+     "chapter": "Part I Ch 3",
+     "support": 1,
+     "renown": 2,
+     "extra": []
+    },
+    "Dietrich": {
+     "chapter": "Part I Ch 4",
+     "support": 3,
+     "renown": 8,
+     "extra": []
+    },
+    "Theodora": {
+     "chapter": "Part I Ch 5",
+     "support": 3,
+     "renown": 8,
+     "extra": []
+    },
+    "Leda": {
+     "chapter": "Part I Ch 4",
+     "support": 1,
+     "renown": 3,
+     "extra": []
+    }
+   },
+   "sheet": {
+    "Cai": {
+     "support": 0.0,
+     "renown": 0.0
+    },
+    "Dietrich": {
+     "support": 3.0,
+     "renown": 8.0
+    },
+    "Theodora": {
+     "support": 3.0,
+     "renown": 8.0
+    },
+    "Leda": {
+     "support": 1.0,
+     "renown": 3.0
+    },
+    "other_requirements": "",
+    "notes": "",
+    "easy_for": "Leda (R3)",
+    "supports_lords": "Leda",
+    "supports_retainers": "Mikaela, Mu"
+   }
+  },
+  "Io": {
+   "name": "Io",
+   "tier": "B",
+   "growths": {
+    "HP": 45,
+    "Str": 40,
+    "Mag": 25,
+    "Spd": 35,
+    "Dex": 45,
+    "Def": 40,
+    "Res": 25,
+    "Lck": 35,
+    "Cha": 35
+   },
+   "growth_total": 325,
+   "skill": "With My Steed",
+   "skill_desc": "(Cavalry) If unit attacks first, grants Shld+3, Ddg+30 during combat.",
+   "proficiencies": [
+    "Axe",
+    "Spear"
+   ],
+   "progression": [
+    "Gladiator",
+    "Light Cavalry",
+    "Bardinger"
+   ],
+   "gifts": {
+    "loved": [],
+    "really_liked": [
+     "Arrowhead Gem",
+     "Board-Game Tactics",
+     "Common Coffee",
+     "Crimson Ghosh",
+     "Horse-Grooming Kit",
+     "Joint-Relief Gloves",
+     "Kitten Figurine",
+     "Mane Ornament",
+     "Protection Figurine",
+     "Spirit Board Game",
+     "Sturdy Rucksack",
+     "Training Pillar",
+     "Training Weights"
+    ],
+    "likes": [
+     "Chivalry",
+     "self-discipline",
+     "his beloved horse Rocinan"
+    ],
+    "interests": [
+     "Caring for his faithful steed",
+     "being quiet"
+    ]
+   },
+   "recruit": {
+    "Cai": {
+     "chapter": "Part I Ch 3",
+     "support": 3,
+     "renown": 10,
+     "extra": [
+      "Give 4000 Gold to Io."
+     ]
+    },
+    "Dietrich": {
+     "chapter": "Part I Ch 4",
+     "support": 2,
+     "renown": 3,
+     "extra": [
+      "Give 800 Gold to Io."
+     ]
+    },
+    "Theodora": {
+     "chapter": "Part I Ch 5",
+     "support": 3,
+     "renown": 10,
+     "extra": [
+      "Give 4000 Gold to Io."
+     ]
+    },
+    "Leda": {
+     "chapter": "Part I Ch 4",
+     "support": 1,
+     "renown": 6,
+     "extra": [
+      "Give 1500 Gold to Io."
+     ]
+    }
+   },
+   "sheet": {
+    "Cai": {
+     "support": 3.0,
+     "renown": 10.0
+    },
+    "Dietrich": {
+     "support": 2.0,
+     "renown": 3.0
+    },
+    "Theodora": {
+     "support": 3.0,
+     "renown": 10.0
+    },
+    "Leda": {
+     "support": 1.0,
+     "renown": 6.0
+    },
+    "other_requirements": "4000 gold (T/C), 1500 gold (L), 800 gold (D)",
+    "notes": "",
+    "easy_for": "Dietrich (R3), Leda (S1)",
+    "supports_lords": "",
+    "supports_retainers": "Tialla"
+   }
+  },
+  "Catania": {
+   "name": "Catania",
+   "tier": "A",
+   "growths": {
+    "HP": 35,
+    "Str": 35,
+    "Mag": 35,
+    "Spd": 55,
+    "Dex": 50,
+    "Def": 30,
+    "Res": 35,
+    "Lck": 40,
+    "Cha": 45
+   },
+   "growth_total": 360,
+   "skill": "Punishing Squall",
+   "skill_desc": "If AS ≥ foe's AS+3, grants Hit+20 during combat.",
+   "proficiencies": [
+    "Spear",
+    "Sword"
+   ],
+   "progression": [
+    "Gladiator",
+    "Myrmidon",
+    "Shido"
+   ],
+   "gifts": {
+    "loved": [
+     "Eastern Black Silk",
+     "Eastern Earrings",
+     "Eastern Tea Leaves",
+     "Tales of Adventure"
+    ],
+    "really_liked": [
+     "Coffee Pastries",
+     "Common Coffee",
+     "Dagda Beard Grass",
+     "Gaudy Bangle",
+     "Horse-Grooming Kit",
+     "Kitten Figurine",
+     "Magic-Trick Set",
+     "Orgus Coffee",
+     "Pack of Pastels",
+     "Select Coffee",
+     "Southern Coffee"
+    ],
+    "likes": [
+     "Sterling wares",
+     "sterling people",
+     "sterling meals"
+    ],
+    "interests": [
+     "Gathering information",
+     "making a name for herself"
+    ]
+   },
+   "recruit": {
+    "Cai": {
+     "chapter": "Part I Ch 3",
+     "support": 3,
+     "renown": 10,
+     "extra": []
+    },
+    "Dietrich": {
+     "chapter": "Part I Ch 4",
+     "support": 1,
+     "renown": 8,
+     "extra": []
+    },
+    "Theodora": {
+     "chapter": "Part I Ch 5",
+     "support": 3,
+     "renown": 7,
+     "extra": []
+    },
+    "Leda": {
+     "chapter": "Part I Ch 4",
+     "support": 1,
+     "renown": 2,
+     "extra": []
+    }
+   },
+   "sheet": {
+    "Cai": {
+     "support": 3.0,
+     "renown": 10.0
+    },
+    "Dietrich": {
+     "support": 1.0,
+     "renown": 8.0
+    },
+    "Theodora": {
+     "support": 3.0,
+     "renown": 7.0
+    },
+    "Leda": {
+     "support": 0.0,
+     "renown": 0.0
+    },
+    "other_requirements": "",
+    "notes": "",
+    "easy_for": "Theodora (R7), Dietrich (S1)",
+    "supports_lords": "Dietrich",
+    "supports_retainers": "Lysander"
+   }
+  },
+  "Nydine": {
+   "name": "Nydine",
+   "tier": "B",
+   "growths": {
+    "HP": 45,
+    "Str": 40,
+    "Mag": 30,
+    "Spd": 45,
+    "Dex": 40,
+    "Def": 30,
+    "Res": 25,
+    "Lck": 35,
+    "Cha": 35
+   },
+   "growth_total": 325,
+   "skill": "Barge Through",
+   "skill_desc": "(Cavalry) Can move through foe's space. (Cannot move through large-scale foes.)",
+   "proficiencies": [
+    "Axe"
+   ],
+   "progression": [
+    "Gladiator",
+    "Light Cavalry",
+    "Bardinger"
+   ],
+   "gifts": {
+    "loved": [
+     "Strategy Manuscript",
+     "Tales of Adventure"
+    ],
+    "really_liked": [
+     "Eastern Love Story",
+     "Eastern Tea Leaves",
+     "Kitten Figurine",
+     "Sturdy Rucksack",
+     "Training Bracelet",
+     "Training Weights",
+     "Wing Fletching"
+    ],
+    "likes": [
+     "Honoring her duties",
+     "caring for orniuses"
+    ],
+    "interests": [
+     "Improving her combat abilities",
+     "reading"
+    ]
+   },
+   "recruit": {
+    "Cai": {
+     "chapter": "Part I Ch 3",
+     "support": 1,
+     "renown": 6,
+     "extra": [
+      "Give 2 Bronze Axes to Nydine."
+     ]
+    },
+    "Dietrich": {
+     "chapter": "Part I Ch 4",
+     "support": 2,
+     "renown": 5,
+     "extra": [
+      "Give 2 Bronze Axes to Nydine."
+     ]
+    },
+    "Theodora": {
+     "chapter": "Part I Ch 5",
+     "support": 3,
+     "renown": 5,
+     "extra": [
+      "Give 3 Iron Axes to Nydine."
+     ]
+    },
+    "Leda": {
+     "chapter": "Part I Ch 4",
+     "support": 3,
+     "renown": 10,
+     "extra": [
+      "Give 3 Iron Axes to Nydine."
+     ]
+    }
+   },
+   "sheet": {
+    "Cai": {
+     "support": 1.0,
+     "renown": 6.0
+    },
+    "Dietrich": {
+     "support": 2.0,
+     "renown": 5.0
+    },
+    "Theodora": {
+     "support": 3.0,
+     "renown": 5.0
+    },
+    "Leda": {
+     "support": 3.0,
+     "renown": 10.0
+    },
+    "other_requirements": "2x Bronze Axes (D/C), 3x Iron Axes (T/L)",
+    "notes": "",
+    "easy_for": "Theodora (R5), Dietrich (R5), Cai (S1)",
+    "supports_lords": "",
+    "supports_retainers": "Bonaventure, Lilian"
+   }
+  },
+  "Benditz": {
+   "name": "Benditz",
+   "tier": "C",
+   "growths": {
+    "HP": 50,
+    "Str": 35,
+    "Mag": 20,
+    "Spd": 35,
+    "Dex": 50,
+    "Def": 35,
+    "Res": 25,
+    "Lck": 30,
+    "Cha": 35
+   },
+   "growth_total": 315,
+   "skill": "Wheeled Warrior",
+   "skill_desc": "(Cavalry) If unit is a charioteer, grants Hit+20.",
+   "proficiencies": [
+    "Bow"
+   ],
+   "progression": [
+    "Gladiator",
+    "Myrmidon",
+    "Shido"
+   ],
+   "gifts": {
+    "loved": [
+     "Eastern Black Silk",
+     "Eastern Earrings",
+     "Eastern Tea Leaves",
+     "Strategy Manuscript",
+     "Tales of Adventure"
+    ],
+    "really_liked": [
+     "Coffee Pastries",
+     "Common Coffee",
+     "Eastern Love Story",
+     "Gaudy Bangle",
+     "Orgus Coffee",
+     "Select Coffee",
+     "Southern Coffee",
+     "Wing Fletching"
+    ],
+    "likes": [
+     "The Great August's tactics",
+     "up-and-coming young people"
+    ],
+    "interests": [
+     "Lecturing young people",
+     "reading"
+    ]
+   },
+   "recruit": {
+    "Cai": {
+     "chapter": "Part I Ch 6",
+     "support": 3,
+     "renown": 9,
+     "extra": []
+    },
+    "Dietrich": {
+     "chapter": "Part I Ch 5",
+     "support": 2,
+     "renown": 7,
+     "extra": []
+    },
+    "Theodora": {
+     "chapter": "Part I Ch 6",
+     "support": 1,
+     "renown": 8,
+     "extra": []
+    },
+    "Leda": {
+     "chapter": "Part I Ch 5",
+     "support": 3,
+     "renown": 7,
+     "extra": []
+    }
+   },
+   "sheet": {
+    "Cai": {
+     "support": 3.0,
+     "renown": 9.0
+    },
+    "Dietrich": {
+     "support": 2.0,
+     "renown": 7.0
+    },
+    "Theodora": {
+     "support": 1.0,
+     "renown": 8.0
+    },
+    "Leda": {
+     "support": 3.0,
+     "renown": 7.0
+    },
+    "other_requirements": "",
+    "notes": "Appears @ 4/11",
+    "easy_for": "Leda (R7), Dietrich (R7), Theodora (S1)",
+    "supports_lords": "",
+    "supports_retainers": ""
+   }
+  },
+  "Alexandra": {
+   "name": "Alexandra",
+   "tier": "A",
+   "growths": {
+    "HP": 30,
+    "Str": 35,
+    "Mag": 35,
+    "Spd": 55,
+    "Dex": 45,
+    "Def": 30,
+    "Res": 40,
+    "Lck": 50,
+    "Cha": 50
+   },
+   "growth_total": 370,
+   "skill": "Silver Maiden",
+   "skill_desc": "Grants Hit/Avo+5 to unit for each adjacent ally.",
+   "proficiencies": [
+    "Spear",
+    "Sword"
+   ],
+   "progression": [
+    "Gladiator",
+    "Myrmidon",
+    "Shido"
+   ],
+   "gifts": {
+    "loved": [
+     "Eastern Earrings",
+     "Strategy Manuscript",
+     "Tales of Adventure"
+    ],
+    "really_liked": [
+     "Alecto Garum",
+     "Dagda Beard Grass",
+     "Garum",
+     "Gaudy Bangle",
+     "Herbal Recipe Guide",
+     "Home-Recipe Book",
+     "Horse-Grooming Kit",
+     "Kitten Figurine",
+     "Mane Ornament",
+     "Pastry Cookbook",
+     "Smooth Garum",
+     "Strong Seasonings",
+     "Sturdy Rucksack",
+     "Training Bracelet",
+     "Village Recipes",
+     "Wing Fletching"
+    ],
+    "likes": [
+     "Her parents",
+     "Bucephalus",
+     "virtuous men",
+     "talking about love"
+    ],
+    "interests": [
+     "Combat training",
+     "caring for her beloved steed"
+    ]
+   },
+   "recruit": {
+    "Cai": {
+     "chapter": "Part I Ch 7",
+     "support": 2,
+     "renown": 7,
+     "extra": []
+    },
+    "Dietrich": {
+     "chapter": "Part I Ch 7",
+     "support": 3,
+     "renown": 8,
+     "extra": []
+    },
+    "Theodora": {
+     "chapter": "Part I Ch 8",
+     "support": 1,
+     "renown": 6,
+     "extra": []
+    },
+    "Leda": {
+     "chapter": "Part I Ch 7",
+     "support": 3,
+     "renown": 10,
+     "extra": []
+    }
+   },
+   "sheet": {
+    "Cai": {
+     "support": 2.0,
+     "renown": 7.0
+    },
+    "Dietrich": {
+     "support": 3.0,
+     "renown": 8.0
+    },
+    "Theodora": {
+     "support": 1.0,
+     "renown": 6.0
+    },
+    "Leda": {
+     "support": 3.0,
+     "renown": 10.0
+    },
+    "other_requirements": "",
+    "notes": "Appears @ 5/29",
+    "easy_for": "Theodora (R6), Cai (R7)",
+    "supports_lords": "Cai, Theodora",
+    "supports_retainers": "Sirocco, Olympia"
+   }
+  },
+  "Yang Jie": {
+   "name": "Yang Jie",
+   "tier": "C",
+   "growths": {
+    "HP": 50,
+    "Str": 35,
+    "Mag": 40,
+    "Spd": 35,
+    "Dex": 35,
+    "Def": 30,
+    "Res": 40,
+    "Lck": 40,
+    "Cha": 25
+   },
+   "growth_total": 330,
+   "skill": "Monkly Havoc",
+   "skill_desc": "After defeating a foe, unit recovers HP equal to max HP. Trigger % = Lck / 2",
+   "proficiencies": [
+    "Axe",
+    "White Magic"
+   ],
+   "progression": [
+    "Diviner",
+    "Priest",
+    "Bishop",
+    "War Monk"
+   ],
+   "gifts": {
+    "loved": [
+     "Eastern Tea Leaves",
+     "Poems of the Greats",
+     "Strategy Manuscript",
+     "Tales of Adventure",
+     "Volcano Ghosh"
+    ],
+    "really_liked": [
+     "Aromatic Shosh",
+     "Coffee Pastries",
+     "Common Coffee",
+     "Flexible Fishing Rod",
+     "Herbal Recipe Guide",
+     "Home-Recipe Book",
+     "Huge Fish Eyeball",
+     "Jade Ghosh",
+     "Kitten Figurine",
+     "Light Shosh",
+     "Mature Ghosh",
+     "Mature Shosh",
+     "Orgus Coffee",
+     "Pastry Cookbook",
+     "Rustic Ghosh",
+     "Secret Ghosh",
+     "Select Coffee",
+     "Sharp Fishhook",
+     "Southern Coffee",
+     "Southern Ghosh",
+     "Sun Ghosh",
+     "The Works of Dante",
+     "Trader's Handbook",
+     "Village Recipes",
+     "Young Ghosh"
+    ],
+    "likes": [
+     "Alcohol",
+     "tales of old",
+     "distant journeys",
+     "saving the weak"
+    ],
+    "interests": [
+     "Collecting liquors",
+     "giving sermons"
+    ]
+   },
+   "recruit": {
+    "Cai": {
+     "chapter": "Part I Ch 3",
+     "support": 2,
+     "renown": 3,
+     "extra": [
+      "Answer Yang Jie’s 3 Questions Correctly."
+     ]
+    },
+    "Dietrich": {
+     "chapter": "Part I Ch 4",
+     "support": 1,
+     "renown": 2,
+     "extra": []
+    },
+    "Theodora": {
+     "chapter": "Part I Ch 5",
+     "support": 3,
+     "renown": 9,
+     "extra": [
+      "Answer Yang Jie’s 3 Questions Correctly."
+     ]
+    },
+    "Leda": {
+     "chapter": "Part I Ch 4",
+     "support": 3,
+     "renown": 8,
+     "extra": [
+      "Answer Yang Jie’s 3 Questions Correctly."
+     ]
+    }
+   },
+   "sheet": {
+    "Cai": {
+     "support": 2.0,
+     "renown": 3.0
+    },
+    "Dietrich": {
+     "support": 0.0,
+     "renown": 0.0
+    },
+    "Theodora": {
+     "support": 3.0,
+     "renown": 9.0
+    },
+    "Leda": {
+     "support": 3.0,
+     "renown": 8.0
+    },
+    "other_requirements": "choose Cheese, Moon, any last answer",
+    "notes": "",
+    "easy_for": "Cai (R3)",
+    "supports_lords": "",
+    "supports_retainers": ""
+   }
+  },
+  "Noctula": {
+   "name": "Noctula",
+   "tier": "B",
+   "growths": {
+    "HP": 50,
+    "Str": 45,
+    "Mag": 20,
+    "Spd": 45,
+    "Dex": 40,
+    "Def": 40,
+    "Res": 20,
+    "Lck": 35,
+    "Cha": 30
+   },
+   "growth_total": 325,
+   "skill": "Warrior's Clarity",
+   "skill_desc": "After combat, grants Avo+3 until unit's next phase.",
+   "proficiencies": [
+    "Axe",
+    "Infantry"
+   ],
+   "progression": [
+    "Gladiator",
+    "Brigand",
+    "Warrior"
+   ],
+   "gifts": {
+    "loved": [
+     "Strategy Manuscript",
+     "Tales of Adventure"
+    ],
+    "really_liked": [
+     "Eastern Tea Leaves",
+     "Protection Figurine",
+     "Sturdy Rucksack",
+     "Training Bracelet",
+     "Wing Fletching"
+    ],
+    "likes": [
+     "The city and its people",
+     "brawling"
+    ],
+    "interests": [
+     "Sightseeing in the city",
+     "training"
+    ]
+   },
+   "recruit": {
+    "Cai": {
+     "chapter": "Part I Ch 3",
+     "support": 1,
+     "renown": 4,
+     "extra": []
+    },
+    "Dietrich": {
+     "chapter": "Part I Ch 4",
+     "support": 1,
+     "renown": 6,
+     "extra": []
+    },
+    "Theodora": {
+     "chapter": "Part I Ch 5",
+     "support": 1,
+     "renown": 3,
+     "extra": []
+    },
+    "Leda": {
+     "chapter": "Part I Ch 4",
+     "support": 3,
+     "renown": 8,
+     "extra": []
+    }
+   },
+   "sheet": {
+    "Cai": {
+     "support": 1.0,
+     "renown": 4.0
+    },
+    "Dietrich": {
+     "support": 1.0,
+     "renown": 6.0
+    },
+    "Theodora": {
+     "support": 1.0,
+     "renown": 3.0
+    },
+    "Leda": {
+     "support": 3.0,
+     "renown": 8.0
+    },
+    "other_requirements": "",
+    "notes": "",
+    "easy_for": "Theodora (R3), Cai (R4)",
+    "supports_lords": "",
+    "supports_retainers": ""
+   }
+  },
+  "Sofia": {
+   "name": "Sofia",
+   "tier": "B",
+   "growths": {
+    "HP": 35,
+    "Str": 30,
+    "Mag": 45,
+    "Spd": 40,
+    "Dex": 30,
+    "Def": 25,
+    "Res": 40,
+    "Lck": 30,
+    "Cha": 40
+   },
+   "growth_total": 315,
+   "skill": "Healing Knowledge",
+   "skill_desc": "When healing an ally with magic, restores +10 HP.",
+   "proficiencies": [
+    "Bow",
+    "White Magic"
+   ],
+   "progression": [
+    "Diviner",
+    "Priest",
+    "Bishop"
+   ],
+   "gifts": {
+    "loved": [
+     "Blue-Rose Bouquet",
+     "Dual Fish Knives",
+     "Volcano Ghosh"
+    ],
+    "really_liked": [
+     "Arrowhead Gem",
+     "Common Coffee",
+     "Crimson Ghosh",
+     "Ginji Cervi",
+     "Honey Milk",
+     "Honey Pastries",
+     "Jamel Milk",
+     "Kitten Figurine",
+     "Magic-Trick Set",
+     "Niiza Garum",
+     "Outdoor Cooking Set",
+     "Pack of Pastels",
+     "Pastry Cookbook",
+     "Pickled Vegetables",
+     "Protection Figurine",
+     "Pure-White Cervi",
+     "Sharp Fishhook",
+     "Yarc Milk"
+    ],
+    "likes": [
+     "Delicious food",
+     "the moment when food is served (and soon vanishes)"
+    ],
+    "interests": [
+     "Proselytizing about Solel",
+     "eating her fill"
+    ]
+   },
+   "recruit": {
+    "Cai": {
+     "chapter": "Part I Ch 3",
+     "support": 3,
+     "renown": 9,
+     "extra": []
+    },
+    "Dietrich": {
+     "chapter": "Part I Ch 4",
+     "support": 3,
+     "renown": 9,
+     "extra": []
+    },
+    "Theodora": {
+     "chapter": "Part I Ch 5",
+     "support": 1,
+     "renown": 2,
+     "extra": []
+    },
+    "Leda": {
+     "chapter": "Part I Ch 4",
+     "support": 3,
+     "renown": 7,
+     "extra": []
+    }
+   },
+   "sheet": {
+    "Cai": {
+     "support": 3.0,
+     "renown": 9.0
+    },
+    "Dietrich": {
+     "support": 3.0,
+     "renown": 9.0
+    },
+    "Theodora": {
+     "support": 0.0,
+     "renown": 0.0
+    },
+    "Leda": {
+     "support": 3.0,
+     "renown": 7.0
+    },
+    "other_requirements": "",
+    "notes": "",
+    "easy_for": "Leda (R7)",
+    "supports_lords": "",
+    "supports_retainers": "Peter, Mikaela, Tobias"
+   }
+  },
+  "Peppe": {
+   "name": "Peppe",
+   "tier": "B",
+   "growths": {
+    "HP": 30,
+    "Str": 30,
+    "Mag": 25,
+    "Spd": 60,
+    "Dex": 45,
+    "Def": 30,
+    "Res": 30,
+    "Lck": 45,
+    "Cha": 30
+   },
+   "growth_total": 325,
+   "skill": "Hunter's Snare",
+   "skill_desc": "In enemy's phase, if foes is damaged, unit attacks first during combat. Trigger % = 30.",
+   "proficiencies": [
+    "Bow",
+    "Infantry",
+    "Sword"
+   ],
+   "progression": [
+    "Hunter",
+    "Archer",
+    "Sniper"
+   ],
+   "gifts": {
+    "loved": [
+     "Arrowhead Gem"
+    ],
+    "really_liked": [
+     "Board-Game Tactics",
+     "Common Coffee",
+     "Crimson Ghosh",
+     "Joint-Relief Gloves",
+     "Kitten Figurine",
+     "Magic-Trick Set",
+     "Outdoor Cooking Set",
+     "Pack of Pastels",
+     "Pastry Cookbook",
+     "Protection Figurine",
+     "Sharp Fishhook",
+     "Spirit Board Game",
+     "Sturdy Rucksack",
+     "The Works of Dante",
+     "Training Pillar",
+     "Training Weights"
+    ],
+    "likes": [
+     "The spirits",
+     "the sun",
+     "his hometown"
+    ],
+    "interests": [
+     "Hunting",
+     "people watching in the city"
+    ]
+   },
+   "recruit": {
+    "Cai": {
+     "chapter": "Part I Ch 3",
+     "support": 1,
+     "renown": 9,
+     "extra": [
+      "Clear Bertrand's Paralogue."
+     ]
+    },
+    "Dietrich": {
+     "chapter": "Part I Ch 4",
+     "support": 3,
+     "renown": 8,
+     "extra": [
+      "Clear Bertrand's Paralogue."
+     ]
+    },
+    "Theodora": {
+     "chapter": "Part I Ch 5",
+     "support": 2,
+     "renown": 7,
+     "extra": [
+      "Clear Bertrand's Paralogue."
+     ]
+    },
+    "Leda": null
+   },
+   "sheet": {
+    "Cai": {
+     "support": 1.0,
+     "renown": 9.0
+    },
+    "Dietrich": {
+     "support": 3.0,
+     "renown": 8.0
+    },
+    "Theodora": {
+     "support": 2.0,
+     "renown": 7.0
+    },
+    "Leda": {
+     "support": 99.0,
+     "renown": 99.0
+    },
+    "other_requirements": "Bertrand's paralogue",
+    "notes": "After 9/17",
+    "easy_for": "Theodora (R7), Cai (S1)",
+    "supports_lords": "",
+    "supports_retainers": "Ultand"
+   }
+  },
+  "Seteth": {
+   "name": "Seteth",
+   "tier": "A",
+   "growths": {
+    "HP": 45,
+    "Str": 45,
+    "Mag": 30,
+    "Spd": 40,
+    "Dex": 45,
+    "Def": 40,
+    "Res": 35,
+    "Lck": 30,
+    "Cha": 50
+   },
+   "growth_total": 360,
+   "skill": "Ready for Battle",
+   "skill_desc": "For the first combat in enemy's phase, unit attacks first. Trigger % = 50.",
+   "proficiencies": [
+    "Authority",
+    "Axe",
+    "Spear"
+   ],
+   "progression": [
+    "Ornius Rider",
+    "Armored Ornius Rider",
+    "Dragoon"
+   ],
+   "gifts": {
+    "loved": [
+     "Poems of the Greats",
+     "Strategy Manuscript",
+     "Tales of Adventure"
+    ],
+    "really_liked": [
+     "Common Coffee",
+     "Eastern Tea Leaves",
+     "Flexible Fishing Rod",
+     "Herbal Recipe Guide",
+     "Home-Recipe Book",
+     "Huge Fish Eyeball",
+     "Orgus Coffee",
+     "Pastry Cookbook",
+     "Select Coffee",
+     "Sharp Fishhook",
+     "Southern Coffee",
+     "Sturdy Rucksack",
+     "Trader's Handbook",
+     "Village Recipes"
+    ],
+    "likes": [
+     "The teachings of Seiros",
+     "fishing",
+     "his daughter",
+     "hardworking people"
+    ],
+    "interests": [
+     "Writing fables",
+     "preaching",
+     "teaching"
+    ]
+   },
+   "recruit": {
+    "Cai": {
+     "chapter": "Part I Ch 3",
+     "support": 3,
+     "renown": 6,
+     "extra": [
+      "Complete Seteth's Request."
+     ]
+    },
+    "Dietrich": null,
+    "Theodora": {
+     "chapter": "Part I Ch 5",
+     "support": 3,
+     "renown": 6,
+     "extra": [
+      "Complete Seteth's Request."
+     ]
+    },
+    "Leda": {
+     "chapter": "Part I Ch 4",
+     "support": 3,
+     "renown": 10,
+     "extra": [
+      "Complete Seteth's Request."
+     ]
+    }
+   },
+   "sheet": {
+    "Cai": {
+     "support": 3.0,
+     "renown": 6.0
+    },
+    "Dietrich": {
+     "support": 99.0,
+     "renown": 99.0
+    },
+    "Theodora": {
+     "support": 3.0,
+     "renown": 6.0
+    },
+    "Leda": {
+     "support": 3.0,
+     "renown": 10.0
+    },
+    "other_requirements": "Seteth's request (quest)",
+    "notes": "Req. high lvl battle",
+    "easy_for": "Theodora (R6), Cai (R6)",
+    "supports_lords": "Dietrich (not recruitable)",
+    "supports_retainers": "Tialla"
+   }
+  },
+  "Loretta": {
+   "name": "Loretta",
+   "tier": "B",
+   "growths": {
+    "HP": 35,
+    "Str": 35,
+    "Mag": 35,
+    "Spd": 55,
+    "Dex": 40,
+    "Def": 30,
+    "Res": 40,
+    "Lck": 30,
+    "Cha": 30
+   },
+   "growth_total": 330,
+   "skill": "Steadfast",
+   "skill_desc": "If unit's HP ≥ 50%, grants Avo+10 during combat.",
+   "proficiencies": [
+    "Spear",
+    "Sword"
+   ],
+   "progression": [
+    "Gladiator",
+    "Myrmidon",
+    "Shido"
+   ],
+   "gifts": {
+    "loved": [],
+    "really_liked": [
+     "Arrowhead Gem",
+     "Crimson Ghosh",
+     "Honey Milk",
+     "Honey Pastries",
+     "Joint-Relief Gloves",
+     "Mellow Pastries",
+     "Pastry Cookbook",
+     "Pure-White Cervi",
+     "Training Pillar",
+     "Training Weights"
+    ],
+    "likes": [
+     "Reliable people",
+     "sweets",
+     "her friends"
+    ],
+    "interests": [
+     "Sword training",
+     "fishing"
+    ]
+   },
+   "recruit": {
+    "Cai": {
+     "chapter": "Part I Ch 3",
+     "support": 3,
+     "renown": 7,
+     "extra": [
+      "Give 3 Iron Swords to Loretta."
+     ]
+    },
+    "Dietrich": {
+     "chapter": "Part I Ch 4",
+     "support": 3,
+     "renown": 9,
+     "extra": [
+      "Give 3 Iron Swords to Loretta."
+     ]
+    },
+    "Theodora": {
+     "chapter": "Part I Ch 5",
+     "support": 3,
+     "renown": 5,
+     "extra": [
+      "Give 3 Iron Swords to Loretta."
+     ]
+    },
+    "Leda": {
+     "chapter": "Part I Ch 4",
+     "support": 3,
+     "renown": 5,
+     "extra": [
+      "Give 3 Iron Swords to Loretta."
+     ]
+    }
+   },
+   "sheet": {
+    "Cai": {
+     "support": 3.0,
+     "renown": 7.0
+    },
+    "Dietrich": {
+     "support": 3.0,
+     "renown": 9.0
+    },
+    "Theodora": {
+     "support": 3.0,
+     "renown": 5.0
+    },
+    "Leda": {
+     "support": 3.0,
+     "renown": 5.0
+    },
+    "other_requirements": "3x Iron Swords",
+    "notes": "",
+    "easy_for": "Theodora (R5), Leda (R5)",
+    "supports_lords": "",
+    "supports_retainers": "Ultand"
+   }
+  },
+  "Jester": {
+   "name": "Jester",
+   "tier": "B",
+   "growths": {
+    "HP": 40,
+    "Str": 35,
+    "Mag": 15,
+    "Spd": 60,
+    "Dex": 45,
+    "Def": 35,
+    "Res": 25,
+    "Lck": 40,
+    "Cha": 40
+   },
+   "growth_total": 335,
+   "skill": "Blink of an Eye",
+   "skill_desc": "After using Swap, grants Def+3 until unit's next phase.",
+   "proficiencies": [
+    "Bow",
+    "Infantry",
+    "Sword"
+   ],
+   "progression": [
+    "Hunter",
+    "Archer",
+    "Sniper"
+   ],
+   "gifts": {
+    "loved": [
+     "Arrowhead Gem"
+    ],
+    "really_liked": [
+     "Board-Game Tactics",
+     "Crimson Ghosh",
+     "Dual Fish Knives",
+     "Joint-Relief Gloves",
+     "Spirit Board Game"
+    ],
+    "likes": [
+     "The White-Maned Demon",
+     "seeing fear in his opponents' faces"
+    ],
+    "interests": [
+     "Slicing opponents into pieces",
+     "terrifying audiences"
+    ]
+   },
+   "recruit": {
+    "Cai": {
+     "chapter": "Part I Ch 4",
+     "support": 3,
+     "renown": 10,
+     "extra": [
+      "Complete Jester's Three Combat Quests."
+     ]
+    },
+    "Dietrich": {
+     "chapter": "Part I Ch 4",
+     "support": 3,
+     "renown": 6,
+     "extra": [
+      "Complete Jester's Three Combat Quests."
+     ]
+    },
+    "Theodora": {
+     "chapter": "Part I Ch 5",
+     "support": 3,
+     "renown": 9,
+     "extra": [
+      "Complete Jester's Three Combat Quests."
+     ]
+    },
+    "Leda": {
+     "chapter": "Part I Ch 4",
+     "support": 3,
+     "renown": 10,
+     "extra": [
+      "Complete Jester's Three Combat Quests."
+     ]
+    }
+   },
+   "sheet": {
+    "Cai": {
+     "support": 3.0,
+     "renown": 10.0
+    },
+    "Dietrich": {
+     "support": 3.0,
+     "renown": 6.0
+    },
+    "Theodora": {
+     "support": 3.0,
+     "renown": 9.0
+    },
+    "Leda": {
+     "support": 3.0,
+     "renown": 10.0
+    },
+    "other_requirements": "\"3x \"\"Combat Quests\"\"\"",
+    "notes": "",
+    "easy_for": "Dietrich (R6)",
+    "supports_lords": "Leda",
+    "supports_retainers": "Peter, Mikaela, Buccar"
+   }
+  },
+  "Goliath": {
+   "name": "Goliath",
+   "tier": "A",
+   "growths": {
+    "HP": 55,
+    "Str": 60,
+    "Mag": 5,
+    "Spd": 15,
+    "Dex": 30,
+    "Def": 50,
+    "Res": 20,
+    "Lck": 35,
+    "Cha": 20
+   },
+   "growth_total": 290,
+   "skill": "Heavyweight Class",
+   "skill_desc": "Unit cannot change to cavalry or flying. Grants Bld+5.",
+   "proficiencies": [
+    "Axe"
+   ],
+   "progression": [
+    "Gladiator",
+    "Armored Knight",
+    "Dreadnought"
+   ],
+   "gifts": {
+    "loved": [
+     "Strategy Manuscript",
+     "Volcano Ghosh"
+    ],
+    "really_liked": [
+     "Aromatic Shosh",
+     "Eastern Tea Leaves",
+     "Jade Ghosh",
+     "Light Shosh",
+     "Mature Ghosh",
+     "Mature Shosh",
+     "Rustic Ghosh",
+     "Secret Ghosh",
+     "Southern Ghosh",
+     "Sturdy Rucksack",
+     "Sun Ghosh",
+     "Training Bracelet",
+     "Wing Fletching",
+     "Young Ghosh"
+    ],
+    "likes": [
+     "Rampaging",
+     "food",
+     "animals",
+     "smoking meat"
+    ],
+    "interests": [
+     "Training",
+     "competing as a gladiator"
+    ]
+   },
+   "recruit": {
+    "Cai": {
+     "chapter": "Part I Ch 4",
+     "support": 3,
+     "renown": 7,
+     "extra": [
+      "Give 3 Giants' Meat to Goliath."
+     ]
+    },
+    "Dietrich": {
+     "chapter": "Part I Ch 4",
+     "support": 3,
+     "renown": 6,
+     "extra": [
+      "Give 3 Giants' Meat to Goliath."
+     ]
+    },
+    "Theodora": {
+     "chapter": "Part I Ch 5",
+     "support": 3,
+     "renown": 9,
+     "extra": [
+      "Give 3 Giants' Meat to Goliath."
+     ]
+    },
+    "Leda": {
+     "chapter": "Part I Ch 4",
+     "support": 3,
+     "renown": 10,
+     "extra": [
+      "Give 3 Giants' Meat to Goliath."
+     ]
+    }
+   },
+   "sheet": {
+    "Cai": {
+     "support": 3.0,
+     "renown": 7.0
+    },
+    "Dietrich": {
+     "support": 3.0,
+     "renown": 6.0
+    },
+    "Theodora": {
+     "support": 3.0,
+     "renown": 9.0
+    },
+    "Leda": {
+     "support": 3.0,
+     "renown": 10.0
+    },
+    "other_requirements": "3x Giant's Meat (check Sand-Shadow Fort)",
+    "notes": "",
+    "easy_for": "Dietrich (R6), Cai (R7)",
+    "supports_lords": "Cai",
+    "supports_retainers": "Ultand"
+   }
+  },
+  "Ludia": {
+   "name": "Ludia",
+   "tier": "A",
+   "growths": {
+    "HP": 40,
+    "Str": 35,
+    "Mag": 20,
+    "Spd": 55,
+    "Dex": 45,
+    "Def": 30,
+    "Res": 20,
+    "Lck": 30,
+    "Cha": 30
+   },
+   "growth_total": 305,
+   "skill": "Falcon",
+   "skill_desc": "If unit attacks first, grants AS+3 during combat.",
+   "proficiencies": [
+    "Infantry",
+    "Sword"
+   ],
+   "progression": [
+    "Gladiator",
+    "Myrmidon",
+    "Shido"
+   ],
+   "gifts": {
+    "loved": [
+     "Eastern Black Silk",
+     "Eastern Earrings",
+     "Eastern Love Story",
+     "Eastern Tea Leaves",
+     "Strategy Manuscript",
+     "Tales of Adventure"
+    ],
+    "really_liked": [
+     "Coffee Pastries",
+     "Common Coffee",
+     "Everyday Scenes",
+     "Gaudy Bangle",
+     "Herbal Recipe Guide",
+     "Home-Recipe Book",
+     "Magic-Trick Set",
+     "Orgus Coffee",
+     "Pastry Cookbook",
+     "Select Coffee",
+     "Sharp Fishhook",
+     "Skin Balm",
+     "Southern Coffee",
+     "Sturdy Rucksack",
+     "Trader's Handbook",
+     "Training Bracelet",
+     "Village Recipes"
+    ],
+    "likes": [
+     "Writing stories",
+     "appreciating art",
+     "talking about love and romance"
+    ],
+    "interests": [
+     "Reading adventure stories",
+     "going shopping"
+    ]
+   },
+   "recruit": {
+    "Cai": {
+     "chapter": "Part I Ch 4",
+     "support": 3,
+     "renown": 9,
+     "extra": [
+      "Gather information at Callianeira Port and report back to Ludia"
+     ]
+    },
+    "Dietrich": {
+     "chapter": "Part I Ch 4",
+     "support": 3,
+     "renown": 9,
+     "extra": [
+      "Gather information at Callianeira Port and report back to Ludia"
+     ]
+    },
+    "Theodora": {
+     "chapter": "Part I Ch 5",
+     "support": 3,
+     "renown": 7,
+     "extra": [
+      "Gather information at Callianeira Port and report back to Ludia"
+     ]
+    },
+    "Leda": {
+     "chapter": "Part I Ch 4",
+     "support": 3,
+     "renown": 7,
+     "extra": [
+      "Gather information at Callianeira Port and report back to Ludia"
+     ]
+    }
+   },
+   "sheet": {
+    "Cai": {
+     "support": 3.0,
+     "renown": 9.0
+    },
+    "Dietrich": {
+     "support": 3.0,
+     "renown": 9.0
+    },
+    "Theodora": {
+     "support": 3.0,
+     "renown": 7.0
+    },
+    "Leda": {
+     "support": 3.0,
+     "renown": 7.0
+    },
+    "other_requirements": "Callianeira Port info (quest)",
+    "notes": "",
+    "easy_for": "Theodora (R7), Leda (R7)",
+    "supports_lords": "",
+    "supports_retainers": "Tialla, Esmeralda, Buccar"
+   }
+  },
+  "Dadao": {
+   "name": "Dadao",
+   "tier": "B",
+   "growths": {
+    "HP": 50,
+    "Str": 55,
+    "Mag": 20,
+    "Spd": 30,
+    "Dex": 35,
+    "Def": 45,
+    "Res": 20,
+    "Lck": 25,
+    "Cha": 30
+   },
+   "growth_total": 310,
+   "skill": "One Chance",
+   "skill_desc": "If unit and foe cannot make a follow-up, grants Atk+5 to unit during combat.",
+   "proficiencies": [
+    "Axe"
+   ],
+   "progression": [
+    "Gladiator",
+    "Armored Knight",
+    "Dreadnought"
+   ],
+   "gifts": {
+    "loved": [
+     "Poems of the Greats",
+     "Strategy Manuscript",
+     "Tales of Adventure"
+    ],
+    "really_liked": [
+     "Coffee Pastries",
+     "Fragrant Pastries",
+     "Ginji Cervi",
+     "Honey Milk",
+     "Honey Pastries",
+     "Huge Fish Eyeball",
+     "Jamel Milk",
+     "Mature Dried Cervi",
+     "Mellow Pastries",
+     "Pastry Cookbook",
+     "Potted Vegetables",
+     "Saraminian Sweets",
+     "Simple Pastries",
+     "Strong Cervi",
+     "Weak Cervi",
+     "Yarc Milk"
+    ],
+    "likes": [
+     "Women (especially Anatolia)",
+     "machines",
+     "good food",
+     "fighting"
+    ],
+    "interests": [
+     "Tinkering with machines",
+     "watching out for the weak"
+    ]
+   },
+   "recruit": {
+    "Cai": {
+     "chapter": "Part I Ch 5",
+     "support": 3,
+     "renown": 7,
+     "extra": [
+      "Give 2 Kothar Gar to Dadao."
+     ]
+    },
+    "Dietrich": {
+     "chapter": "Part I Ch 4",
+     "support": 3,
+     "renown": 10,
+     "extra": [
+      "Give 2 Kothar Gar to Dadao."
+     ]
+    },
+    "Theodora": {
+     "chapter": "Part I Ch 5",
+     "support": 2,
+     "renown": 5,
+     "extra": [
+      "Give 2 Kothar Gar to Dadao."
+     ]
+    },
+    "Leda": {
+     "chapter": "Part I Ch 4",
+     "support": 2,
+     "renown": 5,
+     "extra": [
+      "Give 2 Kothar Gar to Dadao."
+     ]
+    }
+   },
+   "sheet": {
+    "Cai": {
+     "support": 3.0,
+     "renown": 7.0
+    },
+    "Dietrich": {
+     "support": 3.0,
+     "renown": 10.0
+    },
+    "Theodora": {
+     "support": 2.0,
+     "renown": 5.0
+    },
+    "Leda": {
+     "support": 2.0,
+     "renown": 5.0
+    },
+    "other_requirements": "2x Kothar Gar",
+    "notes": "",
+    "easy_for": "Theodora (R5), Leda (R5)",
+    "supports_lords": "",
+    "supports_retainers": "Peter, Esmeralda"
+   }
+  },
+  "Fianna": {
+   "name": "Fianna",
+   "tier": "A",
+   "growths": {
+    "HP": 30,
+    "Str": 35,
+    "Mag": 55,
+    "Spd": 30,
+    "Dex": 40,
+    "Def": 20,
+    "Res": 45,
+    "Lck": 25,
+    "Cha": 40
+   },
+   "growth_total": 320,
+   "skill": "Graceful Light",
+   "skill_desc": "When healing an ally with magic, reduces magic cost to 0. Trigger % = Lck.",
+   "proficiencies": [
+    "Black Magic",
+    "White Magic"
+   ],
+   "progression": [
+    "Diviner",
+    "Priest",
+    "Bishop"
+   ],
+   "gifts": {
+    "loved": [
+     "Arrowhead Gem",
+     "Blue-Rose Bouquet",
+     "Volcano Ghosh"
+    ],
+    "really_liked": [
+     "Common Coffee",
+     "Crimson Ghosh",
+     "Joint-Relief Gloves",
+     "Rare Spices",
+     "Select Coffee",
+     "Skin Balm",
+     "Southern Coffee"
+    ],
+    "likes": [
+     "Books of poetry",
+     "spicy foods",
+     "coffee",
+     "trustworthy people"
+    ],
+    "interests": [
+     "Praying",
+     "going to the theater"
+    ]
+   },
+   "recruit": {
+    "Cai": {
+     "chapter": "Part I Ch 4",
+     "support": 3,
+     "renown": 8,
+     "extra": [
+      "Give 3000 Gold to Fianna."
+     ]
+    },
+    "Dietrich": {
+     "chapter": "Part I Ch 4",
+     "support": 3,
+     "renown": 7,
+     "extra": [
+      "Give 3000 Gold to Fianna."
+     ]
+    },
+    "Theodora": {
+     "chapter": "Part I Ch 5",
+     "support": 3,
+     "renown": 9,
+     "extra": [
+      "Give 3000 Gold to Fianna."
+     ]
+    },
+    "Leda": {
+     "chapter": "Part I Ch 5",
+     "support": 3,
+     "renown": 5,
+     "extra": [
+      "Give 3000 Gold to Fianna."
+     ]
+    }
+   },
+   "sheet": {
+    "Cai": {
+     "support": 3.0,
+     "renown": 8.0
+    },
+    "Dietrich": {
+     "support": 3.0,
+     "renown": 7.0
+    },
+    "Theodora": {
+     "support": 3.0,
+     "renown": 9.0
+    },
+    "Leda": {
+     "support": 3.0,
+     "renown": 5.0
+    },
+    "other_requirements": "3000 gold",
+    "notes": "",
+    "easy_for": "Leda (R5)",
+    "supports_lords": "",
+    "supports_retainers": "Lysander, Olympia"
+   }
+  },
+  "Halvin": {
+   "name": "Halvin",
+   "tier": "A",
+   "growths": {
+    "HP": 35,
+    "Str": 35,
+    "Mag": 30,
+    "Spd": 45,
+    "Dex": 60,
+    "Def": 30,
+    "Res": 25,
+    "Lck": 40,
+    "Cha": 35
+   },
+   "growth_total": 335,
+   "skill": "Adaptability",
+   "skill_desc": "After combat, grants Hit+2 until the end of the map. (Max +30)",
+   "proficiencies": [
+    "Bow"
+   ],
+   "progression": [
+    "Hunter",
+    "Archer",
+    "Forest Knight"
+   ],
+   "gifts": {
+    "loved": [
+     "Eastern Black Silk",
+     "Eastern Earrings"
+    ],
+    "really_liked": [
+     "Crimson Ghosh",
+     "Eastern Tea Leaves",
+     "Exquisite Ring",
+     "Garum",
+     "Gaudy Bangle",
+     "Jade Panther Figure",
+     "Magic-Trick Set",
+     "Potted Vegetables",
+     "Simple Pastries",
+     "Skin Balm",
+     "Village Recipes"
+    ],
+    "likes": [
+     "Growing vegetables",
+     "shopping",
+     "street performing. cheering crowds"
+    ],
+    "interests": [
+     "Practicing magic tricks",
+     "housekeeping"
+    ]
+   },
+   "recruit": {
+    "Cai": {
+     "chapter": "Part I Ch 5",
+     "support": 3,
+     "renown": 5,
+     "extra": [
+      "Give 10 Dates (Material) to Halvin."
+     ]
+    },
+    "Dietrich": {
+     "chapter": "Part I Ch 4",
+     "support": 3,
+     "renown": 9,
+     "extra": [
+      "Give 10 Dates (Material) to Halvin."
+     ]
+    },
+    "Theodora": {
+     "chapter": "Part I Ch 5",
+     "support": 3,
+     "renown": 7,
+     "extra": [
+      "Give 10 Dates (Material) to Halvin."
+     ]
+    },
+    "Leda": {
+     "chapter": "Part I Ch 4",
+     "support": 3,
+     "renown": 7,
+     "extra": [
+      "Give 10 Dates (Material) to Halvin."
+     ]
+    }
+   },
+   "sheet": {
+    "Cai": {
+     "support": 3.0,
+     "renown": 5.0
+    },
+    "Dietrich": {
+     "support": 3.0,
+     "renown": 9.0
+    },
+    "Theodora": {
+     "support": 3.0,
+     "renown": 7.0
+    },
+    "Leda": {
+     "support": 3.0,
+     "renown": 7.0
+    },
+    "other_requirements": "10x Dates (check Nysiades Desert if not Cai)",
+    "notes": "",
+    "easy_for": "Theodora (R7), Leda (R7)",
+    "supports_lords": "Dietrich",
+    "supports_retainers": "Fabio, Bonaventure"
+   }
+  },
+  "Zarcone": {
+   "name": "Zarcone",
+   "tier": "C",
+   "growths": {
+    "HP": 40,
+    "Str": 30,
+    "Mag": 20,
+    "Spd": 35,
+    "Dex": 60,
+    "Def": 30,
+    "Res": 25,
+    "Lck": 30,
+    "Cha": 15
+   },
+   "growth_total": 285,
+   "skill": "Hatchet Man",
+   "skill_desc": "When equipped with an axe, grants Hit+10.",
+   "proficiencies": [
+    "Axe",
+    "Sword"
+   ],
+   "progression": [
+    "Gladiator",
+    "Brigand",
+    "Warrior"
+   ],
+   "gifts": {
+    "loved": [
+     "Eastern Tea Leaves"
+    ],
+    "really_liked": [
+     "Eastern Earrings",
+     "Gaudy Bangle",
+     "Pickled Bulbs",
+     "Potted Vegetables",
+     "Strategy Manuscript",
+     "Tales of Adventure",
+     "Wing Fletching"
+    ],
+    "likes": [
+     "Money",
+     "violence",
+     "good women",
+     "vegetables",
+     "drinking with friends"
+    ],
+    "interests": [
+     "Tormenting the weak",
+     "pillaging"
+    ]
+   },
+   "recruit": {
+    "Cai": {
+     "chapter": "Part I Ch 5",
+     "support": 3,
+     "renown": 8,
+     "extra": [
+      "Refuse to pay thrice then pay Zarcone 10 Gold."
+     ]
+    },
+    "Dietrich": {
+     "chapter": "Part I Ch 4",
+     "support": 3,
+     "renown": 7,
+     "extra": [
+      "Refuse to pay thrice then pay Zarcone 10 Gold."
+     ]
+    },
+    "Theodora": {
+     "chapter": "Part I Ch 5",
+     "support": 1,
+     "renown": 4,
+     "extra": [
+      "Refuse to pay thrice then pay Zarcone 10 Gold."
+     ]
+    },
+    "Leda": {
+     "chapter": "Part I Ch 4",
+     "support": 2,
+     "renown": 5,
+     "extra": [
+      "Refuse to pay thrice then pay Zarcone 10 Gold."
+     ]
+    }
+   },
+   "sheet": {
+    "Cai": {
+     "support": 3.0,
+     "renown": 8.0
+    },
+    "Dietrich": {
+     "support": 3.0,
+     "renown": 7.0
+    },
+    "Theodora": {
+     "support": 1.0,
+     "renown": 4.0
+    },
+    "Leda": {
+     "support": 2.0,
+     "renown": 5.0
+    },
+    "other_requirements": "refuse to pay 2x, then 10 gold",
+    "notes": "",
+    "easy_for": "Theodora (R4), Leda (R5)",
+    "supports_lords": "",
+    "supports_retainers": ""
+   }
+  },
+  "Majide": {
+   "name": "Majide",
+   "tier": "C",
+   "growths": {
+    "HP": 65,
+    "Str": 50,
+    "Mag": 15,
+    "Spd": 20,
+    "Dex": 30,
+    "Def": 40,
+    "Res": 10,
+    "Lck": 25,
+    "Cha": 5
+   },
+   "growth_total": 260,
+   "skill": "Hellbent Axe",
+   "skill_desc": "When equipped with an axe, grants Str+3.",
+   "proficiencies": [
+    "Axe"
+   ],
+   "progression": [
+    "Gladiator",
+    "Brigand",
+    "Warrior"
+   ],
+   "gifts": {
+    "loved": [
+     "Arrowhead Gem",
+     "Crimson Ghosh",
+     "Dual Fish Knives"
+    ],
+    "really_liked": [
+     "Crimson Ghosh",
+     "Dual Fish Knives",
+     "Joint-Relief Gloves",
+     "Light Shosh",
+     "Mature Ghosh",
+     "Mature Shosh",
+     "Rustic Ghosh",
+     "Training Pillar",
+     "Training Weights",
+     "Volcano Ghosh",
+     "Young Ghosh",
+     "Young Shosh"
+    ],
+    "likes": [
+     "Booze",
+     "women",
+     "fighting",
+     "being strong"
+    ],
+    "interests": [
+     "Fighting with annoying people"
+    ]
+   },
+   "recruit": {
+    "Cai": {
+     "chapter": "Part I Ch 5",
+     "support": 2,
+     "renown": 5,
+     "extra": [
+      "Admit That You Need Majide Three Times."
+     ]
+    },
+    "Dietrich": {
+     "chapter": "Part I Ch 4",
+     "support": 3,
+     "renown": 8,
+     "extra": [
+      "Admit That You Need Majide Three Times."
+     ]
+    },
+    "Theodora": {
+     "chapter": "Part I Ch 5",
+     "support": 3,
+     "renown": 8,
+     "extra": [
+      "Admit That You Need Majide Three Times."
+     ]
+    },
+    "Leda": {
+     "chapter": "Part I Ch 4",
+     "support": 3,
+     "renown": 9,
+     "extra": [
+      "Admit That You Need Majide Three Times."
+     ]
+    }
+   },
+   "sheet": {
+    "Cai": {
+     "support": 2.0,
+     "renown": 5.0
+    },
+    "Dietrich": {
+     "support": 3.0,
+     "renown": 8.0
+    },
+    "Theodora": {
+     "support": 3.0,
+     "renown": 8.0
+    },
+    "Leda": {
+     "support": 3.0,
+     "renown": 9.0
+    },
+    "other_requirements": "admit you need him 3x",
+    "notes": "",
+    "easy_for": "Cai (R5)",
+    "supports_lords": "",
+    "supports_retainers": ""
+   }
+  },
+  "Kiroc": {
+   "name": "Kiroc",
+   "tier": "B",
+   "growths": {
+    "HP": 55,
+    "Str": 40,
+    "Mag": 15,
+    "Spd": 55,
+    "Dex": 50,
+    "Def": 30,
+    "Res": 15,
+    "Lck": 30,
+    "Cha": 25
+   },
+   "growth_total": 315,
+   "skill": "Tyranny",
+   "skill_desc": "If foe has a status effect, grants Atk+3, Crit+10 to unit during combat.",
+   "proficiencies": [
+    "Bow"
+   ],
+   "progression": [
+    "Hunter",
+    "Archer",
+    "Sniper"
+   ],
+   "gifts": {
+    "loved": [
+     "Arrowhead Gem",
+     "Crimson Ghosh",
+     "Volcano Ghosh"
+    ],
+    "really_liked": [
+     "Arrowhead Gem",
+     "Common Coffee",
+     "Joint-Relief Gloves",
+     "Light Shosh",
+     "Mature Ghosh",
+     "Mature Shosh",
+     "Rustic Ghosh",
+     "Select Coffee",
+     "Sharp Fishhook",
+     "Southern Coffee",
+     "Training Pillar",
+     "Training Weights",
+     "Young Ghosh",
+     "Young Shosh"
+    ],
+    "likes": [
+     "Thievery",
+     "the open sea",
+     "ships",
+     "obedient underlings"
+    ],
+    "interests": [
+     "Riding on ships",
+     "pirating"
+    ]
+   },
+   "recruit": {
+    "Cai": {
+     "chapter": "Part I Ch 6",
+     "support": 3,
+     "renown": 8,
+     "extra": [
+      "Give 8 Pure Water to Kiroc."
+     ]
+    },
+    "Dietrich": {
+     "chapter": "Part I Ch 6",
+     "support": 1,
+     "renown": 4,
+     "extra": [
+      "Give 3 Pure Water to Kiroc."
+     ]
+    },
+    "Theodora": {
+     "chapter": "Part I Ch 7",
+     "support": 3,
+     "renown": 10,
+     "extra": [
+      "Give 8 Pure Water to Kiroc."
+     ]
+    },
+    "Leda": {
+     "chapter": "Part I Ch 5",
+     "support": 1,
+     "renown": 4,
+     "extra": [
+      "Give 3 Pure Water to Kiroc."
+     ]
+    }
+   },
+   "sheet": {
+    "Cai": {
+     "support": 3.0,
+     "renown": 8.0
+    },
+    "Dietrich": {
+     "support": 1.0,
+     "renown": 4.0
+    },
+    "Theodora": {
+     "support": 3.0,
+     "renown": 10.0
+    },
+    "Leda": {
+     "support": 1.0,
+     "renown": 4.0
+    },
+    "other_requirements": "8x Pure Water (T/C), 3x Pure Water (L/D)",
+    "notes": "Appears @ 5/4",
+    "easy_for": "Leda (R4), Dietrich (R4)",
+    "supports_lords": "",
+    "supports_retainers": "Esmeralda"
+   }
+  },
+  "Jasmine": {
+   "name": "Jasmine",
+   "tier": "C",
+   "growths": {
+    "HP": 50,
+    "Str": 40,
+    "Mag": 20,
+    "Spd": 30,
+    "Dex": 45,
+    "Def": 45,
+    "Res": 25,
+    "Lck": 40,
+    "Cha": 45
+   },
+   "growth_total": 340,
+   "skill": "Expert Counter",
+   "skill_desc": "If foe attacks first, grants Hit+20 to unit during combat.",
+   "proficiencies": [
+    "Axe",
+    "Spear"
+   ],
+   "progression": [
+    "Ornius Rider",
+    "Wing Soldier",
+    "Dragoon"
+   ],
+   "gifts": {
+    "loved": [],
+    "really_liked": [
+     "Arrowhead Gem",
+     "Crimson Ghosh",
+     "Dual Fish Knives",
+     "Honey Pastries",
+     "Jamel Milk",
+     "Joint-Relief Gloves",
+     "Kitten Figurine",
+     "Magic-Trick Set",
+     "Niiza Garum",
+     "Outdoor Cooking Set",
+     "Pack of Pastels",
+     "Pastry Cookbook",
+     "Protection Figurine",
+     "Pure-White Cervi",
+     "Rare Spices",
+     "Sturdy Rucksack",
+     "Training Pillar",
+     "Training Weights"
+    ],
+    "likes": [
+     "Memories of her spouse",
+     "mercenary friends",
+     "trying to get rich"
+    ],
+    "interests": [
+     "Counting money",
+     "managing her mercenary group"
+    ]
+   },
+   "recruit": {
+    "Cai": {
+     "chapter": "Part I Ch 6",
+     "support": 1,
+     "renown": 8,
+     "extra": [
+      "Give 2000 Gold to Jasmine."
+     ]
+    },
+    "Dietrich": {
+     "chapter": "Part I Ch 6",
+     "support": 3,
+     "renown": 9,
+     "extra": [
+      "Give 5000 Gold to Jasmine."
+     ]
+    },
+    "Theodora": {
+     "chapter": "Part I Ch 7",
+     "support": 3,
+     "renown": 8,
+     "extra": [
+      "Give 5000 Gold to Jasmine."
+     ]
+    },
+    "Leda": {
+     "chapter": "Part I Ch 6",
+     "support": 2,
+     "renown": 4,
+     "extra": [
+      "Give 500 Gold to Jasmine."
+     ]
+    }
+   },
+   "sheet": {
+    "Cai": {
+     "support": 1.0,
+     "renown": 8.0
+    },
+    "Dietrich": {
+     "support": 3.0,
+     "renown": 9.0
+    },
+    "Theodora": {
+     "support": 3.0,
+     "renown": 8.0
+    },
+    "Leda": {
+     "support": 2.0,
+     "renown": 4.0
+    },
+    "other_requirements": "5000 gold (T/D), 2000 gold (C), 500 gold (L)",
+    "notes": "Appears @ 5/8",
+    "easy_for": "Leda (R4)",
+    "supports_lords": "",
+    "supports_retainers": "Buccar, Olympia"
+   }
+  },
+  "Nuzzuo": {
+   "name": "Nuzzuo",
+   "tier": "A",
+   "growths": {
+    "HP": 50,
+    "Str": 50,
+    "Mag": 15,
+    "Spd": 55,
+    "Dex": 45,
+    "Def": 20,
+    "Res": 15,
+    "Lck": 25,
+    "Cha": 35
+   },
+   "growth_total": 310,
+   "skill": "Har Hali Wisdom",
+   "skill_desc": "If unit is effective against foe, grant Atk+3 during combat.",
+   "proficiencies": [
+    "Bow",
+    "Sword"
+   ],
+   "progression": [
+    "Hunter",
+    "Archer",
+    "Sniper"
+   ],
+   "gifts": {
+    "loved": [
+     "Arrowhead Gem",
+     "Dual Fish Knives"
+    ],
+    "really_liked": [
+     "Common Coffee",
+     "Crimson Ghosh",
+     "Joint-Relief Gloves",
+     "Kitten Figurine",
+     "Niiza Garum",
+     "Outdoor Cooking Set",
+     "Pickled Vegetables",
+     "Protection Figurine",
+     "Select Coffee",
+     "Sturdy Rucksack",
+     "Training Bracelet",
+     "Training Pillar",
+     "Training Weights"
+    ],
+    "likes": [
+     "Tradition",
+     "honor",
+     "great power"
+    ],
+    "interests": [
+     "Conversing with forest spirits"
+    ]
+   },
+   "recruit": {
+    "Cai": {
+     "chapter": "Part I Ch 6",
+     "support": 2,
+     "renown": 6,
+     "extra": [
+      "Give 3 Iron Bows to Nuzzuo."
+     ]
+    },
+    "Dietrich": {
+     "chapter": "Part I Ch 8",
+     "support": 1,
+     "renown": 9,
+     "extra": [
+      "Give 2 Iron Bows to Nuzzuo."
+     ]
+    },
+    "Theodora": {
+     "chapter": "Part I Ch 9",
+     "support": 1,
+     "renown": 6,
+     "extra": [
+      "Give 3 Iron Bows to Nuzzuo."
+     ]
+    },
+    "Leda": {
+     "chapter": "Part I Ch 8",
+     "support": 3,
+     "renown": 9,
+     "extra": [
+      "Give 3 Iron Bows to Nuzzuo."
+     ]
+    }
+   },
+   "sheet": {
+    "Cai": {
+     "support": 2.0,
+     "renown": 6.0
+    },
+    "Dietrich": {
+     "support": 1.0,
+     "renown": 9.0
+    },
+    "Theodora": {
+     "support": 1.0,
+     "renown": 6.0
+    },
+    "Leda": {
+     "support": 3.0,
+     "renown": 9.0
+    },
+    "other_requirements": "3x Iron Bows",
+    "notes": "Appears @ 7/1",
+    "easy_for": "Theodora (R6), Cai (R6), Dietrich (S1)",
+    "supports_lords": "",
+    "supports_retainers": ""
+   }
+  },
+  "Inyoni": {
+   "name": "Inyoni",
+   "tier": "B",
+   "growths": {
+    "HP": 40,
+    "Str": 50,
+    "Mag": 20,
+    "Spd": 35,
+    "Dex": 40,
+    "Def": 40,
+    "Res": 30,
+    "Lck": 40,
+    "Cha": 30
+   },
+   "growth_total": 325,
+   "skill": "Heavy-Bow User",
+   "skill_desc": "When equipped with a bow, grants Str+3",
+   "proficiencies": [
+    "Axe",
+    "Bow"
+   ],
+   "progression": [
+    "Hunter",
+    "Archer",
+    "Sniper"
+   ],
+   "gifts": {
+    "loved": [
+     "Strategy Manuscript",
+     "Tales of Adventure"
+    ],
+    "really_liked": [
+     "Eastern Black Silk",
+     "Eastern Tea Leaves",
+     "Huge Fish Eyeball",
+     "Sharp Fishhook",
+     "Sturdy Rucksack",
+     "Training Bracelet",
+     "Wing Fletching"
+    ],
+    "likes": [
+     "Her family and hometown",
+     "hunting",
+     "farm work",
+     "bow maintenance"
+    ],
+    "interests": [
+     "Archery training",
+     "being frugal"
+    ]
+   },
+   "recruit": {
+    "Cai": {
+     "chapter": "Part I Ch 8",
+     "support": 3,
+     "renown": 8,
+     "extra": [
+      "Give 6000 Gold to Inyoni."
+     ]
+    },
+    "Dietrich": {
+     "chapter": "Part I Ch 8",
+     "support": 3,
+     "renown": 8,
+     "extra": [
+      "Give 6000 Gold to Inyoni."
+     ]
+    },
+    "Theodora": {
+     "chapter": "Part I Ch 9",
+     "support": 1,
+     "renown": 9,
+     "extra": [
+      "Give 4000 Gold to Inyoni."
+     ]
+    },
+    "Leda": {
+     "chapter": "Part I Ch 9",
+     "support": 1,
+     "renown": 7,
+     "extra": [
+      "Give 3000 Gold to Inyoni."
+     ]
+    }
+   },
+   "sheet": {
+    "Cai": {
+     "support": 3.0,
+     "renown": 8.0
+    },
+    "Dietrich": {
+     "support": 3.0,
+     "renown": 8.0
+    },
+    "Theodora": {
+     "support": 1.0,
+     "renown": 9.0
+    },
+    "Leda": {
+     "support": 1.0,
+     "renown": 7.0
+    },
+    "other_requirements": "6000 gold (D/C), 4000 gold (T), 3000 (L)",
+    "notes": "Appears @ 7/10",
+    "easy_for": "Leda (S1), Theodora (S1)",
+    "supports_lords": "",
+    "supports_retainers": ""
+   }
+  },
+  "Creek": {
+   "name": "Creek",
+   "tier": "?",
+   "growths": {
+    "HP": 45,
+    "Str": 50,
+    "Mag": 15,
+    "Spd": 60,
+    "Dex": 50,
+    "Def": 35,
+    "Res": 20,
+    "Lck": 30,
+    "Cha": 35
+   },
+   "growth_total": 340,
+   "skill": "Steady Hands",
+   "skill_desc": "If foe attacks first, grants AS+3, Avo+10 to unit during combat.",
+   "proficiencies": [
+    "Riding",
+    "Sword"
+   ],
+   "progression": [
+    "Orichaldia"
+   ],
+   "gifts": {},
+   "recruit": {},
+   "sheet": {
+    "Cai": {
+     "support": 99.0,
+     "renown": 99.0
+    },
+    "Dietrich": {
+     "support": 99.0,
+     "renown": 99.0
+    },
+    "Theodora": {
+     "support": 99.0,
+     "renown": 99.0
+    },
+    "Leda": {
+     "support": 99.0,
+     "renown": 99.0
+    },
+    "other_requirements": "\"\"\"My Late Sister's Accessory\"\" paralogue (part I)\"",
+    "notes": "Part II, Chapter 2",
+    "easy_for": "",
+    "supports_lords": "",
+    "supports_retainers": "Olympia, Tialla?"
+   }
+  },
+  "Nathan": {
+   "name": "Nathan",
+   "tier": "A",
+   "growths": {
+    "HP": 55,
+    "Str": 60,
+    "Mag": 15,
+    "Spd": 25,
+    "Dex": 60,
+    "Def": 45,
+    "Res": 15,
+    "Lck": 25,
+    "Cha": 30
+   },
+   "growth_total": 330,
+   "skill": "Headlong Rush",
+   "skill_desc": "If unit attacks first, grants AS+3, Hit+10 during combat.",
+   "proficiencies": [
+    "Riding",
+    "Spear"
+   ],
+   "progression": [
+    "Great Knight"
+   ],
+   "gifts": {},
+   "recruit": {},
+   "sheet": {
+    "Cai": {
+     "support": 99.0,
+     "renown": 99.0
+    },
+    "Dietrich": {
+     "support": 99.0,
+     "renown": 99.0
+    },
+    "Theodora": {
+     "support": 99.0,
+     "renown": 99.0
+    },
+    "Leda": {
+     "support": 99.0,
+     "renown": 99.0
+    },
+    "other_requirements": "Creek lands killing blow on Nathan (Part II, Ch 3)",
+    "notes": "Part II, Chapter 3",
+    "easy_for": "",
+    "supports_lords": "",
+    "supports_retainers": ""
+   }
+  },
+  "Bertrand": {
+   "name": "Bertrand",
+   "tier": "A",
+   "growths": {
+    "HP": 50,
+    "Str": 55,
+    "Mag": 15,
+    "Spd": 45,
+    "Dex": 50,
+    "Def": 45,
+    "Res": 20,
+    "Lck": 30,
+    "Cha": 50
+   },
+   "growth_total": 360,
+   "skill": "Requiem Style",
+   "skill_desc": "Unit makes a follow up regardless of AS during combat. Trigger % = 5.",
+   "proficiencies": [
+    "Authority",
+    "Axe",
+    "Sword"
+   ],
+   "progression": [
+    "Warrior"
+   ],
+   "gifts": {},
+   "recruit": {},
+   "sheet": {
+    "Cai": {
+     "support": 99.0,
+     "renown": 99.0
+    },
+    "Dietrich": {
+     "support": 99.0,
+     "renown": 99.0
+    },
+    "Theodora": {
+     "support": 99.0,
+     "renown": 99.0
+    },
+    "Leda": {
+     "support": 99.0,
+     "renown": 99.0
+    },
+    "other_requirements": "Bertrand's paralogue",
+    "notes": "Part II/Part III, First Section",
+    "easy_for": "",
+    "supports_lords": "Cai, Theodora",
+    "supports_retainers": ""
+   }
+  },
+  "Talimun": {
+   "name": "Talimun",
+   "tier": "A",
+   "growths": {
+    "HP": 45,
+    "Str": 40,
+    "Mag": 45,
+    "Spd": 40,
+    "Dex": 45,
+    "Def": 35,
+    "Res": 40,
+    "Lck": 60,
+    "Cha": 50
+   },
+   "growth_total": 400,
+   "skill": "Swashbuckler's Luck",
+   "skill_desc": "Grants Lck+3.",
+   "proficiencies": [
+    "Authority",
+    "Black Magic",
+    "Sword"
+   ],
+   "progression": [
+    "Ovate"
+   ],
+   "gifts": {},
+   "recruit": {},
+   "sheet": {
+    "Cai": {
+     "support": 99.0,
+     "renown": 99.0
+    },
+    "Dietrich": {
+     "support": 99.0,
+     "renown": 99.0
+    },
+    "Theodora": {
+     "support": 99.0,
+     "renown": 99.0
+    },
+    "Leda": {
+     "support": 99.0,
+     "renown": 99.0
+    },
+    "other_requirements": "Talimun's paralogue",
+    "notes": "Part III, First Section",
+    "easy_for": "",
+    "supports_lords": "Dietrich, Theodora, Leda",
+    "supports_retainers": "Tialla, Lilian"
+   }
+  },
+  "Anatolia": {
+   "name": "Anatolia",
+   "tier": "A",
+   "growths": {
+    "HP": 40,
+    "Str": 35,
+    "Mag": 50,
+    "Spd": 50,
+    "Dex": 45,
+    "Def": 35,
+    "Res": 40,
+    "Lck": 40,
+    "Cha": 50
+   },
+   "growth_total": 385,
+   "skill": "Celestial Flow",
+   "skill_desc": "Grants Avo+3.",
+   "proficiencies": [
+    "Black Magic",
+    "Infantry"
+   ],
+   "progression": [
+    "Ovate"
+   ],
+   "gifts": {},
+   "recruit": {},
+   "sheet": {
+    "Cai": {
+     "support": 99.0,
+     "renown": 99.0
+    },
+    "Dietrich": {
+     "support": 99.0,
+     "renown": 99.0
+    },
+    "Theodora": {
+     "support": 99.0,
+     "renown": 99.0
+    },
+    "Leda": {
+     "support": 99.0,
+     "renown": 99.0
+    },
+    "other_requirements": "Anatolia's paralogue",
+    "notes": "Part III, First Section",
+    "easy_for": "",
+    "supports_lords": "Cai",
+    "supports_retainers": "Fabio, Tobias"
+   }
+  },
+  "Orchel": {
+   "name": "Orchel",
+   "tier": "A",
+   "growths": {
+    "HP": 30,
+    "Str": 60,
+    "Mag": 45,
+    "Spd": 10,
+    "Dex": 20,
+    "Def": 60,
+    "Res": 60,
+    "Lck": 20,
+    "Cha": 60
+   },
+   "growth_total": 365,
+   "skill": "Solid and Sturdy",
+   "skill_desc": "Grants Def+5. Unit is armored. Cannot change to cavalry or flying.",
+   "proficiencies": [
+    "Axe",
+    "Black Magic",
+    "White Magic"
+   ],
+   "progression": [
+    "War Monk"
+   ],
+   "gifts": {},
+   "recruit": {},
+   "sheet": {
+    "Cai": {
+     "support": 99.0,
+     "renown": 99.0
+    },
+    "Dietrich": {
+     "support": 99.0,
+     "renown": 99.0
+    },
+    "Theodora": {
+     "support": 99.0,
+     "renown": 99.0
+    },
+    "Leda": {
+     "support": 99.0,
+     "renown": 99.0
+    },
+    "other_requirements": "Orchel's paralogue",
+    "notes": "Part III, First Section",
+    "easy_for": "",
+    "supports_lords": "Leda",
+    "supports_retainers": "Ultand, Bonaventure"
+   }
+  },
+  "Centurio": {
+   "name": "Centurio",
+   "tier": "B",
+   "growths": {
+    "HP": 45,
+    "Str": 45,
+    "Mag": 25,
+    "Spd": 40,
+    "Dex": 50,
+    "Def": 50,
+    "Res": 30,
+    "Lck": 30,
+    "Cha": 30
+   },
+   "growth_total": 345,
+   "skill": "Sturdy Corundum",
+   "skill_desc": "For the first combat in enemy's phase, unit takes half damage.",
+   "proficiencies": [
+    "Axe",
+    "Spear"
+   ],
+   "progression": [
+    "Dreadnought"
+   ],
+   "gifts": {},
+   "recruit": {},
+   "sheet": {
+    "Cai": {
+     "support": 99.0,
+     "renown": 99.0
+    },
+    "Dietrich": {
+     "support": 99.0,
+     "renown": 99.0
+    },
+    "Theodora": {
+     "support": 99.0,
+     "renown": 99.0
+    },
+    "Leda": {
+     "support": 99.0,
+     "renown": 99.0
+    },
+    "other_requirements": "\"complete quest \"\"Rescue Centurio\"\"\"",
+    "notes": "Part III",
+    "easy_for": "",
+    "supports_lords": "Cai",
+    "supports_retainers": "Ultand"
+   }
+  },
+  "Aswan": {
+   "name": "Aswan",
+   "tier": "A",
+   "growths": {
+    "HP": 40,
+    "Str": 35,
+    "Mag": 10,
+    "Spd": 40,
+    "Dex": 50,
+    "Def": 30,
+    "Res": 15,
+    "Lck": 30,
+    "Cha": 20
+   },
+   "growth_total": 270,
+   "skill": "Princess of Arrows",
+   "skill_desc": "When equipped with a bow, grants Hit+20.",
+   "proficiencies": [
+    "Authority",
+    "Bow",
+    "Infantry"
+   ],
+   "progression": [
+    "Bow Knight"
+   ],
+   "gifts": {},
+   "recruit": {},
+   "sheet": {
+    "Cai": {
+     "support": 99.0,
+     "renown": 99.0
+    },
+    "Dietrich": {
+     "support": 99.0,
+     "renown": 99.0
+    },
+    "Theodora": {
+     "support": 99.0,
+     "renown": 99.0
+    },
+    "Leda": {
+     "support": 99.0,
+     "renown": 99.0
+    },
+    "other_requirements": "auto",
+    "notes": "Part III, Fifth Section",
+    "easy_for": "",
+    "supports_lords": "Leda",
+    "supports_retainers": ""
+   }
+  },
+  "Tahonia": {
+   "name": "Tahonia",
+   "tier": "B",
+   "growths": {
+    "HP": 65,
+    "Str": 50,
+    "Mag": 5,
+    "Spd": 20,
+    "Dex": 40,
+    "Def": 45,
+    "Res": 35,
+    "Lck": 20,
+    "Cha": 40
+   },
+   "growth_total": 320,
+   "skill": "Python Technique",
+   "skill_desc": "When using a gauntlet combat art, unit makes a follow-up regardless of AS during combat. Trigger % = 15.",
+   "proficiencies": [],
+   "progression": [
+    "Battlemaster"
+   ],
+   "gifts": {},
+   "recruit": {},
+   "sheet": {
+    "Cai": {
+     "support": 99.0,
+     "renown": 99.0
+    },
+    "Dietrich": {
+     "support": 99.0,
+     "renown": 99.0
+    },
+    "Theodora": {
+     "support": 99.0,
+     "renown": 99.0
+    },
+    "Leda": {
+     "support": 99.0,
+     "renown": 99.0
+    },
+    "other_requirements": "auto",
+    "notes": "Part III, Fifth Section",
+    "easy_for": "",
+    "supports_lords": "",
+    "supports_retainers": ""
+   }
+  }
+ }
+}

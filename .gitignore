@@ -1,0 +1,10 @@
+# Derived build artifacts — regenerate with `python3 build/fetch.py`
+build/cache/
+
+# Python
+__pycache__/
+*.py[cod]
+.ruff_cache/
+
+# Editor / OS
+.DS_Store

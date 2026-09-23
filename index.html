@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fortune's Weave — Recruitment &amp; Build Planner</title>
+<style>
+  :root {
+    --bg: #12141a; --panel: #1a1d26; --panel2: #212533; --line: #2e3342;
+    --ink: #e8eaf0; --dim: #9aa3b8; --faint: #6b7386;
+    --accent: #e0a34a; --good: #4fb477; --warn: #d9a13b; --bad: #cf5f5f;
+    --lord: #d4af37; --s: #e06c75; --a: #d19a66; --b: #61afef; --c: #7f8698;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font: 14px/1.5 ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  a { color: var(--accent); }
+  header {
+    position: sticky; top: 0; z-index: 20; background: #161922f2;
+    backdrop-filter: blur(8px); border-bottom: 1px solid var(--line);
+    padding: 10px 16px; display: flex; gap: 16px; align-items: center; flex-wrap: wrap;
+  }
+  h1 { font-size: 15px; margin: 0; font-weight: 600; letter-spacing: .2px; }
+  h1 span { color: var(--faint); font-weight: 400; }
+  .ctl { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--dim); }
+  select, input[type=number], input[type=search] {
+    background: var(--panel2); color: var(--ink); border: 1px solid var(--line);
+    border-radius: 6px; padding: 5px 8px; font: inherit; font-size: 12px;
+  }
+  input[type=number] { width: 64px; }
+  input[type=search] { width: 190px; }
+  nav { display: flex; gap: 4px; margin-left: auto; }
+  nav button {
+    background: transparent; color: var(--dim); border: 1px solid transparent;
+    border-radius: 6px; padding: 6px 11px; font: inherit; font-size: 12px; cursor: pointer;
+  }
+  nav button:hover { color: var(--ink); background: var(--panel2); }
+  nav button.on { color: #12141a; background: var(--accent); font-weight: 600; }
+  main { padding: 16px; max-width: 1500px; margin: 0 auto; }
+  section { display: none; }
+  section.on { display: block; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-bottom: 14px; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; }
+  .card .k { font-size: 11px; color: var(--faint); text-transform: uppercase; letter-spacing: .5px; }
+  .card .v { font-size: 22px; font-weight: 600; margin-top: 2px; }
+  .card .v small { font-size: 12px; color: var(--dim); font-weight: 400; }
+  .bar { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-bottom: 12px; }
+  .bar .spacer { flex: 1; }
+  table { width: 100%; border-collapse: collapse; background: var(--panel); border-radius: 8px; overflow: hidden; }
+  th, td { text-align: left; padding: 7px 10px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+  th { background: var(--panel2); font-size: 11px; text-transform: uppercase; letter-spacing: .5px; color: var(--dim); position: sticky; top: 57px; z-index: 10; white-space: nowrap; }
+  tr:last-child td { border-bottom: none; }
+  tr.done { opacity: .42; }
+  tr.done .unit { text-decoration: line-through; }
+  .unit { font-weight: 600; white-space: nowrap; }
+  .sub { color: var(--faint); font-size: 11px; }
+  .badge { display: inline-block; min-width: 19px; text-align: center; padding: 1px 5px; border-radius: 4px; font-size: 10px; font-weight: 700; color: #12141a; }
+  .t-Lord { background: var(--lord); } .t-S { background: var(--s); }
+  .t-A { background: var(--a); } .t-B { background: var(--b); } .t-C { background: var(--c); }
+  .t-unknown { background: var(--faint); }
+  .pill { display: inline-block; padding: 1px 7px; border-radius: 10px; font-size: 11px; font-weight: 600; border: 1px solid var(--line); }
+  .p-ready { color: var(--good); border-color: #2c6b48; background: #16301f; }
+  .p-need  { color: var(--warn); border-color: #6b5620; background: #2c2413; }
+  .p-block { color: var(--bad);  border-color: #6b2c2c; background: #2c1616; }
+  .p-done  { color: var(--dim); }
+  .p-auto  { color: var(--b);    border-color: #2c4a6b; background: #16202c; }
+  .seg { display: inline-flex; border: 1px solid var(--line); border-radius: 5px; overflow: hidden; }
+  .seg button { background: var(--panel2); color: var(--dim); border: 0; padding: 2px 6px; font: inherit; font-size: 11px; cursor: pointer; }
+  .seg button + button { border-left: 1px solid var(--line); }
+  .seg button.on { background: var(--accent); color: #12141a; font-weight: 700; }
+  .seg button.met { color: var(--good); }
+  .seg button.on.met { color: #12141a; }
+  input[type=checkbox] { accent-color: var(--accent); width: 15px; height: 15px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 12px; }
+  .bcard { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 12px; }
+  .bcard h3 { margin: 0 0 2px; font-size: 15px; display: flex; align-items: center; gap: 7px; }
+  .bcard .sk { color: var(--accent); font-size: 12px; margin: 6px 0 2px; font-weight: 600; }
+  .bcard .skd { color: var(--dim); font-size: 11.5px; }
+  .grow { display: grid; grid-template-columns: repeat(9, 1fr); gap: 3px; margin: 9px 0 4px; }
+  .g { text-align: center; }
+  .g .lbl { font-size: 9.5px; color: var(--faint); }
+  .g .num { font-size: 11px; font-weight: 600; }
+  .g .track { height: 3px; background: var(--panel2); border-radius: 2px; overflow: hidden; margin-top: 2px; }
+  .g .fill { height: 100%; background: var(--accent); }
+  .tag { font-size: 10.5px; color: var(--dim); border: 1px solid var(--line); border-radius: 4px; padding: 1px 6px; }
+  .tag.hot { color: var(--accent); border-color: #6b5620; }
+  .prog { font-size: 12px; color: var(--ink); margin-top: 8px; }
+  .prog em { color: var(--faint); font-style: normal; }
+  .note { color: var(--dim); font-size: 12px; margin: 0 0 12px; }
+  .gift { font-size: 11.5px; color: var(--dim); }
+  .gift b { color: var(--good); font-weight: 600; }
+  details { margin-top: 8px; }
+  summary { cursor: pointer; color: var(--faint); font-size: 11.5px; }
+  .foot { color: var(--faint); font-size: 11px; margin-top: 22px; line-height: 1.7; }
+  .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+  .r { text-align: right; }
+  .btn { background: var(--panel2); color: var(--dim); border: 1px solid var(--line); border-radius: 6px; padding: 5px 10px; font: inherit; font-size: 12px; cursor: pointer; }
+  .btn:hover { color: var(--ink); }
+  @media (max-width: 760px) { nav { margin-left: 0; } th { top: 0; position: static; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>Fortune's Weave <span>· planner</span></h1>
+  <div class="ctl">Route <select id="route"></select></div>
+  <div class="ctl">Renown <input id="renown" type="number" min="1" max="15" value="11"></div>
+  <nav>
+    <button data-tab="recruit" class="on">Recruitment</button>
+    <button data-tab="builds">Builds</button>
+    <button data-tab="classes">Classes</button>
+    <button data-tab="gifts">Gifts</button>
+    <button data-tab="late">Part II/III</button>
+  </nav>
+</header>
+<main>
+  <section id="recruit" class="on">
+    <div class="cards" id="sum"></div>
+    <div class="bar">
+      <input type="search" id="q" placeholder="Filter by name…">
+      <label class="ctl"><input type="checkbox" id="hideDone"> hide recruited</label>
+      <label class="ctl"><input type="checkbox" id="onlyGaps"> only gaps</label>
+      <span class="spacer"></span>
+      <button class="btn" id="reset">reset progress</button>
+    </div>
+    <table>
+      <thead><tr>
+        <th style="width:34px">✓</th><th>Unit</th><th>Tier</th><th>Support</th>
+        <th>Renown</th><th>Extra requirement</th><th>Status</th>
+      </tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+    <p class="note" id="recruitNote"></p>
+  </section>
+
+  <section id="builds">
+    <div class="bar">
+      <input type="search" id="bq" placeholder="Filter by name…">
+      <label class="ctl"><input type="checkbox" id="onlyRecruited"> only recruited</label>
+      <span class="spacer"></span>
+    </div>
+    <div class="grid" id="bcards"></div>
+  </section>
+
+  <section id="classes">
+    <p class="note">Certification happens at the <b>Exam Proctor</b> in Dagsion (Hightown) during Free Time. Class growth bonuses are <b>added</b> to a unit's base growths.</p>
+    <div id="classtiers"></div>
+  </section>
+
+  <section id="gifts">
+    <p class="note">Gifts matching a unit's tastes give the most support per gift. Use this to close out the support requirement on anyone you still need.</p>
+    <table>
+      <thead><tr><th>Unit</th><th>Needed</th><th>Loved gifts</th><th>Really liked</th><th>Likes / interests</th></tr></thead>
+      <tbody id="giftrows"></tbody>
+    </table>
+  </section>
+
+  <section id="late">
+    <p class="note">These units cannot be recruited in Part I. Several are gated behind paralogues you must clear earlier, so treat this as a Part I to-do list.</p>
+    <table>
+      <thead><tr><th>Unit</th><th>Availability</th><th>Condition</th></tr></thead>
+      <tbody id="laterows"></tbody>
+    </table>
+  </section>
+
+  <p class="foot" id="foot"></p>
+</main>
+
+<script id="fwe-data" type="application/json">{"meta":{"sources":{"tier_list":"https://game8.co/games/Fire-Emblem-Fortunes-Weave/archives/624024","growth_rates":"https://game8.co/games/Fire-Emblem-Fortunes-Weave/archives/618974","best_classes":"https://game8.co/games/Fire-Emblem-Fortunes-Weave/archives/624119","gifts":"https://game8.co/games/Fire-Emblem-Fortunes-Weave/archives/623690","recruitment":"https://game8.co/games/Fire-Emblem-Fortunes-Weave/archives/620957","change_classes":"https://game8.co/games/Fire-Emblem-Fortunes-Weave/archives/618925","community_sheet":"https://docs.google.com/spreadsheets/d/1TNxGwvaGe__VEaRqSJ6Lgt4HeXRGoeDey7G6A47AZH4"},"class_gates":{"Beginner":"Renown Lv 1 + Unit Lv 5 (Beginner License)","Specialty":"Renown Lv 4 + Unit Lv 20 (Specialty License)","Advanced":"Renown Lv 8 + Unit Lv 35 (Advanced License)","Elephant":"Unit Lv 35 (Elephant License)","Master":"Unit Lv 45 (Master License)","Divine":"Divine License Item (Temple of the Diadem)"},"stats":["HP","Str","Mag","Spd","Dex","Def","Res","Lck","Cha"],"routes":["Cai","Dietrich","Theodora","Leda"],"tier_labels":["Lord","S","A","B","C"]},"tier_order":{"Lord":["Eshmel","Cai","Dietrich","Theodora","Leda"],"S":["Esmeralda","Sirocco","Guzran"],"A":["Aswan","Peter","Bonaventure","Lilian","Mu","Bertrand","Dante","Talimun","Orchel","Diego","Ninae","Anatolia","Nezha","Catania","Alexandra","Nathan","Hong Hua","Seteth","Goliath","Ludia","Halvin","Nuzzuo","Fianna"],"B":["Centurio","Tahonia","Tialla","Ultand","Fabio","Mikaela","Tobias","Lysander","Buccar","Olympia","Gaitz","Ursula","Simon","Sha Lan","Io","Nydine","Troy","Noctula","Sofia","Peppe","Loretta","Jester","Dadao","Kiroc","Inyoni"],"C":["Benditz","Yang Jie","Zarcone","Majide","Jasmine"]},"classes":{"Commoner":{"tier":"Base","growths":{"HP":0,"Str":0,"Mag":0,"Spd":0,"Dex":0,"Def":0,"Res":0,"Lck":0,"Cha":0}},"Gladiator":{"tier":"Beginner","growths":{"HP":10,"Str":10,"Mag":0,"Spd":0,"Dex":0,"Def":0,"Res":0,"Lck":0,"Cha":0}},"Hunter":{"tier":"Beginner","growths":{"HP":10,"Str":0,"Mag":0,"Spd":10,"Dex":10,"Def":0,"Res":0,"Lck":0,"Cha":0}},"Soldier":{"tier":"Beginner","growths":{"HP":10,"Str":5,"Mag":0,"Spd":-5,"Dex":5,"Def":10,"Res":0,"Lck":0,"Cha":0}},"Ornius Rider":{"tier":"Beginner","growths":{"HP":10,"Str":0,"Mag":0,"Spd":10,"Dex":5,"Def":0,"Res":5,"Lck":5,"Cha":0}},"Diviner":{"tier":"Beginner","growths":{"HP":5,"Str":-5,"Mag":15,"Spd":0,"Dex":5,"Def":-5,"Res":10,"Lck":0,"Cha":0}},"Myrmidon":{"tier":"Specialty","growths":{"HP":10,"Str":0,"Mag":0,"Spd":15,"Dex":10,"Def":0,"Res":0,"Lck":5,"Cha":5}},"Brigand":{"tier":"Specialty","growths":{"HP":15,"Str":15,"Mag":-5,"Spd":5,"Dex":0,"Def":5,"Res":0,"Lck":0,"Cha":5}},"Pugilist":{"tier":"Specialty","growths":{"HP":15,"Str":10,"Mag":-5,"Spd":10,"Dex":5,"Def":10,"Res":0,"Lck":0,"Cha":5}},"Archer":{"tier":"Specialty","growths":{"HP":10,"Str":5,"Mag":0,"Spd":10,"Dex":10,"Def":5,"Res":0,"Lck":5,"Cha":5}},"Rogue":{"tier":"Specialty","growths":{"HP":10,"Str":0,"Mag":0,"Spd":15,"Dex":10,"Def":0,"Res":5,"Lck":5,"Cha":0}},"Armored Knight":{"tier":"Specialty","growths":{"HP":10,"Str":10,"Mag":-5,"Spd":-5,"Dex":5,"Def":25,"Res":-5,"Lck":0,"Cha":5}},"Light Cavalry":{"tier":"Specialty","growths":{"HP":10,"Str":5,"Mag":-5,"Spd":5,"Dex":0,"Def":5,"Res":0,"Lck":5,"Cha":10}},"Charioteer":{"tier":"Specialty","growths":{"HP":10,"Str":5,"Mag":-5,"Spd":-5,"Dex":15,"Def":10,"Res":0,"Lck":5,"Cha":10}},"Armored Ornius Rider":{"tier":"Specialty","growths":{"HP":10,"Str":0,"Mag":-5,"Spd":10,"Dex":5,"Def":10,"Res":0,"Lck":5,"Cha":5}},"Wing Soldier":{"tier":"Specialty","growths":{"HP":10,"Str":0,"Mag":5,"Spd":0,"Dex":5,"Def":5,"Res":5,"Lck":5,"Cha":10}},"Priest":{"tier":"Specialty","growths":{"HP":5,"Str":-5,"Mag":10,"Spd":5,"Dex":5,"Def":-10,"Res":15,"Lck":15,"Cha":10}},"Shaman":{"tier":"Specialty","growths":{"HP":5,"Str":-5,"Mag":15,"Spd":10,"Dex":10,"Def":-10,"Res":10,"Lck":10,"Cha":0}},"Warrior":{"tier":"Advanced","growths":{"HP":20,"Str":20,"Mag":-5,"Spd":0,"Dex":0,"Def":5,"Res":-5,"Lck":0,"Cha":5}},"Shido":{"tier":"Advanced","growths":{"HP":10,"Str":5,"Mag":0,"Spd":15,"Dex":10,"Def":0,"Res":-5,"Lck":5,"Cha":5}},"Dancer":{"tier":"Advanced","growths":{"HP":15,"Str":5,"Mag":0,"Spd":25,"Dex":10,"Def":0,"Res":5,"Lck":10,"Cha":20}},"Blacksmith":{"tier":"Advanced","growths":{"HP":15,"Str":10,"Mag":10,"Spd":0,"Dex":5,"Def":10,"Res":10,"Lck":0,"Cha":5}},"Sniper":{"tier":"Advanced","growths":{"HP":10,"Str":5,"Mag":0,"Spd":10,"Dex":20,"Def":5,"Res":5,"Lck":5,"Cha":5}},"Forest Knight":{"tier":"Advanced","growths":{"HP":10,"Str":5,"Mag":0,"Spd":10,"Dex":10,"Def":5,"Res":5,"Lck":5,"Cha":5}},"Ranger":{"tier":"Advanced","growths":{"HP":10,"Str":5,"Mag":0,"Spd":15,"Dex":15,"Def":0,"Res":10,"Lck":15,"Cha":0}},"Cataphract":{"tier":"Advanced","growths":{"HP":15,"Str":15,"Mag":-5,"Spd":-10,"Dex":0,"Def":10,"Res":-5,"Lck":0,"Cha":5}},"Guardian":{"tier":"Advanced","growths":{"HP":10,"Str":10,"Mag":0,"Spd":0,"Dex":5,"Def":10,"Res":15,"Lck":5,"Cha":5}},"Elephant Rider":{"tier":"Advanced","growths":{"HP":20,"Str":10,"Mag":-5,"Spd":20,"Dex":-10,"Def":15,"Res":-5,"Lck":5,"Cha":10}},"Dreadnought":{"tier":"Advanced","growths":{"HP":15,"Str":15,"Mag":-5,"Spd":-10,"Dex":5,"Def":30,"Res":-10,"Lck":0,"Cha":5}},"Bardinger":{"tier":"Advanced","growths":{"HP":10,"Str":10,"Mag":-5,"Spd":0,"Dex":0,"Def":5,"Res":10,"Lck":5,"Cha":10}},"Dragoon":{"tier":"Advanced","growths":{"HP":15,"Str":5,"Mag":0,"Spd":0,"Dex":5,"Def":10,"Res":10,"Lck":10,"Cha":5}},"Caladrius":{"tier":"Advanced","growths":{"HP":15,"Str":0,"Mag":10,"Spd":5,"Dex":10,"Def":10,"Res":10,"Lck":5,"Cha":5}},"Ovate":{"tier":"Advanced","growths":{"HP":10,"Str":-5,"Mag":20,"Spd":5,"Dex":15,"Def":-10,"Res":15,"Lck":10,"Cha":0}},"Bishop":{"tier":"Advanced","growths":{"HP":10,"Str":-5,"Mag":15,"Spd":0,"Dex":0,"Def":-10,"Res":20,"Lck":20,"Cha":10}},"Troubadour":{"tier":"Advanced","growths":{"HP":10,"Str":0,"Mag":15,"Spd":5,"Dex":0,"Def":5,"Res":15,"Lck":15,"Cha":10}},"Swordmaster":{"tier":"Master","growths":{"HP":15,"Str":10,"Mag":0,"Spd":20,"Dex":15,"Def":0,"Res":0,"Lck":5,"Cha":5}},"High Savant":{"tier":"Master","growths":{"HP":10,"Str":15,"Mag":15,"Spd":10,"Dex":5,"Def":5,"Res":5,"Lck":5,"Cha":5}},"Battlemaster":{"tier":"Master","growths":{"HP":25,"Str":25,"Mag":-5,"Spd":-5,"Dex":5,"Def":10,"Res":-5,"Lck":-5,"Cha":5}},"War Monk":{"tier":"Master","growths":{"HP":15,"Str":10,"Mag":0,"Spd":15,"Dex":0,"Def":5,"Res":15,"Lck":5,"Cha":5}},"Bow Adept":{"tier":"Master","growths":{"HP":15,"Str":5,"Mag":0,"Spd":15,"Dex":20,"Def":5,"Res":5,"Lck":5,"Cha":5}},"Bow Knight":{"tier":"Master","growths":{"HP":10,"Str":10,"Mag":0,"Spd":15,"Dex":10,"Def":5,"Res":0,"Lck":5,"Cha":5}},"Shadow Seeker":{"tier":"Master","growths":{"HP":15,"Str":5,"Mag":0,"Spd":15,"Dex":25,"Def":0,"Res":10,"Lck":15,"Cha":0}},"Sentinel":{"tier":"Master","growths":{"HP":15,"Str":15,"Mag":0,"Spd":5,"Dex":5,"Def":10,"Res":15,"Lck":5,"Cha":5}},"Castle Knight":{"tier":"Master","growths":{"HP":25,"Str":20,"Mag":-5,"Spd":-15,"Dex":5,"Def":30,"Res":-10,"Lck":0,"Cha":5}},"Orichaldia":{"tier":"Master","growths":{"HP":15,"Str":15,"Mag":-5,"Spd":0,"Dex":5,"Def":5,"Res":5,"Lck":5,"Cha":10}},"Great Knight":{"tier":"Master","growths":{"HP":20,"Str":20,"Mag":-5,"Spd":-10,"Dex":0,"Def":15,"Res":-10,"Lck":0,"Cha":5}},"Celestial Trooper":{"tier":"Master","growths":{"HP":15,"Str":5,"Mag":-5,"Spd":10,"Dex":5,"Def":5,"Res":15,"Lck":15,"Cha":10}},"Bau Lord":{"tier":"Master","growths":{"HP":15,"Str":5,"Mag":0,"Spd":5,"Dex":0,"Def":10,"Res":10,"Lck":10,"Cha":5}},"Druid":{"tier":"Master","growths":{"HP":10,"Str":-5,"Mag":30,"Spd":15,"Dex":10,"Def":-10,"Res":20,"Lck":10,"Cha":0}},"Wiseman":{"tier":"Master","growths":{"HP":10,"Str":-5,"Mag":20,"Spd":0,"Dex":5,"Def":-10,"Res":25,"Lck":20,"Cha":10}},"Valkyrium":{"tier":"Master","growths":{"HP":10,"Str":0,"Mag":15,"Spd":5,"Dex":5,"Def":5,"Res":10,"Lck":15,"Cha":10}},"The Blade":{"tier":"Divine","growths":{"HP":15,"Str":10,"Mag":10,"Spd":20,"Dex":20,"Def":5,"Res":5,"Lck":5,"Cha":10}},"The Apsara":{"tier":"Divine","growths":{"HP":15,"Str":5,"Mag":10,"Spd":25,"Dex":15,"Def":5,"Res":5,"Lck":10,"Cha":30}},"The Eternal":{"tier":"Divine","growths":{"HP":30,"Str":30,"Mag":0,"Spd":10,"Dex":0,"Def":15,"Res":0,"Lck":0,"Cha":0}},"The Godhand":{"tier":"Divine","growths":{"HP":15,"Str":10,"Mag":10,"Spd":15,"Dex":5,"Def":10,"Res":15,"Lck":5,"Cha":10}},"The Calamity":{"tier":"Divine","growths":{"HP":15,"Str":5,"Mag":15,"Spd":25,"Dex":20,"Def":5,"Res":15,"Lck":15,"Cha":5}},"The Trident":{"tier":"Divine","growths":{"HP":15,"Str":15,"Mag":5,"Spd":10,"Dex":10,"Def":15,"Res":15,"Lck":5,"Cha":10}},"The Cavalier":{"tier":"Divine","growths":{"HP":20,"Str":15,"Mag":5,"Spd":10,"Dex":10,"Def":15,"Res":10,"Lck":5,"Cha":15}},"The Avatar":{"tier":"Divine","growths":{"HP":10,"Str":-5,"Mag":30,"Spd":10,"Dex":5,"Def":-5,"Res":30,"Lck":20,"Cha":10}}},"clans":{"Cai's Team (Ribeira Winds)":["Cai","Tialla","Peter","Ultand"],"Leda's Team (Rose Tempest)":["Leda","Buccar","Sirocco","Mu","Olympia"],"Theodora's Team (Megaira's Beacon)":["Theodora","Bonaventure","Tobias","Lilian","Lysander"],"Dietrich's Team (House Lamine)":["Dietrich","Fabio","Esmeralda","Mikaela"]},"late_recruits":[{"name":"Creek Creek Show spoiler","availability":"Part 2 Chapter 2","condition":"Clear My Late Sister's Accessory Subquest then defeat during the chapter."},{"name":"Nathan Nathan Show spoiler","availability":"Part 2 Chapter 3","condition":"Defeat with Creek."},{"name":"Bertrand Bertrand Show spoiler","availability":"Part 3 First Section","condition":"Automatically joins if Bertrand's Paralogue is cleared."},{"name":"Talimun Talimun Show spoiler","availability":"Part 3 First Section","condition":"Automatically joins if Talimun's Paralogue is cleared."},{"name":"Anatolia Anatolia Show spoiler","availability":"Part 3 First Section","condition":"Automatically joins if Anatolia's Paralogue is cleared."},{"name":"Orchel Orchel Show spoiler","availability":"Part 3 First Section","condition":"Automatically joins if Orchel's Paralogue is cleared."},{"name":"Centurio Centurio Show spoiler","availability":"Part 3 Second Section","condition":"Clear Rescue Centurio Subquest then talk in Dagsion to recruit."},{"name":"Aswan Aswan Show spoiler","availability":"Part 3 Fifth Section","condition":"Joins automatically if survived in Part 2."},{"name":"Tahonia Tahonia Show spoiler","availability":"Part 3 Fifth Section","condition":"Joins automatically if survived in Part 2."}],"units":{"Eshmel":{"name":"Eshmel","tier":"Lord","growths":{"HP":50,"Str":45,"Mag":45,"Spd":45,"Dex":45,"Def":35,"Res":35,"Lck":40,"Cha":50},"growth_total":390,"skill":"TBD","skill_desc":"","proficiencies":["Authority","Spear"],"progression":["Guardian"],"gifts":{"loved":[],"really_liked":[],"likes":["Ambitious people","people of great talent","small and unnamed flowers"],"interests":["Playing board games"]},"recruit":{},"sheet":{}},"Hong Hua":{"name":"Hong Hua","tier":"A","growths":{"HP":40,"Str":30,"Mag":45,"Spd":45,"Dex":45,"Def":30,"Res":45,"Lck":30,"Cha":40},"growth_total":350,"skill":"Zhu Ming","skill_desc":"When equipped with magic, grants Hit +10.","proficiencies":["Black Magic","White Magic"],"progression":["Ovate"],"gifts":{"loved":[],"really_liked":[],"likes":["Memories of happier times"],"interests":["None"]},"recruit":{},"sheet":{"Cai":{"support":99.0,"renown":99.0},"Dietrich":{"support":99.0,"renown":99.0},"Theodora":{"support":99.0,"renown":99.0},"Leda":{"support":99.0,"renown":99.0},"other_requirements":"auto","notes":"Prologue/Part III","easy_for":"","supports_lords":"","supports_retainers":""}},"Troy":{"name":"Troy","tier":"B","growths":{"HP":40,"Str":45,"Mag":45,"Spd":50,"Dex":40,"Def":30,"Res":30,"Lck":30,"Cha":30},"growth_total":340,"skill":"Yun Shou","skill_desc":"When equipped with gauntlets, grants Hit +10.","proficiencies":["Black Magic","White Magic"],"progression":["War Monk"],"gifts":{"loved":[],"really_liked":[],"likes":["Her kin","natural scenes"],"interests":["Maintaining her weapons"]},"recruit":{},"sheet":{"Cai":{"support":99.0,"renown":99.0},"Dietrich":{"support":99.0,"renown":99.0},"Theodora":{"support":99.0,"renown":99.0},"Leda":{"support":99.0,"renown":99.0},"other_requirements":"auto","notes":"Prologue/Part III","easy_for":"","supports_lords":"","supports_retainers":""}},"Cai":{"name":"Cai","tier":"Lord","growths":{"HP":45,"Str":45,"Mag":40,"Spd":45,"Dex":45,"Def":35,"Res":35,"Lck":40,"Cha":40},"growth_total":370,"skill":"Brio","skill_desc":"Grants Mov+1.","proficiencies":["Spear","Sword","White Magic"],"progression":["Ornius Rider","Light Cavalry","Bardinger"],"gifts":{"loved":[],"really_liked":["Arrowhead Gem","Crimson Ghosh","Sharp Fishhook"],"likes":["Physical training","catching animals"],"interests":["Fishing","spear training"]},"recruit":{},"sheet":{}},"Dietrich":{"name":"Dietrich","tier":"Lord","growths":{"HP":50,"Str":45,"Mag":30,"Spd":50,"Dex":60,"Def":40,"Res":30,"Lck":50,"Cha":60},"growth_total":415,"skill":"Murderous Intent","skill_desc":"If unit attacks first, grants Crit+5 during combat.","proficiencies":["Infantry","Sword"],"progression":["Gladiator","Myrmidon","Shido"],"gifts":{"loved":[],"really_liked":["Arrowhead Gem","Board-Game Tactics","Crimson Ghosh","Ginji Cervi","Honey Milk","Honey Pastries","Joint-Relief Gloves","Kitten Figurine","Pastry Cookbook","Protection Figurine","Pure-White Cervi","Spirit Board Game","Training Pillar","Training Weights"],"likes":["Objects of beauty","sweet things","his little sister"],"interests":["Fighting the strong","meditating"]},"recruit":{},"sheet":{}},"Theodora":{"name":"Theodora","tier":"Lord","growths":{"HP":70,"Str":50,"Mag":30,"Spd":40,"Dex":40,"Def":40,"Res":30,"Lck":30,"Cha":50},"growth_total":380,"skill":"Royal Resolve","skill_desc":"Unit takes half damage when attacked. Trigger % = 30.","proficiencies":["Authority","Spear","White Magic"],"progression":["Gladiator","Light Cavalry","Bardinger"],"gifts":{"loved":[],"really_liked":["Dagda Beard Grass","Eastern Black Silk","Eastern Tea Leaves","Horse-Grooming Kit"],"likes":["Fighting","seeing the people of Saramis thrive"],"interests":["Hunting","combat training"]},"recruit":{},"sheet":{}},"Leda":{"name":"Leda","tier":"Lord","growths":{"HP":40,"Str":35,"Mag":35,"Spd":65,"Dex":50,"Def":30,"Res":35,"Lck":25,"Cha":55},"growth_total":370,"skill":"Blindside","skill_desc":"If unit attacks first, cannot be countered during combat. Trigger % = 5.","proficiencies":["Bow","Infantry","Sword","White Magic"],"progression":["Hunter","Archer","Sniper"],"gifts":{"loved":["Eastern Black Silk","Eastern Earrings","Tales of Adventure","Volcano Ghosh"],"really_liked":["Aromatic Shosh","Brined Fish Guts","Dagda Beard Grass","Eastern Tea Leaves","Gaudy Bangle","Horse-Grooming Kit","Huge Fish Eyeball","Jade Ghosh","Kitten Figurine","Light Shosh","Magic-Trick Set","Mature Ghosh","Mature Shosh","Pack of Pastels","Rustic Ghosh","Secret Ghosh","Southern Ghosh","Sun Ghosh","Training Bracelet","Young Ghosh"],"likes":["Memories of her parents","songs from home","gemstones","applause"],"interests":["Tuning her vihuela","taking long horseback rides"]},"recruit":{},"sheet":{}},"Tialla":{"name":"Tialla","tier":"B","growths":{"HP":30,"Str":25,"Mag":45,"Spd":35,"Dex":40,"Def":20,"Res":40,"Lck":50,"Cha":45},"growth_total":330,"skill":"Tactician's Wit","skill_desc":"Grants Rng+1 to combat arts usable on allies.","proficiencies":["Authority","Black Magic","White Magic"],"progression":["Diviner","Priest","Troubadour"],"gifts":{"loved":[],"really_liked":["Alecto Garum","Eastern Love Story","Eastern Tea Leaves","Garum","Ginji Cervi","Herbal Recipe Guide","Home-Recipe Book","Jamel Milk","Mature Dried Cervi","Pastry Cookbook","Pickled Bulbs","Smooth Garum","Strategy Manuscript","Strong Cervi","Strong Seasonings","Tales of Adventure","Trader's Handbook","Village Recipes","Weak Cervi","Yarc Milk"],"likes":["Libraries","gossiping about love","alone time","her grandfather"],"interests":["Reading","playing board games"]},"recruit":{"Cai":{"chapter":"Part I Ch 1","support":0,"renown":0,"extra":[]},"Dietrich":{"chapter":"Part I Ch 4","support":3,"renown":9,"extra":["Clear Cai's Paralogue then give 3000 gold."]},"Theodora":{"chapter":"Part I Ch 5","support":3,"renown":10,"extra":["Clear Cai's Paralogue then give 3000 gold."]},"Leda":{"chapter":"Part I Ch 4","support":3,"renown":8,"extra":["Clear Cai's Paralogue then give 3000 gold."]}},"sheet":{"Cai":{"support":0.0,"renown":0.0},"Dietrich":{"support":3.0,"renown":9.0},"Theodora":{"support":3.0,"renown":10.0},"Leda":{"support":3.0,"renown":8.0},"other_requirements":"Cai's paralogue","notes":"After 10/16","easy_for":"Leda (R8)","supports_lords":"Theodora","supports_retainers":"Bonaventure"}},"Peter":{"name":"Peter","tier":"A","growths":{"HP":40,"Str":35,"Mag":20,"Spd":45,"Dex":60,"Def":30,"Res":25,"Lck":35,"Cha":30},"growth_total":320,"skill":"Steady Aim","skill_desc":"Grants Rng+1 when attacking with a bow combat art.","proficiencies":["Bow","Infantry"],"progression":["Hunter","Archer","Forest Knight"],"gifts":{"loved":[],"really_liked":["Coffee Pastries","Dagda Beard Grass","Eastern Tea Leaves","Fragrant Pastries","Ginji Cervi","Jamel Milk","Kitten Figurine","Mature Dried Cervi","Mellow Pastries","Pastry Cookbook","Saraminian Sweets","Simple Pastries","Strong Cervi","Weak Cervi","Wing Fletching","Yarc Milk"],"likes":["His mother's home cooking","ginji fruits"],"interests":["Eating","watching clouds"]},"recruit":{"Cai":{"chapter":"Part I Ch 1","support":0,"renown":0,"extra":[]},"Dietrich":{"chapter":"Part I Ch 4","support":3,"renown":9,"extra":["Give Peter 1 Phantom Ginji"]},"Theodora":{"chapter":"Part I Ch 5","support":3,"renown":7,"extra":["Give Peter 1 Phantom Ginji"]},"Leda":{"chapter":"Part I Ch 4","support":3,"renown":10,"extra":["Give Peter 1 Phantom Ginji"]}},"sheet":{"Cai":{"support":0.0,"renown":0.0},"Dietrich":{"support":3.0,"renown":8.0},"Theodora":{"support":3.0,"renown":7.0},"Leda":{"support":3.0,"renown":10.0},"other_requirements":"1x Phantom Ginji (quest)","notes":"","easy_for":"Theodora (R7)","supports_lords":"","supports_retainers":"Mu"}},"Ultand":{"name":"Ultand","tier":"B","growths":{"HP":45,"Str":40,"Mag":40,"Spd":35,"Dex":40,"Def":35,"Res":45,"Lck":55,"Cha":50},"growth_total":385,"skill":"Patch Up","skill_desc":"After an adjacent ally's combat, restores a little HP to that ally.","proficiencies":["Spear","White Magic"],"progression":["Diviner","Priest","Bishop"],"gifts":{"loved":[],"really_liked":["Blue-Rose Bouquet","Crimson Ghosh","Eastern Love Story","Garum","Outdoor Cooking Set","Pastry Cookbook"],"likes":["Looking after others","her family","housekeeping","love stories"],"interests":["Saving money","wandering around marketplaces"]},"recruit":{"Cai":{"chapter":"Part I Ch 6","support":0,"renown":0,"extra":[]},"Dietrich":{"chapter":"Part I Ch 4","support":3,"renown":5,"extra":["Give Ultand Her Mother's Gift"]},"Theodora":{"chapter":"Part I Ch 5","support":3,"renown":6,"extra":["Give Ultand Her Mother's Gift"]},"Leda":{"chapter":"Part I Ch 4","support":3,"renown":8,"extra":["Give Ultand Her Mother's Gift"]}},"sheet":{"Cai":{"support":0.0,"renown":0.0},"Dietrich":{"support":3.0,"renown":5.0},"Theodora":{"support":3.0,"renown":6.0},"Leda":{"support":3.0,"renown":8.0},"other_requirements":"Mother's Gift (quest)","notes":"","easy_for":"Dietrich (R5), Theodora (R6)","supports_lords":"","supports_retainers":"Tobias"}},"Fabio":{"name":"Fabio","tier":"B","growths":{"HP":40,"Str":25,"Mag":50,"Spd":35,"Dex":40,"Def":30,"Res":45,"Lck":35,"Cha":30},"growth_total":330,"skill":"Dark Calling","skill_desc":"Inflicts Ddg-5 on adjacent foes.","proficiencies":["Authority","Black Magic"],"progression":["Diviner","Shaman","Ovate"],"gifts":{"loved":["Tales of Adventure","Volcano Ghosh"],"really_liked":["Aromatic Shosh","Brined Fish Guts","Coffee Pastries","Common Coffee","Dagda Beard Grass","Eastern Black Silk","Eastern Tea Leaves","Huge Fish Eyeball","Jade Ghosh","Light Shosh","Mature Ghosh","Mature Shosh","Orgus Coffee","Pack of Pastels","Potted Vegetables","Rustic Ghosh","Secret Ghosh","Select Coffee","Southern Coffee","Southern Ghosh","Sun Ghosh","Young Ghosh"],"likes":["Suffering","half-forgotten feelings","dissecting beautiful things"],"interests":["Drawing","conversing with thoughtful people"]},"recruit":{"Cai":null,"Dietrich":{"chapter":"Part I Ch 1","support":0,"renown":0,"extra":[]},"Theodora":null,"Leda":{"chapter":"Part I Ch 4","support":3,"renown":9,"extra":["Clear Dietrich's Paralogue and complete Fabio's request."]}},"sheet":{"Cai":{"support":99.0,"renown":99.0},"Dietrich":{"support":0.0,"renown":0.0},"Theodora":{"support":99.0,"renown":99.0},"Leda":{"support":3.0,"renown":9.0},"other_requirements":"\"Dietrich's paralogue (Ch 11), \"\"suitable item\"\"\"","notes":"After 10/16","easy_for":"Leda only","supports_lords":"","supports_retainers":"Tobias"}},"Esmeralda":{"name":"Esmeralda","tier":"S","growths":{"HP":55,"Str":55,"Mag":20,"Spd":35,"Dex":35,"Def":45,"Res":25,"Lck":35,"Cha":30},"growth_total":335,"skill":"Brawn","skill_desc":"Reduces Wt of unit's equipment to 80%.","proficiencies":["Axe","Spear"],"progression":["Gladiator","Armored Knight","Dreadnought"],"gifts":{"loved":["Eastern Earrings","Tales of Adventure"],"really_liked":["Alecto Garum","Coffee Pastries","Dagda Beard Grass","Eastern Tea Leaves","Flexible Fishing Rod","Fragrant Pastries","Garum","Gaudy Bangle","Herbal Recipe Guide","Home-Recipe Book","Horse-Grooming Kit","Huge Fish Eyeball","Kitten Figurine","Mellow Pastries","Pastry Cookbook","Saraminian Sweets","Sharp Fishhook","Simple Pastries","Smooth Garum","Strong Seasonings","Training Bracelet","Village Recipes"],"likes":["Handsome men","throwing her trident","maintaining fishing gear"],"interests":["Fishing","carving wooden dolls"]},"recruit":{"Cai":{"chapter":"Part I Ch 5","support":2,"renown":7,"extra":["Complete Esmeralda's Request"]},"Dietrich":{"chapter":"Part I Ch 2","support":0,"renown":0,"extra":[]},"Theodora":{"chapter":"Part I Ch 5","support":3,"renown":9,"extra":["Complete Esmeralda's Request"]},"Leda":{"chapter":"Part I Ch 4","support":3,"renown":6,"extra":["Complete Esmeralda's Request"]}},"sheet":{"Cai":{"support":2.0,"renown":7.0},"Dietrich":{"support":0.0,"renown":0.0},"Theodora":{"support":3.0,"renown":9.0},"Leda":{"support":3.0,"renown":6.0},"other_requirements":"Esmeralda's request (quest)","notes":"","easy_for":"Leda (R6), Cai (R7)","supports_lords":"Cai, Leda","supports_retainers":"Lysander"}},"Mikaela":{"name":"Mikaela","tier":"B","growths":{"HP":50,"Str":45,"Mag":30,"Spd":40,"Dex":35,"Def":40,"Res":25,"Lck":30,"Cha":40},"growth_total":335,"skill":"Veteran's Mettle","skill_desc":"Grants Hit+10 during combat against an adjacent foe.","proficiencies":["Axe","Bow","Infantry"],"progression":["Gladiator","Brigand","Warrior"],"gifts":{"loved":["Tales of Adventure","Volcano Ghosh"],"really_liked":["Alecto Garum","Aromatic Shosh","Common Coffee","Eastern Tea Leaves","Garum","Herbal Recipe Guide","Home-Recipe Book","Huge Fish Eyeball","Jade Ghosh","Light Shosh","Mature Ghosh","Mature Shosh","Orgus Coffee","Pastry Cookbook","Rare Spices","Rustic Ghosh","Secret Ghosh","Select Coffee","Southern Coffee","Southern Ghosh","Strong Seasonings","Sun Ghosh","Village Recipes","Wing Fletching","Young Ghosh"],"likes":["Moving her body","looking after others"],"interests":["Cooking","baking","brewing coffee"]},"recruit":{"Cai":{"chapter":"Part I Ch 5","support":3,"renown":5,"extra":["Give 3000 Gold to Mikaela."]},"Dietrich":{"chapter":"Part I Ch 4","support":0,"renown":0,"extra":[]},"Theodora":{"chapter":"Part I Ch 5","support":3,"renown":8,"extra":["Give 3000 Gold to Mikaela."]},"Leda":{"chapter":"Part I Ch 4","support":3,"renown":6,"extra":["Give 3000 Gold to Mikaela."]}},"sheet":{"Cai":{"support":3.0,"renown":5.0},"Dietrich":{"support":0.0,"renown":0.0},"Theodora":{"support":3.0,"renown":8.0},"Leda":{"support":3.0,"renown":6.0},"other_requirements":"3000 gold","notes":"","easy_for":"Cai (R5), Leda (R6)","supports_lords":"","supports_retainers":"Mu"}},"Bonaventure":{"name":"Bonaventure","tier":"A","growths":{"HP":35,"Str":35,"Mag":45,"Spd":40,"Dex":50,"Def":30,"Res":40,"Lck":35,"Cha":40},"growth_total":350,"skill":"Sage Advice","skill_desc":"Grants Dex +3 to adjacent allies.","proficiencies":["Authority","Black Magic","Sword","White Magic"],"progression":["Diviner","Shaman","Ovate"],"gifts":{"loved":["Crimson Ghosh","Strategy Manuscript","Volcano Ghosh"],"really_liked":["Ceremonial Spear","Eastern Black Silk","Jade Ghosh","Pastry Cookbook","Rare Spices","Secret Ghosh","Strong Seasonings","Sun Ghosh","Tales of the Arena","The Works of Dante","Thick Foreign Tome","Village Recipes"],"likes":["Knowledge","dialogue with sages","learning about other countries"],"interests":["Cooking","reciting poetry"]},"recruit":{"Cai":null,"Dietrich":null,"Theodora":{"chapter":"Part I Ch 1","support":0,"renown":0,"extra":[]},"Leda":null},"sheet":{}},"Tobias":{"name":"Tobias","tier":"B","growths":{"HP":55,"Str":60,"Mag":15,"Spd":25,"Dex":30,"Def":45,"Res":20,"Lck":40,"Cha":35},"growth_total":325,"skill":"Power Arts","skill_desc":"Grants Atk +3 when attacking with a combat art,","proficiencies":["Axe"],"progression":["Gladiator","Brigand","Warrior"],"gifts":{"loved":["Strategy Manuscript","Tales of Adventure","Volcano Ghosh"],"really_liked":["Alecto Garum","Dagda Beard Grass","Eastern Black Silk","Eastern Tea Leaves","Garum","Herbal Recipe Guide","Home-Recipe Book","Horse-Grooming Kit","Huge Fish Eyeball","Jade Ghosh","Kitten Figurine","Mature Ghosh","Mature Shosh","Pastry Cookbook","Rustic Ghosh","Secret Ghosh","Sharp Fishhook","Smooth Garum","Southern Ghosh","Strong Seasonings","Sturdy Rucksack","Sun Ghosh","Training Bracelet","Village Recipes","Wing Fletching","Young Ghosh"],"likes":["Singing","interacting with others"],"interests":["Hunting","solitary camping"]},"recruit":{"Cai":null,"Dietrich":null,"Theodora":{"chapter":"Part I Ch 1","support":0,"renown":0,"extra":[]},"Leda":null},"sheet":{}},"Lilian":{"name":"Lilian","tier":"A","growths":{"HP":35,"Str":35,"Mag":30,"Spd":40,"Dex":55,"Def":30,"Res":35,"Lck":50,"Cha":25},"growth_total":335,"skill":"Safety First","skill_desc":"If foe cannot counter, grants Hit +10 to unit during combat.","proficiencies":["Bow","Infantry"],"progression":["Hunter","Archer","Sniper"],"gifts":{"loved":["Eastern Earrings","Eastern Tea Leaves","Poems of the Greats","Strategy Manuscript","Tales of Adventure"],"really_liked":["Gaudy Bangle","Herbal Recipe Guide","Home-Recipe Book","Pastry Cookbook","Strong Seasonings","Trader's Handbook","Training Bracelet","Village Recipes","Wing Fletching"],"likes":["Gold coins","gemstones","older men"],"interests":["Being frugal","hunting"]},"recruit":{"Cai":{"chapter":"Part I Ch 4","support":2,"renown":8,"extra":["Give 5000 Gold to Lilian."]},"Dietrich":{"chapter":"Part I Ch 4","support":2,"renown":8,"extra":["Give 5000 Gold to Lilian."]},"Theodora":{"chapter":"Part I Ch 4","support":0,"renown":0,"extra":[]},"Leda":{"chapter":"Part I Ch 4","support":2,"renown":7,"extra":["Give 5000 Gold to Lilian."]}},"sheet":{"Cai":{"support":2.0,"renown":8.0},"Dietrich":{"support":2.0,"renown":8.0},"Theodora":{"support":0.0,"renown":0.0},"Leda":{"support":2.0,"renown":7.0},"other_requirements":"5000 gold","notes":"","easy_for":"Leda (R7)","supports_lords":"","supports_retainers":"Mu"}},"Lysander":{"name":"Lysander","tier":"B","growths":{"HP":45,"Str":40,"Mag":25,"Spd":50,"Dex":35,"Def":40,"Res":25,"Lck":30,"Cha":30},"growth_total":320,"skill":"Racing Attack","skill_desc":"If unit attacks first, grants Avo +15 during combat.","proficiencies":["Axe","Spear"],"progression":["Gladiator","Light Cavalry","Bardinger"],"gifts":{"loved":[],"really_liked":["Dagda Beard Grass","Eastern Tea Leaves","Horse-Grooming Kit","Mane Ornament","Wing Fletching"],"likes":["Skygazing","dining with women"],"interests":["Crafting throwing sticks","going on long rides"]},"recruit":{"Cai":{"chapter":"Part I Ch 4","support":3,"renown":8,"extra":["Give 5 Iron Spears to Lysander."]},"Dietrich":{"chapter":"Part I Ch 4","support":3,"renown":6,"extra":["Give 5 Iron Spears to Lysander."]},"Theodora":{"chapter":"Part I Ch 4","support":0,"renown":0,"extra":[]},"Leda":{"chapter":"Part I Ch 4","support":3,"renown":7,"extra":["Give 5 Iron Spears to Lysander."]}},"sheet":{"Cai":{"support":3.0,"renown":8.0},"Dietrich":{"support":3.0,"renown":6.0},"Theodora":{"support":0.0,"renown":0.0},"Leda":{"support":3.0,"renown":7.0},"other_requirements":"5x Iron Spears","notes":"","easy_for":"Dietrich (R6)","supports_lords":"","supports_retainers":"Esmeralda"}},"Buccar":{"name":"Buccar","tier":"B","growths":{"HP":50,"Str":50,"Mag":20,"Spd":25,"Dex":40,"Def":45,"Res":20,"Lck":30,"Cha":35},"growth_total":315,"skill":"Guardian's Duty","skill_desc":"Reduces damage to 90% when attacked.","proficiencies":["Axe","Spear"],"progression":["Gladiator","Light Cavalry","Bardinger"],"gifts":{"loved":["Crimson Ghosh","Dual Fish Knives"],"really_liked":["Arrowhead Gem","Light Shosh","Mature Ghosh","Mature Shosh","Niiza Garum","Outdoor Cooking Set","Rare Spices","Rustic Ghosh","Village Recipes","Volcano Ghosh","Young Ghosh","Young Shosh"],"likes":["Loyalty","training","dreaming about Leda's happiness"],"interests":["Cooking","mentoring young people"]},"recruit":{"Cai":null,"Dietrich":{"chapter":"Part I Ch 4","support":3,"renown":8,"extra":["Clear Leda's Paralogue"]},"Theodora":{"chapter":"Part I Ch 5","support":3,"renown":8,"extra":["Clear Leda's Paralogue"]},"Leda":{"chapter":"Part I Ch 1","support":0,"renown":0,"extra":[]}},"sheet":{"Cai":{"support":99.0,"renown":99.0},"Dietrich":{"support":3.0,"renown":8.0},"Theodora":{"support":3.0,"renown":8.0},"Leda":{"support":0.0,"renown":0.0},"other_requirements":"Leda's paralogue","notes":"After 9/2","easy_for":"Theodora (R8), Dietrich (R8)","supports_lords":"Dietrich","supports_retainers":""}},"Sirocco":{"name":"Sirocco","tier":"S","growths":{"HP":40,"Str":40,"Mag":40,"Spd":45,"Dex":50,"Def":35,"Res":35,"Lck":50,"Cha":45},"growth_total":380,"skill":"Goddess's Favor","skill_desc":"After combat, restores 5 HP to unit.","proficiencies":["Authority","Black Magic","Sword","White Magic"],"progression":["Diviner","Shaman","Ovate"],"gifts":{"loved":["Arrowhead Gem","Crimson Ghosh","Volcano Ghosh"],"really_liked":["Eastern Love Story","Joint-Relief Gloves","Light Shosh","Mature Ghosh","Mature Shosh","Pack of Pastels","Rustic Ghosh","Skin Balm","Young Ghosh","Young Shosh"],"likes":["The goddess Kalla","all women","reciting poetry"],"interests":["Reading","drawing portraits"]},"recruit":{"Cai":{"chapter":"Part I Ch 4","support":3,"renown":9,"extra":["Give Sirocco a copy of the Monument Verse"]},"Dietrich":{"chapter":"Part I Ch 5","support":3,"renown":9,"extra":["Give Sirocco a copy of the Monument Verse"]},"Theodora":{"chapter":"Part I Ch 5","support":1,"renown":5,"extra":["Give Sirocco a copy of the Monument Verse"]},"Leda":{"chapter":"Part I Ch 1","support":0,"renown":0,"extra":[]}},"sheet":{"Cai":{"support":3.0,"renown":9.0},"Dietrich":{"support":3.0,"renown":9.0},"Theodora":{"support":1.0,"renown":5.0},"Leda":{"support":0.0,"renown":0.0},"other_requirements":"Bard's Monument (quest)","notes":"Req. R6 checkpoints","easy_for":"Theodora (R5)","supports_lords":"","supports_retainers":""}},"Olympia":{"name":"Olympia","tier":"B","growths":{"HP":35,"Str":35,"Mag":50,"Spd":35,"Dex":35,"Def":30,"Res":40,"Lck":40,"Cha":40},"growth_total":340,"skill":"Competitive Zeal","skill_desc":"When equipped with magic, grants Crit+10.","proficiencies":["Axe","White Magic"],"progression":["Diviner","Shaman","Ovate"],"gifts":{"loved":["Eastern Earrings","Eastern Tea Leaves","Orgus Coffee","Tales of Adventure"],"really_liked":["Coffee Pastries","Common Coffee","Gaudy Bangle","Select Coffee","Skin Balm","Southern Coffee"],"likes":["Song","dance","playing instruments","writing songs","attracting attention"],"interests":["Caring for her instruments","studying music and dance"]},"recruit":{"Cai":{"chapter":"Part I Ch 4","support":3,"renown":8,"extra":["Give Olympia Scarlet Drops"]},"Dietrich":{"chapter":"Part I Ch 5","support":3,"renown":6,"extra":["Give Olympia Scarlet Drops"]},"Theodora":{"chapter":"Part I Ch 5","support":3,"renown":9,"extra":["Give Olympia Scarlet Drops"]},"Leda":{"chapter":"Part I Ch 3","support":0,"renown":0,"extra":[]}},"sheet":{"Cai":{"support":3.0,"renown":8.0},"Dietrich":{"support":3.0,"renown":6.0},"Theodora":{"support":3.0,"renown":9.0},"Leda":{"support":0.0,"renown":0.0},"other_requirements":"Scarlet Drops (quest)","notes":"","easy_for":"Dietrich (R6)","supports_lords":"","supports_retainers":"Tobias"}},"Mu":{"name":"Mu","tier":"A","growths":{"HP":30,"Str":30,"Mag":5,"Spd":30,"Dex":30,"Def":20,"Res":10,"Lck":10,"Cha":20},"growth_total":185,"skill":"Signs of Growth","skill_desc":"When unit levels up, grants enhanced basic stat growth.","proficiencies":["Axe","Sword","White Magic"],"progression":["Gladiator","Brigand","Warrior"],"gifts":{"loved":[],"really_liked":["Arrowhead Gem","Candy Crystals","Honey Pastries","Jamel Milk","Outdoor Cooking Set","Pickled Vegetables","Pure-White Cervi","Weak Cervi","Yarc Milk"],"likes":["Concocting new medicines","her father","her mother","eating sweets"],"interests":["Making medicinal elixirs","exercise"]},"recruit":{"Cai":{"chapter":"Part I Ch 4","support":3,"renown":9,"extra":["Give Mu 3 Glirmosa"]},"Dietrich":{"chapter":"Part I Ch 5","support":3,"renown":7,"extra":["Give Mu 3 Glirmosa"]},"Theodora":{"chapter":"Part I Ch 5","support":3,"renown":9,"extra":["Give Mu 3 Glirmosa"]},"Leda":{"chapter":"Part I Ch 1","support":0,"renown":0,"extra":[]}},"sheet":{"Cai":{"support":3.0,"renown":9.0},"Dietrich":{"support":3.0,"renown":7.0},"Theodora":{"support":3.0,"renown":9.0},"Leda":{"support":0.0,"renown":0.0},"other_requirements":"3x Glirmosa (check Mount Orgus Trail, Rear Mountain Path, Forest of No Return, Giant's Mount)","notes":"","easy_for":"Dietrich (R7)","supports_lords":"Cai","supports_retainers":"Peter, Mikaela, Lilian"}},"Gaitz":{"name":"Gaitz","tier":"B","growths":{"HP":50,"Str":50,"Mag":20,"Spd":40,"Dex":45,"Def":45,"Res":25,"Lck":40,"Cha":45},"growth_total":360,"skill":"Brave Assist","skill_desc":"Grants Def+3 to adjacent allies.","proficiencies":["Axe","Spear"],"progression":["Dreadnought"],"gifts":{"loved":[],"really_liked":["Arrowhead Gem","Common Coffee","Crimson Ghosh","Horse-Grooming Kit","Joint-Relief Gloves","Orgus Coffee","Training Pillar","Training Weights"],"likes":["Tea from Sai","Ferghanan horses","dueling","calligraphy"],"interests":["Brewing tea","practicing martial arts"]},"recruit":{"Cai":null,"Dietrich":{"chapter":"Part I Ch 4","support":3,"renown":10,"extra":["Clear Bertrand's Paralogue and reach Chapter 12."]},"Theodora":null,"Leda":null},"sheet":{"Cai":{"support":99.0,"renown":99.0},"Dietrich":{"support":3.0,"renown":10.0},"Theodora":{"support":99.0,"renown":99.0},"Leda":{"support":99.0,"renown":99.0},"other_requirements":"Bertrand's paralogue, wait until ch 12","notes":"After around 11/4","easy_for":"Dietrich only","supports_lords":"","supports_retainers":"Lilian"}},"Dante":{"name":"Dante","tier":"A","growths":{"HP":30,"Str":30,"Mag":45,"Spd":40,"Dex":40,"Def":20,"Res":40,"Lck":45,"Cha":30},"growth_total":320,"skill":"Stage Directions","skill_desc":"Grants Ddg+10 to allies within 2 spaces during their combats. Trigger % = ally's Cha ÷ 2.","proficiencies":["Authority","Black Magic","White Magic"],"progression":["Diviner","Shaman","Ovate"],"gifts":{"loved":[],"really_liked":["Arrowhead Gem","Common Coffee","Crimson Ghosh","Magic-Trick Set","Pack of Pastels","Select Coffee","The Works of Dante"],"likes":["Herself","writing quickly","searching for dramatic subjects"],"interests":["Studying people for research","seeing how others act"]},"recruit":{"Cai":{"chapter":"Part I Ch 5","support":3,"renown":10,"extra":["Give 8000 Gold to Dante."]},"Dietrich":{"chapter":"Part I Ch 4","support":2,"renown":8,"extra":["Give 8000 Gold to Dante."]},"Theodora":{"chapter":"Part I Ch 5","support":3,"renown":6,"extra":["Give 8000 Gold to Dante."]},"Leda":{"chapter":"Part I Ch 4","support":3,"renown":10,"extra":["Give 8000 Gold to Dante."]}},"sheet":{"Cai":{"support":3.0,"renown":10.0},"Dietrich":{"support":2.0,"renown":8.0},"Theodora":{"support":3.0,"renown":6.0},"Leda":{"support":3.0,"renown":10.0},"other_requirements":"8000 gold","notes":"","easy_for":"Theodora (R6)","supports_lords":"Leda","supports_retainers":"Sirocco"}},"Ursula":{"name":"Ursula","tier":"B","growths":{"HP":40,"Str":35,"Mag":35,"Spd":50,"Dex":50,"Def":35,"Res":30,"Lck":40,"Cha":45},"growth_total":360,"skill":"Management Skills","skill_desc":"Allows storage access to unit and allies within 2 spaces.","proficiencies":["Bow","Sword"],"progression":["Hunter","Archer","Sniper"],"gifts":{"loved":[],"really_liked":["Arrowhead Gem","Common Coffee","Crimson Ghosh","Eastern Love Story","Kitten Figurine","Mane Ornament","Pack of Pastels"],"likes":["Poetry","animals","flowers in the shade","counting money"],"interests":["Reading","drawing pictures"]},"recruit":{"Cai":{"chapter":"Part I Ch 4","support":3,"renown":10,"extra":["Complete Talimun's Paralogue then select Agree 3 times"]},"Dietrich":{"chapter":"Part I Ch 4","support":3,"renown":7,"extra":["Complete Talimun's Paralogue then select Agree 3 times"]},"Theodora":{"chapter":"Part I Ch 5","support":3,"renown":9,"extra":["Complete Talimun's Paralogue then select Agree 3 times"]},"Leda":null},"sheet":{"Cai":{"support":3.0,"renown":10.0},"Dietrich":{"support":3.0,"renown":7.0},"Theodora":{"support":3.0,"renown":9.0},"Leda":{"support":99.0,"renown":99.0},"other_requirements":"Talimun's paralogue, then Agree three times","notes":"After 9/17","easy_for":"Dietrich (R7)","supports_lords":"","supports_retainers":"Peter, Bonaventure, Sirocco"}},"Simon":{"name":"Simon","tier":"B","growths":{"HP":50,"Str":50,"Mag":20,"Spd":35,"Dex":40,"Def":40,"Res":25,"Lck":50,"Cha":35},"growth_total":345,"skill":"Close Call","skill_desc":"If unit's HP ≥ 2 and damage would reduce it to 0, leaves unit with 1 HP. Trigger % = Lck.","proficiencies":["Axe","Infantry","Sword"],"progression":["Gladiator","Brigand","Warrior"],"gifts":{"loved":[],"really_liked":["Crimson Ghosh","Dual Fish Knives","Protection Figurine"],"likes":["Fighting to the death","food from his hometown","womanizing"],"interests":["Carving wooden figures","making preserves"]},"recruit":{"Cai":{"chapter":"Part I Ch 5","support":3,"renown":8,"extra":["Pay 500 Gold and pick tails on coin toss."]},"Dietrich":{"chapter":"Part I Ch 4","support":3,"renown":7,"extra":["Pay 500 Gold and pick tails on coin toss."]},"Theodora":{"chapter":"Part I Ch 5","support":3,"renown":7,"extra":["Pay 500 Gold and pick tails on coin toss."]},"Leda":{"chapter":"Part I Ch 4","support":3,"renown":6,"extra":["Pay 500 Gold and pick tails on coin toss."]}},"sheet":{"Cai":{"support":3.0,"renown":8.0},"Dietrich":{"support":3.0,"renown":7.0},"Theodora":{"support":3.0,"renown":7.0},"Leda":{"support":3.0,"renown":6.0},"other_requirements":"500 gold, choose tails","notes":"","easy_for":"Leda (R6)","supports_lords":"Theodora","supports_retainers":"Mikaela, Lilian"}},"Diego":{"name":"Diego","tier":"A","growths":{"HP":45,"Str":40,"Mag":20,"Spd":45,"Dex":60,"Def":35,"Res":20,"Lck":35,"Cha":30},"growth_total":330,"skill":"Caretaker","skill_desc":"Adjacent allies cannot suffer a follow-up during combat. Trigger % = 5.","proficiencies":["Bow","Infantry","Sword"],"progression":["Gladiator","Myrmidon","Shido"],"gifts":{"loved":["Arrowhead Gem"],"really_liked":["Crimson Ghosh","Joint-Relief Gloves","Protection Figurine","Training Pillar","Training Weights"],"likes":["Walking in the forest","foraging medicinal herbs","Orchel"],"interests":["Playing the flute","being devoted to Orchel"]},"recruit":{"Cai":{"chapter":"Part I Ch 3","support":3,"renown":10,"extra":["Clear Orchel's Regret Paralogue"]},"Dietrich":{"chapter":"Part I Ch 4","support":3,"renown":9,"extra":["Clear Orchel's Regret Paralogue"]},"Theodora":{"chapter":"Part I Ch 5","support":2,"renown":8,"extra":["Clear Orchel's Regret Paralogue"]},"Leda":{"chapter":"Part I Ch 4","support":3,"renown":8,"extra":["Clear Orchel's Regret Paralogue"]}},"sheet":{"Cai":{"support":3.0,"renown":10.0},"Dietrich":{"support":3.0,"renown":9.0},"Theodora":{"support":2.0,"renown":8.0},"Leda":{"support":3.0,"renown":8.0},"other_requirements":"Orchel's paralogue","notes":"After 10/18","easy_for":"Theodora (R8), Leda (R8)","supports_lords":"Theodora","supports_retainers":"Esmeralda"}},"Ninae":{"name":"Ninae","tier":"A","growths":{"HP":45,"Str":45,"Mag":35,"Spd":35,"Dex":45,"Def":35,"Res":45,"Lck":50,"Cha":40},"growth_total":375,"skill":"Spirits' Voices","skill_desc":"If foes uses magic, grants Hit/Avo+10 to unit during combat.","proficiencies":["Spear","White Magic"],"progression":["Diviner","Priest","Bishop"],"gifts":{"loved":["Strategy Manuscript","Tales of Adventure"],"really_liked":["Arrowhead Gem","Crimson Ghosh","Eastern Black Silk","Eastern Tea Leaves"],"likes":["Pitiable people","talking to spirits","her keepsake necklace","skygazing"],"interests":["Daydreaming","training"]},"recruit":{"Cai":{"chapter":"Part I Ch 3","support":3,"renown":6,"extra":["Give 1 Paradise Fish to Ninae."]},"Dietrich":{"chapter":"Part I Ch 4","support":3,"renown":8,"extra":["Give 1 Paradise Fish to Ninae."]},"Theodora":{"chapter":"Part I Ch 5","support":3,"renown":6,"extra":["Give 1 Paradise Fish to Ninae."]},"Leda":{"chapter":"Part I Ch 4","support":3,"renown":8,"extra":["Give 1 Paradise Fish to Ninae."]}},"sheet":{"Cai":{"support":3.0,"renown":6.0},"Dietrich":{"support":3.0,"renown":8.0},"Theodora":{"support":3.0,"renown":6.0},"Leda":{"support":3.0,"renown":8.0},"other_requirements":"1x Paradise Fish (check Lake Brontes)","notes":"","easy_for":"Theodora (R6), Leda (R6), Cai (R6)","supports_lords":"Cai","supports_retainers":"Peter, Lysander"}},"Sha Lan":{"name":"Sha Lan","tier":"B","growths":{"HP":35,"Str":30,"Mag":45,"Spd":35,"Dex":50,"Def":30,"Res":45,"Lck":35,"Cha":40},"growth_total":345,"skill":"Cooler Heads","skill_desc":"After using Draw Back, unit can use assist magic.","proficiencies":["Authority","Spear","White Magic"],"progression":["Diviner","Priest","Bishop"],"gifts":{"loved":["Special “Medicine”"],"really_liked":["Common Coffee","Energizing Ghosh","Niiza Garum","Outdoor Cooking Set","Pastry Cookbook","Select Coffee"],"likes":["Delicious food","drinks","socializing"],"interests":["Caring for Anatolia","studying"]},"recruit":{"Cai":null,"Dietrich":{"chapter":"Part I Ch 4","support":3,"renown":10,"extra":["Clear Anatolia's Paralogue and answer questions correctly."]},"Theodora":null,"Leda":{"chapter":"Part I Ch 4","support":3,"renown":8,"extra":["Clear Anatolia's Paralogue and answer questions correctly."]}},"sheet":{"Cai":{"support":99.0,"renown":99.0},"Dietrich":{"support":3.0,"renown":10.0},"Theodora":{"support":99.0,"renown":99.0},"Leda":{"support":3.0,"renown":8.0},"other_requirements":"Anatolia's paralogue, then choose Saramis, Da Mina, Grounded Ship","notes":"After 10/5","easy_for":"Leda (R8)","supports_lords":"","supports_retainers":"Sirocco"}},"Nezha":{"name":"Nezha","tier":"A","growths":{"HP":45,"Str":55,"Mag":25,"Spd":45,"Dex":50,"Def":35,"Res":25,"Lck":30,"Cha":25},"growth_total":335,"skill":"Quick Draw","skill_desc":"If unit attacks first, grants Atk+3 during combat. Trigger % = 50.","proficiencies":["Infantry","Sword"],"progression":["Gladiator","Myrmidon","Shido"],"gifts":{"loved":["Strategy Manuscript","Tales of Adventure"],"really_liked":["Eastern Tea Leaves","Pickled Bulbs","Sturdy Rucksack","Training Bracelet","Wing Fletching"],"likes":["Physical activity","justice","fighting","good food"],"interests":["Combat training","eating large amounts of food"]},"recruit":{"Cai":{"chapter":"Part I Ch 5","support":3,"renown":6,"extra":["Give 3 Sandworm Meat to Nezha."]},"Dietrich":{"chapter":"Part I Ch 4","support":3,"renown":10,"extra":["Give 3 Sandworm Meat to Nezha."]},"Theodora":{"chapter":"Part I Ch 5","support":2,"renown":6,"extra":["Give 3 Sandworm Meat to Nezha."]},"Leda":{"chapter":"Part I Ch 4","support":3,"renown":9,"extra":["Give 3 Sandworm Meat to Nezha."]}},"sheet":{"Cai":{"support":3.0,"renown":6.0},"Dietrich":{"support":3.0,"renown":10.0},"Theodora":{"support":2.0,"renown":6.0},"Leda":{"support":3.0,"renown":9.0},"other_requirements":"3x Sandworm Meat","notes":"","easy_for":"Theodora (R6), Cai (R6)","supports_lords":"Theodora","supports_retainers":"Ultand, Fabio"}},"Guzran":{"name":"Guzran","tier":"S","growths":{"HP":45,"Str":45,"Mag":20,"Spd":50,"Dex":45,"Def":35,"Res":20,"Lck":45,"Cha":30},"growth_total":335,"skill":"Hot-Headed","skill_desc":"Grants one of Hit+10, Avo+10, or Crit+10 during combat.","proficiencies":["Infantry","Sword"],"progression":["Gladiator","Myrmidon","Shido"],"gifts":{"loved":["Strategy Manuscript","Tales of Adventure","Volcano Ghosh"],"really_liked":["Aromatic Shosh","Common Coffee","Eastern Tea Leaves","Huge Fish Eyeball","Jade Ghosh","Light Shosh","Mature Ghosh","Mature Shosh","Orgus Coffee","Rustic Ghosh","Secret Ghosh","Select Coffee","Southern Coffee","Southern Ghosh","Strong Seasonings","Sun Ghosh","Wing Fletching","Young Ghosh","Young Shosh"],"likes":["Booze","women","interesting people","young greenhorns"],"interests":["Boasting"]},"recruit":{"Cai":{"chapter":"Part I Ch 3","support":1,"renown":2,"extra":[]},"Dietrich":{"chapter":"Part I Ch 4","support":3,"renown":8,"extra":[]},"Theodora":{"chapter":"Part I Ch 5","support":3,"renown":8,"extra":[]},"Leda":{"chapter":"Part I Ch 4","support":1,"renown":3,"extra":[]}},"sheet":{"Cai":{"support":0.0,"renown":0.0},"Dietrich":{"support":3.0,"renown":8.0},"Theodora":{"support":3.0,"renown":8.0},"Leda":{"support":1.0,"renown":3.0},"other_requirements":"","notes":"","easy_for":"Leda (R3)","supports_lords":"Leda","supports_retainers":"Mikaela, Mu"}},"Io":{"name":"Io","tier":"B","growths":{"HP":45,"Str":40,"Mag":25,"Spd":35,"Dex":45,"Def":40,"Res":25,"Lck":35,"Cha":35},"growth_total":325,"skill":"With My Steed","skill_desc":"(Cavalry) If unit attacks first, grants Shld+3, Ddg+30 during combat.","proficiencies":["Axe","Spear"],"progression":["Gladiator","Light Cavalry","Bardinger"],"gifts":{"loved":[],"really_liked":["Arrowhead Gem","Board-Game Tactics","Common Coffee","Crimson Ghosh","Horse-Grooming Kit","Joint-Relief Gloves","Kitten Figurine","Mane Ornament","Protection Figurine","Spirit Board Game","Sturdy Rucksack","Training Pillar","Training Weights"],"likes":["Chivalry","self-discipline","his beloved horse Rocinan"],"interests":["Caring for his faithful steed","being quiet"]},"recruit":{"Cai":{"chapter":"Part I Ch 3","support":3,"renown":10,"extra":["Give 4000 Gold to Io."]},"Dietrich":{"chapter":"Part I Ch 4","support":2,"renown":3,"extra":["Give 800 Gold to Io."]},"Theodora":{"chapter":"Part I Ch 5","support":3,"renown":10,"extra":["Give 4000 Gold to Io."]},"Leda":{"chapter":"Part I Ch 4","support":1,"renown":6,"extra":["Give 1500 Gold to Io."]}},"sheet":{"Cai":{"support":3.0,"renown":10.0},"Dietrich":{"support":2.0,"renown":3.0},"Theodora":{"support":3.0,"renown":10.0},"Leda":{"support":1.0,"renown":6.0},"other_requirements":"4000 gold (T/C), 1500 gold (L), 800 gold (D)","notes":"","easy_for":"Dietrich (R3), Leda (S1)","supports_lords":"","supports_retainers":"Tialla"}},"Catania":{"name":"Catania","tier":"A","growths":{"HP":35,"Str":35,"Mag":35,"Spd":55,"Dex":50,"Def":30,"Res":35,"Lck":40,"Cha":45},"growth_total":360,"skill":"Punishing Squall","skill_desc":"If AS ≥ foe's AS+3, grants Hit+20 during combat.","proficiencies":["Spear","Sword"],"progression":["Gladiator","Myrmidon","Shido"],"gifts":{"loved":["Eastern Black Silk","Eastern Earrings","Eastern Tea Leaves","Tales of Adventure"],"really_liked":["Coffee Pastries","Common Coffee","Dagda Beard Grass","Gaudy Bangle","Horse-Grooming Kit","Kitten Figurine","Magic-Trick Set","Orgus Coffee","Pack of Pastels","Select Coffee","Southern Coffee"],"likes":["Sterling wares","sterling people","sterling meals"],"interests":["Gathering information","making a name for herself"]},"recruit":{"Cai":{"chapter":"Part I Ch 3","support":3,"renown":10,"extra":[]},"Dietrich":{"chapter":"Part I Ch 4","support":1,"renown":8,"extra":[]},"Theodora":{"chapter":"Part I Ch 5","support":3,"renown":7,"extra":[]},"Leda":{"chapter":"Part I Ch 4","support":1,"renown":2,"extra":[]}},"sheet":{"Cai":{"support":3.0,"renown":10.0},"Dietrich":{"support":1.0,"renown":8.0},"Theodora":{"support":3.0,"renown":7.0},"Leda":{"support":0.0,"renown":0.0},"other_requirements":"","notes":"","easy_for":"Theodora (R7), Dietrich (S1)","supports_lords":"Dietrich","supports_retainers":"Lysander"}},"Nydine":{"name":"Nydine","tier":"B","growths":{"HP":45,"Str":40,"Mag":30,"Spd":45,"Dex":40,"Def":30,"Res":25,"Lck":35,"Cha":35},"growth_total":325,"skill":"Barge Through","skill_desc":"(Cavalry) Can move through foe's space. (Cannot move through large-scale foes.)","proficiencies":["Axe"],"progression":["Gladiator","Light Cavalry","Bardinger"],"gifts":{"loved":["Strategy Manuscript","Tales of Adventure"],"really_liked":["Eastern Love Story","Eastern Tea Leaves","Kitten Figurine","Sturdy Rucksack","Training Bracelet","Training Weights","Wing Fletching"],"likes":["Honoring her duties","caring for orniuses"],"interests":["Improving her combat abilities","reading"]},"recruit":{"Cai":{"chapter":"Part I Ch 3","support":1,"renown":6,"extra":["Give 2 Bronze Axes to Nydine."]},"Dietrich":{"chapter":"Part I Ch 4","support":2,"renown":5,"extra":["Give 2 Bronze Axes to Nydine."]},"Theodora":{"chapter":"Part I Ch 5","support":3,"renown":5,"extra":["Give 3 Iron Axes to Nydine."]},"Leda":{"chapter":"Part I Ch 4","support":3,"renown":10,"extra":["Give 3 Iron Axes to Nydine."]}},"sheet":{"Cai":{"support":1.0,"renown":6.0},"Dietrich":{"support":2.0,"renown":5.0},"Theodora":{"support":3.0,"renown":5.0},"Leda":{"support":3.0,"renown":10.0},"other_requirements":"2x Bronze Axes (D/C), 3x Iron Axes (T/L)","notes":"","easy_for":"Theodora (R5), Dietrich (R5), Cai (S1)","supports_lords":"","supports_retainers":"Bonaventure, Lilian"}},"Benditz":{"name":"Benditz","tier":"C","growths":{"HP":50,"Str":35,"Mag":20,"Spd":35,"Dex":50,"Def":35,"Res":25,"Lck":30,"Cha":35},"growth_total":315,"skill":"Wheeled Warrior","skill_desc":"(Cavalry) If unit is a charioteer, grants Hit+20.","proficiencies":["Bow"],"progression":["Gladiator","Myrmidon","Shido"],"gifts":{"loved":["Eastern Black Silk","Eastern Earrings","Eastern Tea Leaves","Strategy Manuscript","Tales of Adventure"],"really_liked":["Coffee Pastries","Common Coffee","Eastern Love Story","Gaudy Bangle","Orgus Coffee","Select Coffee","Southern Coffee","Wing Fletching"],"likes":["The Great August's tactics","up-and-coming young people"],"interests":["Lecturing young people","reading"]},"recruit":{"Cai":{"chapter":"Part I Ch 6","support":3,"renown":9,"extra":[]},"Dietrich":{"chapter":"Part I Ch 5","support":2,"renown":7,"extra":[]},"Theodora":{"chapter":"Part I Ch 6","support":1,"renown":8,"extra":[]},"Leda":{"chapter":"Part I Ch 5","support":3,"renown":7,"extra":[]}},"sheet":{"Cai":{"support":3.0,"renown":9.0},"Dietrich":{"support":2.0,"renown":7.0},"Theodora":{"support":1.0,"renown":8.0},"Leda":{"support":3.0,"renown":7.0},"other_requirements":"","notes":"Appears @ 4/11","easy_for":"Leda (R7), Dietrich (R7), Theodora (S1)","supports_lords":"","supports_retainers":""}},"Alexandra":{"name":"Alexandra","tier":"A","growths":{"HP":30,"Str":35,"Mag":35,"Spd":55,"Dex":45,"Def":30,"Res":40,"Lck":50,"Cha":50},"growth_total":370,"skill":"Silver Maiden","skill_desc":"Grants Hit/Avo+5 to unit for each adjacent ally.","proficiencies":["Spear","Sword"],"progression":["Gladiator","Myrmidon","Shido"],"gifts":{"loved":["Eastern Earrings","Strategy Manuscript","Tales of Adventure"],"really_liked":["Alecto Garum","Dagda Beard Grass","Garum","Gaudy Bangle","Herbal Recipe Guide","Home-Recipe Book","Horse-Grooming Kit","Kitten Figurine","Mane Ornament","Pastry Cookbook","Smooth Garum","Strong Seasonings","Sturdy Rucksack","Training Bracelet","Village Recipes","Wing Fletching"],"likes":["Her parents","Bucephalus","virtuous men","talking about love"],"interests":["Combat training","caring for her beloved steed"]},"recruit":{"Cai":{"chapter":"Part I Ch 7","support":2,"renown":7,"extra":[]},"Dietrich":{"chapter":"Part I Ch 7","support":3,"renown":8,"extra":[]},"Theodora":{"chapter":"Part I Ch 8","support":1,"renown":6,"extra":[]},"Leda":{"chapter":"Part I Ch 7","support":3,"renown":10,"extra":[]}},"sheet":{"Cai":{"support":2.0,"renown":7.0},"Dietrich":{"support":3.0,"renown":8.0},"Theodora":{"support":1.0,"renown":6.0},"Leda":{"support":3.0,"renown":10.0},"other_requirements":"","notes":"Appears @ 5/29","easy_for":"Theodora (R6), Cai (R7)","supports_lords":"Cai, Theodora","supports_retainers":"Sirocco, Olympia"}},"Yang Jie":{"name":"Yang Jie","tier":"C","growths":{"HP":50,"Str":35,"Mag":40,"Spd":35,"Dex":35,"Def":30,"Res":40,"Lck":40,"Cha":25},"growth_total":330,"skill":"Monkly Havoc","skill_desc":"After defeating a foe, unit recovers HP equal to max HP. Trigger % = Lck / 2","proficiencies":["Axe","White Magic"],"progression":["Diviner","Priest","Bishop","War Monk"],"gifts":{"loved":["Eastern Tea Leaves","Poems of the Greats","Strategy Manuscript","Tales of Adventure","Volcano Ghosh"],"really_liked":["Aromatic Shosh","Coffee Pastries","Common Coffee","Flexible Fishing Rod","Herbal Recipe Guide","Home-Recipe Book","Huge Fish Eyeball","Jade Ghosh","Kitten Figurine","Light Shosh","Mature Ghosh","Mature Shosh","Orgus Coffee","Pastry Cookbook","Rustic Ghosh","Secret Ghosh","Select Coffee","Sharp Fishhook","Southern Coffee","Southern Ghosh","Sun Ghosh","The Works of Dante","Trader's Handbook","Village Recipes","Young Ghosh"],"likes":["Alcohol","tales of old","distant journeys","saving the weak"],"interests":["Collecting liquors","giving sermons"]},"recruit":{"Cai":{"chapter":"Part I Ch 3","support":2,"renown":3,"extra":["Answer Yang Jie’s 3 Questions Correctly."]},"Dietrich":{"chapter":"Part I Ch 4","support":1,"renown":2,"extra":[]},"Theodora":{"chapter":"Part I Ch 5","support":3,"renown":9,"extra":["Answer Yang Jie’s 3 Questions Correctly."]},"Leda":{"chapter":"Part I Ch 4","support":3,"renown":8,"extra":["Answer Yang Jie’s 3 Questions Correctly."]}},"sheet":{"Cai":{"support":2.0,"renown":3.0},"Dietrich":{"support":0.0,"renown":0.0},"Theodora":{"support":3.0,"renown":9.0},"Leda":{"support":3.0,"renown":8.0},"other_requirements":"choose Cheese, Moon, any last answer","notes":"","easy_for":"Cai (R3)","supports_lords":"","supports_retainers":""}},"Noctula":{"name":"Noctula","tier":"B","growths":{"HP":50,"Str":45,"Mag":20,"Spd":45,"Dex":40,"Def":40,"Res":20,"Lck":35,"Cha":30},"growth_total":325,"skill":"Warrior's Clarity","skill_desc":"After combat, grants Avo+3 until unit's next phase.","proficiencies":["Axe","Infantry"],"progression":["Gladiator","Brigand","Warrior"],"gifts":{"loved":["Strategy Manuscript","Tales of Adventure"],"really_liked":["Eastern Tea Leaves","Protection Figurine","Sturdy Rucksack","Training Bracelet","Wing Fletching"],"likes":["The city and its people","brawling"],"interests":["Sightseeing in the city","training"]},"recruit":{"Cai":{"chapter":"Part I Ch 3","support":1,"renown":4,"extra":[]},"Dietrich":{"chapter":"Part I Ch 4","support":1,"renown":6,"extra":[]},"Theodora":{"chapter":"Part I Ch 5","support":1,"renown":3,"extra":[]},"Leda":{"chapter":"Part I Ch 4","support":3,"renown":8,"extra":[]}},"sheet":{"Cai":{"support":1.0,"renown":4.0},"Dietrich":{"support":1.0,"renown":6.0},"Theodora":{"support":1.0,"renown":3.0},"Leda":{"support":3.0,"renown":8.0},"other_requirements":"","notes":"","easy_for":"Theodora (R3), Cai (R4)","supports_lords":"","supports_retainers":""}},"Sofia":{"name":"Sofia","tier":"B","growths":{"HP":35,"Str":30,"Mag":45,"Spd":40,"Dex":30,"Def":25,"Res":40,"Lck":30,"Cha":40},"growth_total":315,"skill":"Healing Knowledge","skill_desc":"When healing an ally with magic, restores +10 HP.","proficiencies":["Bow","White Magic"],"progression":["Diviner","Priest","Bishop"],"gifts":{"loved":["Blue-Rose Bouquet","Dual Fish Knives","Volcano Ghosh"],"really_liked":["Arrowhead Gem","Common Coffee","Crimson Ghosh","Ginji Cervi","Honey Milk","Honey Pastries","Jamel Milk","Kitten Figurine","Magic-Trick Set","Niiza Garum","Outdoor Cooking Set","Pack of Pastels","Pastry Cookbook","Pickled Vegetables","Protection Figurine","Pure-White Cervi","Sharp Fishhook","Yarc Milk"],"likes":["Delicious food","the moment when food is served (and soon vanishes)"],"interests":["Proselytizing about Solel","eating her fill"]},"recruit":{"Cai":{"chapter":"Part I Ch 3","support":3,"renown":9,"extra":[]},"Dietrich":{"chapter":"Part I Ch 4","support":3,"renown":9,"extra":[]},"Theodora":{"chapter":"Part I Ch 5","support":1,"renown":2,"extra":[]},"Leda":{"chapter":"Part I Ch 4","support":3,"renown":7,"extra":[]}},"sheet":{"Cai":{"support":3.0,"renown":9.0},"Dietrich":{"support":3.0,"renown":9.0},"Theodora":{"support":0.0,"renown":0.0},"Leda":{"support":3.0,"renown":7.0},"other_requirements":"","notes":"","easy_for":"Leda (R7)","supports_lords":"","supports_retainers":"Peter, Mikaela, Tobias"}},"Peppe":{"name":"Peppe","tier":"B","growths":{"HP":30,"Str":30,"Mag":25,"Spd":60,"Dex":45,"Def":30,"Res":30,"Lck":45,"Cha":30},"growth_total":325,"skill":"Hunter's Snare","skill_desc":"In enemy's phase, if foes is damaged, unit attacks first during combat. Trigger % = 30.","proficiencies":["Bow","Infantry","Sword"],"progression":["Hunter","Archer","Sniper"],"gifts":{"loved":["Arrowhead Gem"],"really_liked":["Board-Game Tactics","Common Coffee","Crimson Ghosh","Joint-Relief Gloves","Kitten Figurine","Magic-Trick Set","Outdoor Cooking Set","Pack of Pastels","Pastry Cookbook","Protection Figurine","Sharp Fishhook","Spirit Board Game","Sturdy Rucksack","The Works of Dante","Training Pillar","Training Weights"],"likes":["The spirits","the sun","his hometown"],"interests":["Hunting","people watching in the city"]},"recruit":{"Cai":{"chapter":"Part I Ch 3","support":1,"renown":9,"extra":["Clear Bertrand's Paralogue."]},"Dietrich":{"chapter":"Part I Ch 4","support":3,"renown":8,"extra":["Clear Bertrand's Paralogue."]},"Theodora":{"chapter":"Part I Ch 5","support":2,"renown":7,"extra":["Clear Bertrand's Paralogue."]},"Leda":null},"sheet":{"Cai":{"support":1.0,"renown":9.0},"Dietrich":{"support":3.0,"renown":8.0},"Theodora":{"support":2.0,"renown":7.0},"Leda":{"support":99.0,"renown":99.0},"other_requirements":"Bertrand's paralogue","notes":"After 9/17","easy_for":"Theodora (R7), Cai (S1)","supports_lords":"","supports_retainers":"Ultand"}},"Seteth":{"name":"Seteth","tier":"A","growths":{"HP":45,"Str":45,"Mag":30,"Spd":40,"Dex":45,"Def":40,"Res":35,"Lck":30,"Cha":50},"growth_total":360,"skill":"Ready for Battle","skill_desc":"For the first combat in enemy's phase, unit attacks first. Trigger % = 50.","proficiencies":["Authority","Axe","Spear"],"progression":["Ornius Rider","Armored Ornius Rider","Dragoon"],"gifts":{"loved":["Poems of the Greats","Strategy Manuscript","Tales of Adventure"],"really_liked":["Common Coffee","Eastern Tea Leaves","Flexible Fishing Rod","Herbal Recipe Guide","Home-Recipe Book","Huge Fish Eyeball","Orgus Coffee","Pastry Cookbook","Select Coffee","Sharp Fishhook","Southern Coffee","Sturdy Rucksack","Trader's Handbook","Village Recipes"],"likes":["The teachings of Seiros","fishing","his daughter","hardworking people"],"interests":["Writing fables","preaching","teaching"]},"recruit":{"Cai":{"chapter":"Part I Ch 3","support":3,"renown":6,"extra":["Complete Seteth's Request."]},"Dietrich":null,"Theodora":{"chapter":"Part I Ch 5","support":3,"renown":6,"extra":["Complete Seteth's Request."]},"Leda":{"chapter":"Part I Ch 4","support":3,"renown":10,"extra":["Complete Seteth's Request."]}},"sheet":{"Cai":{"support":3.0,"renown":6.0},"Dietrich":{"support":99.0,"renown":99.0},"Theodora":{"support":3.0,"renown":6.0},"Leda":{"support":3.0,"renown":10.0},"other_requirements":"Seteth's request (quest)","notes":"Req. high lvl battle","easy_for":"Theodora (R6), Cai (R6)","supports_lords":"Dietrich (not recruitable)","supports_retainers":"Tialla"}},"Loretta":{"name":"Loretta","tier":"B","growths":{"HP":35,"Str":35,"Mag":35,"Spd":55,"Dex":40,"Def":30,"Res":40,"Lck":30,"Cha":30},"growth_total":330,"skill":"Steadfast","skill_desc":"If unit's HP ≥ 50%, grants Avo+10 during combat.","proficiencies":["Spear","Sword"],"progression":["Gladiator","Myrmidon","Shido"],"gifts":{"loved":[],"really_liked":["Arrowhead Gem","Crimson Ghosh","Honey Milk","Honey Pastries","Joint-Relief Gloves","Mellow Pastries","Pastry Cookbook","Pure-White Cervi","Training Pillar","Training Weights"],"likes":["Reliable people","sweets","her friends"],"interests":["Sword training","fishing"]},"recruit":{"Cai":{"chapter":"Part I Ch 3","support":3,"renown":7,"extra":["Give 3 Iron Swords to Loretta."]},"Dietrich":{"chapter":"Part I Ch 4","support":3,"renown":9,"extra":["Give 3 Iron Swords to Loretta."]},"Theodora":{"chapter":"Part I Ch 5","support":3,"renown":5,"extra":["Give 3 Iron Swords to Loretta."]},"Leda":{"chapter":"Part I Ch 4","support":3,"renown":5,"extra":["Give 3 Iron Swords to Loretta."]}},"sheet":{"Cai":{"support":3.0,"renown":7.0},"Dietrich":{"support":3.0,"renown":9.0},"Theodora":{"support":3.0,"renown":5.0},"Leda":{"support":3.0,"renown":5.0},"other_requirements":"3x Iron Swords","notes":"","easy_for":"Theodora (R5), Leda (R5)","supports_lords":"","supports_retainers":"Ultand"}},"Jester":{"name":"Jester","tier":"B","growths":{"HP":40,"Str":35,"Mag":15,"Spd":60,"Dex":45,"Def":35,"Res":25,"Lck":40,"Cha":40},"growth_total":335,"skill":"Blink of an Eye","skill_desc":"After using Swap, grants Def+3 until unit's next phase.","proficiencies":["Bow","Infantry","Sword"],"progression":["Hunter","Archer","Sniper"],"gifts":{"loved":["Arrowhead Gem"],"really_liked":["Board-Game Tactics","Crimson Ghosh","Dual Fish Knives","Joint-Relief Gloves","Spirit Board Game"],"likes":["The White-Maned Demon","seeing fear in his opponents' faces"],"interests":["Slicing opponents into pieces","terrifying audiences"]},"recruit":{"Cai":{"chapter":"Part I Ch 4","support":3,"renown":10,"extra":["Complete Jester's Three Combat Quests."]},"Dietrich":{"chapter":"Part I Ch 4","support":3,"renown":6,"extra":["Complete Jester's Three Combat Quests."]},"Theodora":{"chapter":"Part I Ch 5","support":3,"renown":9,"extra":["Complete Jester's Three Combat Quests."]},"Leda":{"chapter":"Part I Ch 4","support":3,"renown":10,"extra":["Complete Jester's Three Combat Quests."]}},"sheet":{"Cai":{"support":3.0,"renown":10.0},"Dietrich":{"support":3.0,"renown":6.0},"Theodora":{"support":3.0,"renown":9.0},"Leda":{"support":3.0,"renown":10.0},"other_requirements":"\"3x \"\"Combat Quests\"\"\"","notes":"","easy_for":"Dietrich (R6)","supports_lords":"Leda","supports_retainers":"Peter, Mikaela, Buccar"}},"Goliath":{"name":"Goliath","tier":"A","growths":{"HP":55,"Str":60,"Mag":5,"Spd":15,"Dex":30,"Def":50,"Res":20,"Lck":35,"Cha":20},"growth_total":290,"skill":"Heavyweight Class","skill_desc":"Unit cannot change to cavalry or flying. Grants Bld+5.","proficiencies":["Axe"],"progression":["Gladiator","Armored Knight","Dreadnought"],"gifts":{"loved":["Strategy Manuscript","Volcano Ghosh"],"really_liked":["Aromatic Shosh","Eastern Tea Leaves","Jade Ghosh","Light Shosh","Mature Ghosh","Mature Shosh","Rustic Ghosh","Secret Ghosh","Southern Ghosh","Sturdy Rucksack","Sun Ghosh","Training Bracelet","Wing Fletching","Young Ghosh"],"likes":["Rampaging","food","animals","smoking meat"],"interests":["Training","competing as a gladiator"]},"recruit":{"Cai":{"chapter":"Part I Ch 4","support":3,"renown":7,"extra":["Give 3 Giants' Meat to Goliath."]},"Dietrich":{"chapter":"Part I Ch 4","support":3,"renown":6,"extra":["Give 3 Giants' Meat to Goliath."]},"Theodora":{"chapter":"Part I Ch 5","support":3,"renown":9,"extra":["Give 3 Giants' Meat to Goliath."]},"Leda":{"chapter":"Part I Ch 4","support":3,"renown":10,"extra":["Give 3 Giants' Meat to Goliath."]}},"sheet":{"Cai":{"support":3.0,"renown":7.0},"Dietrich":{"support":3.0,"renown":6.0},"Theodora":{"support":3.0,"renown":9.0},"Leda":{"support":3.0,"renown":10.0},"other_requirements":"3x Giant's Meat (check Sand-Shadow Fort)","notes":"","easy_for":"Dietrich (R6), Cai (R7)","supports_lords":"Cai","supports_retainers":"Ultand"}},"Ludia":{"name":"Ludia","tier":"A","growths":{"HP":40,"Str":35,"Mag":20,"Spd":55,"Dex":45,"Def":30,"Res":20,"Lck":30,"Cha":30},"growth_total":305,"skill":"Falcon","skill_desc":"If unit attacks first, grants AS+3 during combat.","proficiencies":["Infantry","Sword"],"progression":["Gladiator","Myrmidon","Shido"],"gifts":{"loved":["Eastern Black Silk","Eastern Earrings","Eastern Love Story","Eastern Tea Leaves","Strategy Manuscript","Tales of Adventure"],"really_liked":["Coffee Pastries","Common Coffee","Everyday Scenes","Gaudy Bangle","Herbal Recipe Guide","Home-Recipe Book","Magic-Trick Set","Orgus Coffee","Pastry Cookbook","Select Coffee","Sharp Fishhook","Skin Balm","Southern Coffee","Sturdy Rucksack","Trader's Handbook","Training Bracelet","Village Recipes"],"likes":["Writing stories","appreciating art","talking about love and romance"],"interests":["Reading adventure stories","going shopping"]},"recruit":{"Cai":{"chapter":"Part I Ch 4","support":3,"renown":9,"extra":["Gather information at Callianeira Port and report back to Ludia"]},"Dietrich":{"chapter":"Part I Ch 4","support":3,"renown":9,"extra":["Gather information at Callianeira Port and report back to Ludia"]},"Theodora":{"chapter":"Part I Ch 5","support":3,"renown":7,"extra":["Gather information at Callianeira Port and report back to Ludia"]},"Leda":{"chapter":"Part I Ch 4","support":3,"renown":7,"extra":["Gather information at Callianeira Port and report back to Ludia"]}},"sheet":{"Cai":{"support":3.0,"renown":9.0},"Dietrich":{"support":3.0,"renown":9.0},"Theodora":{"support":3.0,"renown":7.0},"Leda":{"support":3.0,"renown":7.0},"other_requirements":"Callianeira Port info (quest)","notes":"","easy_for":"Theodora (R7), Leda (R7)","supports_lords":"","supports_retainers":"Tialla, Esmeralda, Buccar"}},"Dadao":{"name":"Dadao","tier":"B","growths":{"HP":50,"Str":55,"Mag":20,"Spd":30,"Dex":35,"Def":45,"Res":20,"Lck":25,"Cha":30},"growth_total":310,"skill":"One Chance","skill_desc":"If unit and foe cannot make a follow-up, grants Atk+5 to unit during combat.","proficiencies":["Axe"],"progression":["Gladiator","Armored Knight","Dreadnought"],"gifts":{"loved":["Poems of the Greats","Strategy Manuscript","Tales of Adventure"],"really_liked":["Coffee Pastries","Fragrant Pastries","Ginji Cervi","Honey Milk","Honey Pastries","Huge Fish Eyeball","Jamel Milk","Mature Dried Cervi","Mellow Pastries","Pastry Cookbook","Potted Vegetables","Saraminian Sweets","Simple Pastries","Strong Cervi","Weak Cervi","Yarc Milk"],"likes":["Women (especially Anatolia)","machines","good food","fighting"],"interests":["Tinkering with machines","watching out for the weak"]},"recruit":{"Cai":{"chapter":"Part I Ch 5","support":3,"renown":7,"extra":["Give 2 Kothar Gar to Dadao."]},"Dietrich":{"chapter":"Part I Ch 4","support":3,"renown":10,"extra":["Give 2 Kothar Gar to Dadao."]},"Theodora":{"chapter":"Part I Ch 5","support":2,"renown":5,"extra":["Give 2 Kothar Gar to Dadao."]},"Leda":{"chapter":"Part I Ch 4","support":2,"renown":5,"extra":["Give 2 Kothar Gar to Dadao."]}},"sheet":{"Cai":{"support":3.0,"renown":7.0},"Dietrich":{"support":3.0,"renown":10.0},"Theodora":{"support":2.0,"renown":5.0},"Leda":{"support":2.0,"renown":5.0},"other_requirements":"2x Kothar Gar","notes":"","easy_for":"Theodora (R5), Leda (R5)","supports_lords":"","supports_retainers":"Peter, Esmeralda"}},"Fianna":{"name":"Fianna","tier":"A","growths":{"HP":30,"Str":35,"Mag":55,"Spd":30,"Dex":40,"Def":20,"Res":45,"Lck":25,"Cha":40},"growth_total":320,"skill":"Graceful Light","skill_desc":"When healing an ally with magic, reduces magic cost to 0. Trigger % = Lck.","proficiencies":["Black Magic","White Magic"],"progression":["Diviner","Priest","Bishop"],"gifts":{"loved":["Arrowhead Gem","Blue-Rose Bouquet","Volcano Ghosh"],"really_liked":["Common Coffee","Crimson Ghosh","Joint-Relief Gloves","Rare Spices","Select Coffee","Skin Balm","Southern Coffee"],"likes":["Books of poetry","spicy foods","coffee","trustworthy people"],"interests":["Praying","going to the theater"]},"recruit":{"Cai":{"chapter":"Part I Ch 4","support":3,"renown":8,"extra":["Give 3000 Gold to Fianna."]},"Dietrich":{"chapter":"Part I Ch 4","support":3,"renown":7,"extra":["Give 3000 Gold to Fianna."]},"Theodora":{"chapter":"Part I Ch 5","support":3,"renown":9,"extra":["Give 3000 Gold to Fianna."]},"Leda":{"chapter":"Part I Ch 5","support":3,"renown":5,"extra":["Give 3000 Gold to Fianna."]}},"sheet":{"Cai":{"support":3.0,"renown":8.0},"Dietrich":{"support":3.0,"renown":7.0},"Theodora":{"support":3.0,"renown":9.0},"Leda":{"support":3.0,"renown":5.0},"other_requirements":"3000 gold","notes":"","easy_for":"Leda (R5)","supports_lords":"","supports_retainers":"Lysander, Olympia"}},"Halvin":{"name":"Halvin","tier":"A","growths":{"HP":35,"Str":35,"Mag":30,"Spd":45,"Dex":60,"Def":30,"Res":25,"Lck":40,"Cha":35},"growth_total":335,"skill":"Adaptability","skill_desc":"After combat, grants Hit+2 until the end of the map. (Max +30)","proficiencies":["Bow"],"progression":["Hunter","Archer","Forest Knight"],"gifts":{"loved":["Eastern Black Silk","Eastern Earrings"],"really_liked":["Crimson Ghosh","Eastern Tea Leaves","Exquisite Ring","Garum","Gaudy Bangle","Jade Panther Figure","Magic-Trick Set","Potted Vegetables","Simple Pastries","Skin Balm","Village Recipes"],"likes":["Growing vegetables","shopping","street performing. cheering crowds"],"interests":["Practicing magic tricks","housekeeping"]},"recruit":{"Cai":{"chapter":"Part I Ch 5","support":3,"renown":5,"extra":["Give 10 Dates (Material) to Halvin."]},"Dietrich":{"chapter":"Part I Ch 4","support":3,"renown":9,"extra":["Give 10 Dates (Material) to Halvin."]},"Theodora":{"chapter":"Part I Ch 5","support":3,"renown":7,"extra":["Give 10 Dates (Material) to Halvin."]},"Leda":{"chapter":"Part I Ch 4","support":3,"renown":7,"extra":["Give 10 Dates (Material) to Halvin."]}},"sheet":{"Cai":{"support":3.0,"renown":5.0},"Dietrich":{"support":3.0,"renown":9.0},"Theodora":{"support":3.0,"renown":7.0},"Leda":{"support":3.0,"renown":7.0},"other_requirements":"10x Dates (check Nysiades Desert if not Cai)","notes":"","easy_for":"Theodora (R7), Leda (R7)","supports_lords":"Dietrich","supports_retainers":"Fabio, Bonaventure"}},"Zarcone":{"name":"Zarcone","tier":"C","growths":{"HP":40,"Str":30,"Mag":20,"Spd":35,"Dex":60,"Def":30,"Res":25,"Lck":30,"Cha":15},"growth_total":285,"skill":"Hatchet Man","skill_desc":"When equipped with an axe, grants Hit+10.","proficiencies":["Axe","Sword"],"progression":["Gladiator","Brigand","Warrior"],"gifts":{"loved":["Eastern Tea Leaves"],"really_liked":["Eastern Earrings","Gaudy Bangle","Pickled Bulbs","Potted Vegetables","Strategy Manuscript","Tales of Adventure","Wing Fletching"],"likes":["Money","violence","good women","vegetables","drinking with friends"],"interests":["Tormenting the weak","pillaging"]},"recruit":{"Cai":{"chapter":"Part I Ch 5","support":3,"renown":8,"extra":["Refuse to pay thrice then pay Zarcone 10 Gold."]},"Dietrich":{"chapter":"Part I Ch 4","support":3,"renown":7,"extra":["Refuse to pay thrice then pay Zarcone 10 Gold."]},"Theodora":{"chapter":"Part I Ch 5","support":1,"renown":4,"extra":["Refuse to pay thrice then pay Zarcone 10 Gold."]},"Leda":{"chapter":"Part I Ch 4","support":2,"renown":5,"extra":["Refuse to pay thrice then pay Zarcone 10 Gold."]}},"sheet":{"Cai":{"support":3.0,"renown":8.0},"Dietrich":{"support":3.0,"renown":7.0},"Theodora":{"support":1.0,"renown":4.0},"Leda":{"support":2.0,"renown":5.0},"other_requirements":"refuse to pay 2x, then 10 gold","notes":"","easy_for":"Theodora (R4), Leda (R5)","supports_lords":"","supports_retainers":""}},"Majide":{"name":"Majide","tier":"C","growths":{"HP":65,"Str":50,"Mag":15,"Spd":20,"Dex":30,"Def":40,"Res":10,"Lck":25,"Cha":5},"growth_total":260,"skill":"Hellbent Axe","skill_desc":"When equipped with an axe, grants Str+3.","proficiencies":["Axe"],"progression":["Gladiator","Brigand","Warrior"],"gifts":{"loved":["Arrowhead Gem","Crimson Ghosh","Dual Fish Knives"],"really_liked":["Crimson Ghosh","Dual Fish Knives","Joint-Relief Gloves","Light Shosh","Mature Ghosh","Mature Shosh","Rustic Ghosh","Training Pillar","Training Weights","Volcano Ghosh","Young Ghosh","Young Shosh"],"likes":["Booze","women","fighting","being strong"],"interests":["Fighting with annoying people"]},"recruit":{"Cai":{"chapter":"Part I Ch 5","support":2,"renown":5,"extra":["Admit That You Need Majide Three Times."]},"Dietrich":{"chapter":"Part I Ch 4","support":3,"renown":8,"extra":["Admit That You Need Majide Three Times."]},"Theodora":{"chapter":"Part I Ch 5","support":3,"renown":8,"extra":["Admit That You Need Majide Three Times."]},"Leda":{"chapter":"Part I Ch 4","support":3,"renown":9,"extra":["Admit That You Need Majide Three Times."]}},"sheet":{"Cai":{"support":2.0,"renown":5.0},"Dietrich":{"support":3.0,"renown":8.0},"Theodora":{"support":3.0,"renown":8.0},"Leda":{"support":3.0,"renown":9.0},"other_requirements":"admit you need him 3x","notes":"","easy_for":"Cai (R5)","supports_lords":"","supports_retainers":""}},"Kiroc":{"name":"Kiroc","tier":"B","growths":{"HP":55,"Str":40,"Mag":15,"Spd":55,"Dex":50,"Def":30,"Res":15,"Lck":30,"Cha":25},"growth_total":315,"skill":"Tyranny","skill_desc":"If foe has a status effect, grants Atk+3, Crit+10 to unit during combat.","proficiencies":["Bow"],"progression":["Hunter","Archer","Sniper"],"gifts":{"loved":["Arrowhead Gem","Crimson Ghosh","Volcano Ghosh"],"really_liked":["Arrowhead Gem","Common Coffee","Joint-Relief Gloves","Light Shosh","Mature Ghosh","Mature Shosh","Rustic Ghosh","Select Coffee","Sharp Fishhook","Southern Coffee","Training Pillar","Training Weights","Young Ghosh","Young Shosh"],"likes":["Thievery","the open sea","ships","obedient underlings"],"interests":["Riding on ships","pirating"]},"recruit":{"Cai":{"chapter":"Part I Ch 6","support":3,"renown":8,"extra":["Give 8 Pure Water to Kiroc."]},"Dietrich":{"chapter":"Part I Ch 6","support":1,"renown":4,"extra":["Give 3 Pure Water to Kiroc."]},"Theodora":{"chapter":"Part I Ch 7","support":3,"renown":10,"extra":["Give 8 Pure Water to Kiroc."]},"Leda":{"chapter":"Part I Ch 5","support":1,"renown":4,"extra":["Give 3 Pure Water to Kiroc."]}},"sheet":{"Cai":{"support":3.0,"renown":8.0},"Dietrich":{"support":1.0,"renown":4.0},"Theodora":{"support":3.0,"renown":10.0},"Leda":{"support":1.0,"renown":4.0},"other_requirements":"8x Pure Water (T/C), 3x Pure Water (L/D)","notes":"Appears @ 5/4","easy_for":"Leda (R4), Dietrich (R4)","supports_lords":"","supports_retainers":"Esmeralda"}},"Jasmine":{"name":"Jasmine","tier":"C","growths":{"HP":50,"Str":40,"Mag":20,"Spd":30,"Dex":45,"Def":45,"Res":25,"Lck":40,"Cha":45},"growth_total":340,"skill":"Expert Counter","skill_desc":"If foe attacks first, grants Hit+20 to unit during combat.","proficiencies":["Axe","Spear"],"progression":["Ornius Rider","Wing Soldier","Dragoon"],"gifts":{"loved":[],"really_liked":["Arrowhead Gem","Crimson Ghosh","Dual Fish Knives","Honey Pastries","Jamel Milk","Joint-Relief Gloves","Kitten Figurine","Magic-Trick Set","Niiza Garum","Outdoor Cooking Set","Pack of Pastels","Pastry Cookbook","Protection Figurine","Pure-White Cervi","Rare Spices","Sturdy Rucksack","Training Pillar","Training Weights"],"likes":["Memories of her spouse","mercenary friends","trying to get rich"],"interests":["Counting money","managing her mercenary group"]},"recruit":{"Cai":{"chapter":"Part I Ch 6","support":1,"renown":8,"extra":["Give 2000 Gold to Jasmine."]},"Dietrich":{"chapter":"Part I Ch 6","support":3,"renown":9,"extra":["Give 5000 Gold to Jasmine."]},"Theodora":{"chapter":"Part I Ch 7","support":3,"renown":8,"extra":["Give 5000 Gold to Jasmine."]},"Leda":{"chapter":"Part I Ch 6","support":2,"renown":4,"extra":["Give 500 Gold to Jasmine."]}},"sheet":{"Cai":{"support":1.0,"renown":8.0},"Dietrich":{"support":3.0,"renown":9.0},"Theodora":{"support":3.0,"renown":8.0},"Leda":{"support":2.0,"renown":4.0},"other_requirements":"5000 gold (T/D), 2000 gold (C), 500 gold (L)","notes":"Appears @ 5/8","easy_for":"Leda (R4)","supports_lords":"","supports_retainers":"Buccar, Olympia"}},"Nuzzuo":{"name":"Nuzzuo","tier":"A","growths":{"HP":50,"Str":50,"Mag":15,"Spd":55,"Dex":45,"Def":20,"Res":15,"Lck":25,"Cha":35},"growth_total":310,"skill":"Har Hali Wisdom","skill_desc":"If unit is effective against foe, grant Atk+3 during combat.","proficiencies":["Bow","Sword"],"progression":["Hunter","Archer","Sniper"],"gifts":{"loved":["Arrowhead Gem","Dual Fish Knives"],"really_liked":["Common Coffee","Crimson Ghosh","Joint-Relief Gloves","Kitten Figurine","Niiza Garum","Outdoor Cooking Set","Pickled Vegetables","Protection Figurine","Select Coffee","Sturdy Rucksack","Training Bracelet","Training Pillar","Training Weights"],"likes":["Tradition","honor","great power"],"interests":["Conversing with forest spirits"]},"recruit":{"Cai":{"chapter":"Part I Ch 6","support":2,"renown":6,"extra":["Give 3 Iron Bows to Nuzzuo."]},"Dietrich":{"chapter":"Part I Ch 8","support":1,"renown":9,"extra":["Give 2 Iron Bows to Nuzzuo."]},"Theodora":{"chapter":"Part I Ch 9","support":1,"renown":6,"extra":["Give 3 Iron Bows to Nuzzuo."]},"Leda":{"chapter":"Part I Ch 8","support":3,"renown":9,"extra":["Give 3 Iron Bows to Nuzzuo."]}},"sheet":{"Cai":{"support":2.0,"renown":6.0},"Dietrich":{"support":1.0,"renown":9.0},"Theodora":{"support":1.0,"renown":6.0},"Leda":{"support":3.0,"renown":9.0},"other_requirements":"3x Iron Bows","notes":"Appears @ 7/1","easy_for":"Theodora (R6), Cai (R6), Dietrich (S1)","supports_lords":"","supports_retainers":""}},"Inyoni":{"name":"Inyoni","tier":"B","growths":{"HP":40,"Str":50,"Mag":20,"Spd":35,"Dex":40,"Def":40,"Res":30,"Lck":40,"Cha":30},"growth_total":325,"skill":"Heavy-Bow User","skill_desc":"When equipped with a bow, grants Str+3","proficiencies":["Axe","Bow"],"progression":["Hunter","Archer","Sniper"],"gifts":{"loved":["Strategy Manuscript","Tales of Adventure"],"really_liked":["Eastern Black Silk","Eastern Tea Leaves","Huge Fish Eyeball","Sharp Fishhook","Sturdy Rucksack","Training Bracelet","Wing Fletching"],"likes":["Her family and hometown","hunting","farm work","bow maintenance"],"interests":["Archery training","being frugal"]},"recruit":{"Cai":{"chapter":"Part I Ch 8","support":3,"renown":8,"extra":["Give 6000 Gold to Inyoni."]},"Dietrich":{"chapter":"Part I Ch 8","support":3,"renown":8,"extra":["Give 6000 Gold to Inyoni."]},"Theodora":{"chapter":"Part I Ch 9","support":1,"renown":9,"extra":["Give 4000 Gold to Inyoni."]},"Leda":{"chapter":"Part I Ch 9","support":1,"renown":7,"extra":["Give 3000 Gold to Inyoni."]}},"sheet":{"Cai":{"support":3.0,"renown":8.0},"Dietrich":{"support":3.0,"renown":8.0},"Theodora":{"support":1.0,"renown":9.0},"Leda":{"support":1.0,"renown":7.0},"other_requirements":"6000 gold (D/C), 4000 gold (T), 3000 (L)","notes":"Appears @ 7/10","easy_for":"Leda (S1), Theodora (S1)","supports_lords":"","supports_retainers":""}},"Creek":{"name":"Creek","tier":"?","growths":{"HP":45,"Str":50,"Mag":15,"Spd":60,"Dex":50,"Def":35,"Res":20,"Lck":30,"Cha":35},"growth_total":340,"skill":"Steady Hands","skill_desc":"If foe attacks first, grants AS+3, Avo+10 to unit during combat.","proficiencies":["Riding","Sword"],"progression":["Orichaldia"],"gifts":{},"recruit":{},"sheet":{"Cai":{"support":99.0,"renown":99.0},"Dietrich":{"support":99.0,"renown":99.0},"Theodora":{"support":99.0,"renown":99.0},"Leda":{"support":99.0,"renown":99.0},"other_requirements":"\"\"\"My Late Sister's Accessory\"\" paralogue (part I)\"","notes":"Part II, Chapter 2","easy_for":"","supports_lords":"","supports_retainers":"Olympia, Tialla?"}},"Nathan":{"name":"Nathan","tier":"A","growths":{"HP":55,"Str":60,"Mag":15,"Spd":25,"Dex":60,"Def":45,"Res":15,"Lck":25,"Cha":30},"growth_total":330,"skill":"Headlong Rush","skill_desc":"If unit attacks first, grants AS+3, Hit+10 during combat.","proficiencies":["Riding","Spear"],"progression":["Great Knight"],"gifts":{},"recruit":{},"sheet":{"Cai":{"support":99.0,"renown":99.0},"Dietrich":{"support":99.0,"renown":99.0},"Theodora":{"support":99.0,"renown":99.0},"Leda":{"support":99.0,"renown":99.0},"other_requirements":"Creek lands killing blow on Nathan (Part II, Ch 3)","notes":"Part II, Chapter 3","easy_for":"","supports_lords":"","supports_retainers":""}},"Bertrand":{"name":"Bertrand","tier":"A","growths":{"HP":50,"Str":55,"Mag":15,"Spd":45,"Dex":50,"Def":45,"Res":20,"Lck":30,"Cha":50},"growth_total":360,"skill":"Requiem Style","skill_desc":"Unit makes a follow up regardless of AS during combat. Trigger % = 5.","proficiencies":["Authority","Axe","Sword"],"progression":["Warrior"],"gifts":{},"recruit":{},"sheet":{"Cai":{"support":99.0,"renown":99.0},"Dietrich":{"support":99.0,"renown":99.0},"Theodora":{"support":99.0,"renown":99.0},"Leda":{"support":99.0,"renown":99.0},"other_requirements":"Bertrand's paralogue","notes":"Part II/Part III, First Section","easy_for":"","supports_lords":"Cai, Theodora","supports_retainers":""}},"Talimun":{"name":"Talimun","tier":"A","growths":{"HP":45,"Str":40,"Mag":45,"Spd":40,"Dex":45,"Def":35,"Res":40,"Lck":60,"Cha":50},"growth_total":400,"skill":"Swashbuckler's Luck","skill_desc":"Grants Lck+3.","proficiencies":["Authority","Black Magic","Sword"],"progression":["Ovate"],"gifts":{},"recruit":{},"sheet":{"Cai":{"support":99.0,"renown":99.0},"Dietrich":{"support":99.0,"renown":99.0},"Theodora":{"support":99.0,"renown":99.0},"Leda":{"support":99.0,"renown":99.0},"other_requirements":"Talimun's paralogue","notes":"Part III, First Section","easy_for":"","supports_lords":"Dietrich, Theodora, Leda","supports_retainers":"Tialla, Lilian"}},"Anatolia":{"name":"Anatolia","tier":"A","growths":{"HP":40,"Str":35,"Mag":50,"Spd":50,"Dex":45,"Def":35,"Res":40,"Lck":40,"Cha":50},"growth_total":385,"skill":"Celestial Flow","skill_desc":"Grants Avo+3.","proficiencies":["Black Magic","Infantry"],"progression":["Ovate"],"gifts":{},"recruit":{},"sheet":{"Cai":{"support":99.0,"renown":99.0},"Dietrich":{"support":99.0,"renown":99.0},"Theodora":{"support":99.0,"renown":99.0},"Leda":{"support":99.0,"renown":99.0},"other_requirements":"Anatolia's paralogue","notes":"Part III, First Section","easy_for":"","supports_lords":"Cai","supports_retainers":"Fabio, Tobias"}},"Orchel":{"name":"Orchel","tier":"A","growths":{"HP":30,"Str":60,"Mag":45,"Spd":10,"Dex":20,"Def":60,"Res":60,"Lck":20,"Cha":60},"growth_total":365,"skill":"Solid and Sturdy","skill_desc":"Grants Def+5. Unit is armored. Cannot change to cavalry or flying.","proficiencies":["Axe","Black Magic","White Magic"],"progression":["War Monk"],"gifts":{},"recruit":{},"sheet":{"Cai":{"support":99.0,"renown":99.0},"Dietrich":{"support":99.0,"renown":99.0},"Theodora":{"support":99.0,"renown":99.0},"Leda":{"support":99.0,"renown":99.0},"other_requirements":"Orchel's paralogue","notes":"Part III, First Section","easy_for":"","supports_lords":"Leda","supports_retainers":"Ultand, Bonaventure"}},"Centurio":{"name":"Centurio","tier":"B","growths":{"HP":45,"Str":45,"Mag":25,"Spd":40,"Dex":50,"Def":50,"Res":30,"Lck":30,"Cha":30},"growth_total":345,"skill":"Sturdy Corundum","skill_desc":"For the first combat in enemy's phase, unit takes half damage.","proficiencies":["Axe","Spear"],"progression":["Dreadnought"],"gifts":{},"recruit":{},"sheet":{"Cai":{"support":99.0,"renown":99.0},"Dietrich":{"support":99.0,"renown":99.0},"Theodora":{"support":99.0,"renown":99.0},"Leda":{"support":99.0,"renown":99.0},"other_requirements":"\"complete quest \"\"Rescue Centurio\"\"\"","notes":"Part III","easy_for":"","supports_lords":"Cai","supports_retainers":"Ultand"}},"Aswan":{"name":"Aswan","tier":"A","growths":{"HP":40,"Str":35,"Mag":10,"Spd":40,"Dex":50,"Def":30,"Res":15,"Lck":30,"Cha":20},"growth_total":270,"skill":"Princess of Arrows","skill_desc":"When equipped with a bow, grants Hit+20.","proficiencies":["Authority","Bow","Infantry"],"progression":["Bow Knight"],"gifts":{},"recruit":{},"sheet":{"Cai":{"support":99.0,"renown":99.0},"Dietrich":{"support":99.0,"renown":99.0},"Theodora":{"support":99.0,"renown":99.0},"Leda":{"support":99.0,"renown":99.0},"other_requirements":"auto","notes":"Part III, Fifth Section","easy_for":"","supports_lords":"Leda","supports_retainers":""}},"Tahonia":{"name":"Tahonia","tier":"B","growths":{"HP":65,"Str":50,"Mag":5,"Spd":20,"Dex":40,"Def":45,"Res":35,"Lck":20,"Cha":40},"growth_total":320,"skill":"Python Technique","skill_desc":"When using a gauntlet combat art, unit makes a follow-up regardless of AS during combat. Trigger % = 15.","proficiencies":[],"progression":["Battlemaster"],"gifts":{},"recruit":{},"sheet":{"Cai":{"support":99.0,"renown":99.0},"Dietrich":{"support":99.0,"renown":99.0},"Theodora":{"support":99.0,"renown":99.0},"Leda":{"support":99.0,"renown":99.0},"other_requirements":"auto","notes":"Part III, Fifth Section","easy_for":"","supports_lords":"","supports_retainers":""}}}}</script>
+<script>
+'use strict';
+
+/* ------------------------------------------------------------------ *
+ * dataset
+ * ------------------------------------------------------------------ */
+function readDataset() {
+  const node = document.getElementById('fwe-data');
+  try {
+    return JSON.parse(node.textContent);
+  } catch (error) {
+    throw new Error('planner: embedded dataset is corrupt — rebuild via build/build_site.py');
+  }
+}
+
+const DOC = readDataset();
+const UNITS = DOC.units;
+const TIERS = DOC.meta.tier_labels;
+const STATS = DOC.meta.stats;
+const STORE = 'fwe-planner-v1';
+const DEFAULTS = {
+  route: 'Cai', renown: 11, recruited: {}, support: {}, extras: {},
+  hideDone: false, onlyGaps: false, onlyRecruited: false, q: '', bq: '', tab: 'recruit'
+};
+
+/* ------------------------------------------------------------------ *
+ * DOM helper — builds nodes, so data is never parsed as markup
+ * ------------------------------------------------------------------ */
+function el(tag, props, ...kids) {
+  const node = document.createElement(tag);
+  if (props) {
+    for (const [key, value] of Object.entries(props)) {
+      if (value === null || value === undefined || value === false) continue;
+      if (key === 'class') node.className = value;
+      else if (key === 'text') node.textContent = String(value);
+      else if (key === 'dataset') Object.assign(node.dataset, value);
+      else if (key === 'style') Object.assign(node.style, value);
+      else if (key === 'on') for (const [evt, fn] of Object.entries(value)) node.addEventListener(evt, fn);
+      else if (key in node) node[key] = value;
+      else node.setAttribute(key, value);
+    }
+  }
+  for (const kid of kids.flat(Infinity)) {
+    if (kid === null || kid === undefined || kid === false) continue;
+    node.appendChild(typeof kid === 'object' ? kid : document.createTextNode(String(kid)));
+  }
+  return node;
+}
+
+const clear = (parent, ...kids) => parent.replaceChildren(...kids.flat(Infinity).filter(Boolean));
+
+const frag = (nodes) => nodes.flat(Infinity).filter(Boolean);
+
+/** Colour a growth delta: positive good, negative bad, zero neutral. */
+function growthColor(value, zeroColor) {
+  if (value > 0) return 'var(--good)';
+  if (value < 0) return 'var(--bad)';
+  return zeroColor;
+}
+
+/* ------------------------------------------------------------------ *
+ * state
+ * ------------------------------------------------------------------ */
+function loadState() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(STORE) || '{}');
+    if (!saved || typeof saved !== 'object') return Object.assign({}, DEFAULTS);
+    return Object.assign({}, DEFAULTS, saved);
+  } catch (error) {
+    console.warn('planner: saved progress was unreadable, starting fresh', error);
+    return Object.assign({}, DEFAULTS);
+  }
+}
+
+let state = loadState();
+
+function save() {
+  try {
+    localStorage.setItem(STORE, JSON.stringify(state));
+  } catch (error) {
+    console.warn('planner: could not persist progress', error);
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ * derived helpers
+ * ------------------------------------------------------------------ */
+const tierRank = (t) => TIERS.indexOf(t);
+const tierClass = (t) => 'badge t-' + (TIERS.includes(t) ? t : 'unknown');
+const reqOf = (name, route) => (UNITS[name].recruit || {})[route] || null;
+const isDone = (n) => !!state.recruited[n];
+const suppOf = (n) => state.support[n] || 0;
+const extraOk = (n) => !!state.extras[n];
+
+function statusOf(name) {
+  const r = reqOf(name, state.route);
+  if (!r) return { key: 'na', label: 'not on route', cls: 'p-block' };
+  if (isDone(name)) return { key: 'done', label: 'recruited', cls: 'p-done' };
+  if (!r.support && !r.renown) return { key: 'auto', label: 'auto-joins', cls: 'p-auto' };
+  const needSupport = r.support > suppOf(name);
+  const needRenown = r.renown > state.renown;
+  const needExtra = (r.extra || []).length > 0 && !extraOk(name);
+  if (!needSupport && !needRenown && !needExtra) return { key: 'ready', label: 'READY', cls: 'p-ready' };
+  const bits = [];
+  if (needRenown) bits.push('R' + r.renown);
+  if (needSupport) bits.push('S' + r.support);
+  if (needExtra) bits.push('extra');
+  return { key: 'need', label: 'need ' + bits.join(' + '), cls: 'p-need' };
+}
+
+function routeTargets() {
+  return Object.keys(UNITS)
+    .filter((n) => reqOf(n, state.route))
+    .sort((a, b) => {
+      const ra = reqOf(a, state.route), rb = reqOf(b, state.route);
+      return (ra.renown - rb.renown) || (ra.support - rb.support) || a.localeCompare(b);
+    });
+}
+
+/* ------------------------------------------------------------------ *
+ * recruitment tab
+ * ------------------------------------------------------------------ */
+function renderSummary() {
+  const targets = routeTargets();
+  const done = targets.filter(isDone).length;
+  const ready = targets.filter((n) => statusOf(n).key === 'ready').length;
+  const gaps = targets.filter((n) => !isDone(n) && statusOf(n).key !== 'auto').length;
+  const auto = targets.filter((n) => statusOf(n).key === 'auto').length;
+
+  clear(document.getElementById('sum'), [
+    ['Recruited', done, ' / ' + targets.length],
+    ['Ready now', ready, ''],
+    ['Still to get', gaps, ''],
+    ['Auto-joins', auto, '']
+  ].map(([label, value, suffix]) => el('div', { class: 'card' },
+    el('div', { class: 'k', text: label }),
+    el('div', { class: 'v' }, String(value), suffix ? el('small', { text: suffix }) : null))));
+
+  const myClan = Object.entries(DOC.clans).find(([, members]) => members.includes(state.route));
+  const retainers = myClan ? myClan[1].filter((m) => m !== state.route) : [];
+  clear(document.getElementById('recruitNote'),
+    myClan
+      ? "Retainers of " + state.route + "'s own house (" + myClan[0] + ') join automatically: ' + retainers.join(', ') +
+        '. Everyone else on this route has to be recruited with support and renown.'
+      : '');
+}
+
+function supportSegment(n, required) {
+  return el('div', { class: 'seg' }, [0, 1, 2, 3].map((level) => el('button', {
+    class: (suppOf(n) === level ? 'on ' : '') + (level && level <= required ? 'met' : ''),
+    dataset: { sup: n + '|' + level },
+    text: level === 0 ? '–' : 'S' + level
+  })));
+}
+
+function recruitRow(n) {
+  const u = UNITS[n];
+  const r = reqOf(n, state.route);
+  const st = statusOf(n);
+  const hasExtra = (r.extra || []).length > 0;
+
+  function renownCell() {
+    if (!r.renown) return el('span', { class: 'sub', text: 'none' });
+    const met = r.renown <= state.renown;
+    return el('span', {
+      style: { color: met ? 'var(--good)' : 'var(--bad)' },
+      text: 'R' + r.renown + (met ? ' ✓' : ' ✗')
+    });
+  }
+
+  function extraCell() {
+    if (!hasExtra) return el('span', { class: 'sub', text: '—' });
+    return el('label', { class: 'ctl' },
+      el('input', { type: 'checkbox', dataset: { extra: n }, checked: extraOk(n) }),
+      r.extra.join(' · '));
+  }
+
+  return el('tr', { class: isDone(n) ? 'done' : null },
+    el('td', null, el('input', {
+      type: 'checkbox', dataset: { done: n }, checked: isDone(n),
+      'aria-label': 'mark ' + n + ' recruited'
+    })),
+    el('td', null,
+      el('span', { class: 'unit', text: n }),
+      el('div', { class: 'sub', text: r.chapter || '' })),
+    el('td', null, el('span', { class: tierClass(u.tier), text: u.tier })),
+    el('td', null,
+      el('span', { class: 'sub', text: r.support ? 'S' + r.support : 'none' }),
+      supportSegment(n, r.support)),
+    el('td', null, renownCell()),
+    el('td', null, extraCell()),
+    el('td', null, el('span', { class: 'pill ' + st.cls, text: st.label })));
+}
+
+function renderRecruit() {
+  const q = state.q.toLowerCase();
+  let list = routeTargets();
+  if (q) list = list.filter((n) => n.toLowerCase().includes(q));
+  if (state.hideDone) list = list.filter((n) => !isDone(n));
+  if (state.onlyGaps) list = list.filter((n) => !isDone(n) && statusOf(n).key !== 'auto');
+  clear(document.getElementById('rows'), frag(list.map(recruitRow)));
+}
+
+/* ------------------------------------------------------------------ *
+ * builds tab
+ * ------------------------------------------------------------------ */
+function growthBars(growths, className) {
+  const bonus = className && DOC.classes[className] ? DOC.classes[className].growths : null;
+  return STATS.map((stat) => {
+    const base = growths[stat] || 0;
+    const add = bonus ? bonus[stat] || 0 : 0;
+    const total = Math.max(0, base + add);
+    const color = growthColor(add, 'var(--accent)');
+    return el('div', {
+      class: 'g',
+      title: 'base ' + base + (bonus ? ' ' + (add >= 0 ? '+' : '') + add : '') + ' = ' + total + '%'
+    },
+      el('div', { class: 'lbl', text: stat }),
+      el('div', { class: 'num', text: String(total) }),
+      el('div', { class: 'track' },
+        el('div', { class: 'fill', style: { width: Math.min(100, total * 1.4) + '%', background: color } })));
+  });
+}
+
+function buildCard(n) {
+  const u = UNITS[n];
+  const path = u.progression || [];
+  const finalClass = path.length ? path[path.length - 1] : '';
+  const hasClassData = !!(finalClass && DOC.classes[finalClass]);
+  const loved = (u.gifts || {}).loved || [];
+
+  return el('div', { class: 'bcard' },
+    el('h3', null,
+      el('span', { class: tierClass(u.tier), text: u.tier }),
+      n,
+      el('span', { class: 'sub', style: { marginLeft: 'auto' }, text: 'Σ' + u.growth_total })),
+    el('div', { class: 'sub', text: (u.proficiencies || []).join(' · ') || 'no listed proficiencies' }),
+    u.skill ? el('div', { class: 'sk', text: u.skill }) : null,
+    u.skill_desc ? el('div', { class: 'skd', text: u.skill_desc }) : null,
+    el('div', { class: 'prog' },
+      el('em', { text: 'path: ' }),
+      path.length ? path.join(' → ') : 'fixed class'),
+    el('div', { class: 'grow' }, frag(growthBars(u.growths, finalClass))),
+    el('div', { class: 'sub', text: hasClassData
+      ? 'bars include ' + finalClass + ' class bonuses'
+      : 'bars show base growths' }),
+    loved.length
+      ? el('details', null,
+          el('summary', { text: 'gift preferences' }),
+          el('div', { class: 'gift' }, el('b', { text: 'loves: ' }), loved.join(', ')))
+      : null);
+}
+
+function renderBuilds() {
+  const q = state.bq.toLowerCase();
+  let names = Object.keys(UNITS);
+  if (q) names = names.filter((n) => n.toLowerCase().includes(q));
+  if (state.onlyRecruited) names = names.filter(isDone);
+  names.sort((a, b) =>
+    tierRank(UNITS[a].tier) - tierRank(UNITS[b].tier) ||
+    UNITS[b].growth_total - UNITS[a].growth_total ||
+    a.localeCompare(b));
+  clear(document.getElementById('bcards'), frag(names.map(buildCard)));
+}
+
+/* ------------------------------------------------------------------ *
+ * classes tab
+ * ------------------------------------------------------------------ */
+const CLASS_ORDER = ['Base', 'Beginner', 'Specialty', 'Advanced', 'Master', 'Divine'];
+const ROUTE_EXCLUSIVE = { Cai: ['Dragoon', 'Caladrius', 'Troubadour'] };
+
+function classTable(tier) {
+  const entries = Object.entries(DOC.classes).filter(([, c]) => c.tier === tier);
+  const exclusive = ROUTE_EXCLUSIVE[state.route] || [];
+
+  const head = el('thead', null,
+    el('tr', null,
+      el('th', { style: { width: '220px' }, text: 'Class' }),
+      el('th', { text: 'Growth bonus · ' + STATS.join(' ') })));
+
+  const rows = entries.map(([name, cls]) => {
+    const bonus = STATS.map((stat) => {
+      const value = cls.growths[stat] || 0;
+      return el('span', {
+        style: { color: growthColor(value, 'var(--faint)') },
+        text: (value > 0 ? '+' : '') + value
+      });
+    });
+    const spaced = bonus.flatMap((node, i) => (i < bonus.length - 1 ? [node, ' '] : [node]));
+    const nameCell = el('td', { class: 'unit' }, name,
+      exclusive.includes(name) ? el('span', { class: 'tag hot', text: state.route + ' route' }) : null);
+    return el('tr', null, nameCell, el('td', { class: 'sub mono' }, frag(spaced)));
+  });
+
+  return el('table', null, head, el('tbody', null, frag(rows)));
+}
+
+function renderClasses() {
+  const tiers = CLASS_ORDER.filter((t) => Object.values(DOC.classes).some((c) => c.tier === t));
+  clear(document.getElementById('classtiers'), frag(tiers.map((tier) =>
+    el('div', null,
+      el('h3', { style: { fontSize: '14px', margin: '18px 0 6px' } },
+        tier,
+        el('span', { class: 'sub', text: ' · ' + (DOC.meta.class_gates[tier] || 'starting class') })),
+      classTable(tier)))));
+}
+
+/* ------------------------------------------------------------------ *
+ * gifts tab
+ * ------------------------------------------------------------------ */
+function giftRow(n) {
+  const u = UNITS[n];
+  const g = u.gifts || {};
+  const r = reqOf(n, state.route);
+  const need = [];
+  if (r.support > suppOf(n)) need.push('S' + r.support);
+  if (r.renown > state.renown) need.push('R' + r.renown);
+  if ((r.extra || []).length && !extraOk(n)) need.push('extra');
+  const liked = g.really_liked || [];
+
+  return el('tr', null,
+    el('td', null,
+      el('span', { class: 'unit', text: n }),
+      el('span', { class: tierClass(u.tier), text: u.tier })),
+    el('td', null, need.length
+      ? el('span', { class: 'pill p-need', text: need.join(' + ') })
+      : el('span', { class: 'pill p-ready', text: 'ready' })),
+    el('td', { class: 'gift' }, el('b', { text: (g.loved || []).join(', ') })),
+    el('td', { class: 'gift', text: liked.slice(0, 8).join(', ') + (liked.length > 8 ? ' …' : '') }),
+    el('td', { class: 'gift', text: (g.likes || []).concat(g.interests || []).join(' · ') }));
+}
+
+function renderGifts() {
+  const list = routeTargets().filter((n) => !isDone(n) && statusOf(n).key !== 'auto');
+  const body = document.getElementById('giftrows');
+  clear(body, list.length
+    ? frag(list.map(giftRow))
+    : el('tr', null, el('td', { colspan: 5, class: 'sub', text: 'Nothing outstanding — everyone reachable on this route is recruited.' })));
+}
+
+/* ------------------------------------------------------------------ *
+ * part II / III tab
+ * ------------------------------------------------------------------ */
+function renderLate() {
+  clear(document.getElementById('laterows'), frag(DOC.late_recruits.map((r) => {
+    const u = UNITS[r.name];
+    const tier = u ? u.tier : '?';
+    return el('tr', null,
+      el('td', null,
+        el('span', { class: 'unit', text: r.name }),
+        el('span', { class: tierClass(tier), text: tier })),
+      el('td', { text: r.availability }),
+      el('td', { class: 'sub', text: r.condition }));
+  })));
+}
+
+/* ------------------------------------------------------------------ *
+ * wiring
+ * ------------------------------------------------------------------ */
+function renderAll() {
+  document.querySelectorAll('nav button').forEach((b) => b.classList.toggle('on', b.dataset.tab === state.tab));
+  document.querySelectorAll('section').forEach((s) => s.classList.toggle('on', s.id === state.tab));
+  renderSummary();
+  renderRecruit();
+  renderBuilds();
+  renderClasses();
+  renderGifts();
+  renderLate();
+  clear(document.getElementById('foot'),
+    'Recruitment requirements: game8, cross-checked against the community spreadsheet. ' +
+    'Growth rates, class bonuses and the tier list: game8 (Creek is untiered in the source). ' +
+    'Progress is stored in this browser only.');
+}
+
+const routeSelect = document.getElementById('route');
+DOC.meta.routes.forEach((r) => routeSelect.add(new Option(r + "'s route", r)));
+routeSelect.value = state.route;
+routeSelect.addEventListener('change', (e) => {
+  state.route = e.target.value;
+  save();
+  renderAll();
+});
+
+const renownInput = document.getElementById('renown');
+renownInput.value = state.renown;
+renownInput.addEventListener('input', (e) => {
+  state.renown = Math.max(1, Math.min(15, Number(e.target.value) || 1));
+  save();
+  renderSummary();
+  renderRecruit();
+  renderGifts();
+});
+
+document.querySelectorAll('nav button').forEach((b) => b.addEventListener('click', () => {
+  state.tab = b.dataset.tab;
+  save();
+  renderAll();
+}));
+
+const searchInput = document.getElementById('q');
+searchInput.value = state.q;
+searchInput.addEventListener('input', (e) => {
+  state.q = e.target.value;
+  save();
+  renderRecruit();
+});
+
+const buildSearch = document.getElementById('bq');
+buildSearch.value = state.bq;
+buildSearch.addEventListener('input', (e) => {
+  state.bq = e.target.value;
+  save();
+  renderBuilds();
+});
+
+['hideDone', 'onlyGaps', 'onlyRecruited'].forEach((id) => {
+  const input = document.getElementById(id);
+  input.checked = state[id];
+  input.addEventListener('change', () => {
+    state[id] = input.checked;
+    save();
+    renderRecruit();
+    renderBuilds();
+  });
+});
+
+document.getElementById('reset').addEventListener('click', () => {
+  if (!confirm('Clear all tracked progress?')) return;
+  state.recruited = {};
+  state.support = {};
+  state.extras = {};
+  save();
+  renderAll();
+});
+
+document.body.addEventListener('change', (e) => {
+  const t = e.target;
+  if (t.dataset && t.dataset.done) {
+    state.recruited[t.dataset.done] = t.checked;
+    save();
+    renderAll();
+  }
+  if (t.dataset && t.dataset.extra) {
+    state.extras[t.dataset.extra] = t.checked;
+    save();
+    renderAll();
+  }
+});
+
+document.body.addEventListener('click', (e) => {
+  const button = e.target.closest('button[data-sup]');
+  if (!button) return;
+  const [name, level] = button.dataset.sup.split('|');
+  state.support[name] = Number(level);
+  save();
+  renderAll();
+});
+
+renderAll();
+</script>
+</body>
+</html>
