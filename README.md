@@ -1,101 +1,118 @@
-# Fortune's Weave — Recruitment & Build Planner
+# Fortune's Weave — Data & Query Reference
 
-An offline planner and build reference for **Fire Emblem: Fortune's Weave**.
+A scraped, queryable database of **Fire Emblem: Fortune's Weave**, plus an
+optional visual planner.
 
-Open **`index.html`** in a browser. It is fully self-contained — no server, no
-network, no build step required to use it. Progress is saved in `localStorage`.
+The database is the primary interface: ask a question, and it gets answered by
+querying `data/fwe.db` rather than guessing or re-reading the wiki.
 
-## What it does
+## Querying
 
-| Tab | Purpose |
-| --- | --- |
-| **Recruitment** | Every unit recruitable on the selected route, with its exact support + renown cost, item/quest requirement, and a live readiness status. Track recruited units, current support level (S0–S3) and completed side-requirements. |
-| **Builds** | Per-unit card: tier, personal skill, proficiencies, recommended class progression, and growth bars that already include the recommended final class's bonuses. |
-| **Classes** | All 59 classes by tier with growth bonuses and the certification gate for each tier. Route-exclusive classes are flagged. |
-| **Gifts** | Loved / really-liked gifts for everyone still outstanding on the current route. |
-| **Part II/III** | Units that cannot be joined in Part I, and the paralogue or subquest each one depends on. |
+```bash
+python3 build/query.py char Cai            # one unit in full
+python3 build/query.py chars               # every unit, key facts
+python3 build/query.py stat Dex --limit 10 # rank units by a growth stat
+python3 build/query.py growths             # full growth table
+python3 build/query.py classes Advanced    # classes in a tier
+python3 build/query.py class Bardinger     # one class in full
+python3 build/query.py supports Esmeralda  # support partners, both directions
+python3 build/query.py spells Cai          # learnable spells by skill level
+python3 build/query.py blaze               # every Blaze Art
+python3 build/query.py bloodmarks          # every Bloodmark and its holders
+python3 build/query.py gifts Cai           # gift preferences
+python3 build/query.py search "Underworld Flame"   # full-text over the whole wiki
+python3 build/query.py tables bloodmark    # locate the source table
+python3 build/query.py show-table 620167 5 # dump one source table verbatim
+```
 
-Route and renown level are switchable in the header, so the same page works for
-the other three Flame Lords on later playthroughs.
+For ad-hoc SQL, use the sqlite3 CLI against the read-only database:
 
-## How readiness is derived
+```bash
+sqlite3 -readonly data/fwe.db "SELECT name, growth_dex FROM characters ORDER BY 1"
+```
 
-A unit is **READY** when all three of these hold:
+`--limit` is accepted before or after the subcommand.
 
-1. `current support level >= required support level` (S1/S2/S3)
-2. `renown level >= required renown level` (R2–R10)
-3. any item / quest / gold requirement is ticked off
+## What's in the database
 
-Otherwise it reports exactly what is still missing (`need S3 + extra`). Units
-that join automatically as a Flame Lord's own retainers show as `auto-joins`.
+| Table | Rows | Contents |
+| --- | --- | --- |
+| `characters` | 62 | faction, description, likes, interests, VA, personal ability, skill preferences, all 9 growths |
+| `char_growths` | 558 | growths, one row per stat |
+| `char_supports` | 460 | support partner + rank (A/B/C) |
+| `char_skill_prefs` | — | preferred vs non-ideal skills |
+| `char_blaze` | 40 | Blaze Arts with range, Blaze cost, learn level, effect |
+| `char_bloodmarks` | 17 | Bloodmarks with effect and every unit that can use them |
+| `char_spells` | 160 | learnable spells by skill level and magic type |
+| `char_gifts` | 580 | preferred gifts |
+| `char_birdtime` | 496 | Perfect Bird Time: remark → correct answer |
+| `classes` | 58 | tier, type, movement, weapons, skills, license, exam requirements, abilities |
+| `class_growths` | 1044 | per-class stat bonus and growth bonus |
+| `pages` / `sections` | 390 / 2829 | every wiki page and its sections |
+| `tables_generic` | 1908 | **every** markdown table from every page, keyed by page + heading |
+| `page_fts` | — | FTS5 index over all prose, for `search` |
 
-## Data pipeline
+`tables_generic` is the escape hatch: any table on any of the 390 pages is
+reachable via `tables` + `show-table`, even for pages with no bespoke parser.
+`search` covers the prose those tables sit in.
+
+## Pipeline
 
 ```text
-build/fetch.py     scrape game8 pages + the community spreadsheet -> build/cache/
-build/extract.py   build/cache/ -> data/fwe.json
-build/build_site.py data/fwe.json -> index.html
-build/test_planner.mjs  headless checks against the generated page
+build/crawl.py       sitemap -> 390 pages -> build/cache/pages/*.md   (cached)
+build/build_db.py    pages -> data/fwe.db
+build/query.py       query CLI
 ```
 
 ```bash
-python3 build/fetch.py        # refresh all sources (cached HTML, xlsx tabs)
-python3 build/extract.py      # -> data/fwe.json
-python3 build/build_site.py   # -> index.html
-node build/test_planner.mjs   # verify
+python3 build/crawl.py        # refresh the wiki scrape (14s, cached HTML)
+python3 build/build_db.py     # -> data/fwe.db
 ```
 
-`build/cache/` is git-ignored: it holds derived artifacts, not source.
-`data/fwe.json` is committed so `index.html` can be rebuilt without re-scraping.
+Page inventory comes from game8's per-game sitemap (`game_1562`), so the crawl
+is exhaustive rather than link-followed. Raw HTML and the extracted page text
+live under `build/cache/`, which is git-ignored — that text is game8's content,
+not ours to redistribute. `data/fwe.db` is committed: it holds the derived
+facts, and lets the database be rebuilt without re-scraping.
 
-### Sources
+## Optional: the visual planner
 
-- **game8** — [recruitment requirements](https://game8.co/games/Fire-Emblem-Fortunes-Weave/archives/620957),
-  [growth rates](https://game8.co/games/Fire-Emblem-Fortunes-Weave/archives/618974),
-  [best classes per character](https://game8.co/games/Fire-Emblem-Fortunes-Weave/archives/624119),
-  [gift guide](https://game8.co/games/Fire-Emblem-Fortunes-Weave/archives/623690),
-  [class list](https://game8.co/games/Fire-Emblem-Fortunes-Weave/archives/620256),
-  [tier list](https://game8.co/games/Fire-Emblem-Fortunes-Weave/archives/624024)
-- **Community recruitment spreadsheet** — [Google Sheets](https://docs.google.com/spreadsheets/d/1TNxGwvaGe__VEaRqSJ6Lgt4HeXRGoeDey7G6A47AZH4),
-  used as a cross-check on per-route support/renown costs and for house rosters.
+`index.html` is a self-contained offline planner (recruitment tracker with
+per-route support/renown costs, build cards, class reference, gifts). It is
+built from a separate, narrower pipeline over the game8 summary tables plus the
+[community recruitment spreadsheet](https://docs.google.com/spreadsheets/d/1TNxGwvaGe__VEaRqSJ6Lgt4HeXRGoeDey7G6A47AZH4):
 
-Where the two disagree the game8 requirement text is used, since the spreadsheet
-describes itself as "very early".
+```bash
+python3 build/fetch.py && python3 build/extract.py && python3 build/build_site.py
+node build/test_planner.mjs   # headless checks
+```
 
-## Mechanics this planner encodes
+The two pipelines are independent: the database is the deeper source of truth on
+character detail, while the spreadsheet carries per-route recruitment costs that
+game8's pages state less precisely.
+
+## Mechanics worth knowing
 
 - **Renown is a gate, not a currency.** Meeting a recruit's renown level is a
-  threshold check; recruiting does not spend renown. Renown is earned from
-  quests, route-specific quest types, temple audiences, and Adventure Guide goals.
-- **Class tiers and their certification gates:**
+  threshold check; recruiting does not spend renown.
+- **Support level is the scarce resource** — it is per-unit, per-lord, and is
+  what actually limits how many units you can bring in.
+- **Class growth bonuses are additive**: effective growth = base growth + class
+  growth. Base classes add nothing.
+- **Certification gates:** Beginner = Renown 1 + Lv 5, Specialty = Renown 4 +
+  Lv 20, Advanced = Renown 8 + Lv 35, Elephant = Lv 35, Master = Lv 45,
+  Divine = a Divine License Item from the Temple of the Diadem.
+- **Blaze Arts** are lord-only, cost HP, and fill a Blaze Gauge; a full gauge
+  triggers Burst, which halves the lord's max HP.
 
-  | Tier | Gate |
-  | --- | --- |
-  | Beginner | Renown Lv 1 + Unit Lv 5 |
-  | Specialty | Renown Lv 4 + Unit Lv 20 |
-  | Advanced | Renown Lv 8 + Unit Lv 35 |
-  | Elephant | Unit Lv 35 |
-  | Master | Unit Lv 45 |
-  | Divine | Divine License Item (Temple of the Diadem) |
+## Known gaps in the source data
 
-  Exams are taken at the **Exam Proctor** in Dagsion's Hightown during Free Time,
-  and require the matching License.
-- **Class growth bonuses are additive.** A unit's effective growth is its base
-  growth plus the class's growth. Base classes add nothing. The Builds tab shows
-  base + recommended-class totals.
-- **Support is the scarce resource.** Renown levels are global and cap out at
-  R10 for Part I recruits; support level is per-unit-per-lord and is what
-  actually limits how many units you can bring in.
-- **Route-locked units.** A Flame Lord's own retainers auto-join on that route.
-  A few retainers are exclusive to their lord's route and cannot be recruited
-  elsewhere (e.g. Buccar, Fabio, Tobias, Bonaventure, Gaitz, Sha Lan are all
-  unavailable on Cai's route).
-
-## Known gaps
-
-- Creek is untiered on game8's tier list, so it shows as `?`.
-- Gift data is missing for the Part II/III recruits (game8 lists no preferences).
-- Master and Divine class recommendations are still marked "being considered" by
-  game8, so the Builds tab's suggested progression stops at Advanced.
-- The tier list and best-class pages are living documents; re-run the pipeline to
-  pick up changes.
+- **Eshmel's personal ability** is listed as "TBD" on game8.
+- **Primary Skill** is absent for 13 classes (e.g. Warrior lists only License,
+  Ideal Lv., Renown Lv. and Secondary Skill). That is missing upstream, not
+  dropped in extraction.
+- **Gift preferences** are only listed for 50 of 62 units; the Part II/III
+  recruits have none.
+- **Master and Divine class recommendations** are still marked "being
+  considered" by game8, so the planner's suggested progressions stop at Advanced.
+- **Creek** is untiered on game8's tier list.
